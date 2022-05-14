@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="75dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dayWeatherCard"
+    app:cardCornerRadius="50dp"
+    android:elevation="50sp"
+    android:layout_margin="10dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/txtWeekDay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/txtDayOfWeek"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="30dp"/>
+
+        <ImageView
+            android:id="@+id/ivWeatherIconDay"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/txtWeekDay"
+            android:background="@color/white"
+            android:src="@drawable/sun_rain" />
+
+        <ImageView
+            android:id="@+id/ivWeatherIconNight"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/ivWeatherIconDay"
+            android:background="@color/white"
+            android:src="@drawable/sun_rain" />
+
+    </RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>

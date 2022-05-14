@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Better Weather</string>
+    <string name="txtDayOfWeek">Friday</string>
 </resources>
