@@ -1,18 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/black">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:backgroundTint="@color/purple_700"
+        app:cardCornerRadius="50dp"
+        android:elevation="50sp"
+        android:layout_margin="20dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="40dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/txtCurrentCity"
+                android:text="@string/my_city"
+                android:textAlignment="center"
+                android:layout_marginTop="15dp"
+                android:textColor="@color/white"
+                android:fontFamily="sans-serif"
+                android:textSize="40sp" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/ivCurrentWeather"
+                android:src="@drawable/sun_rain"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/txtCurrentCity"
+                android:layout_marginTop="20dp"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+
+                android:layout_below="@+id/ivCurrentWeather"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="50dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cdUVIndex"
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="#3F51B5"
+                        android:elevation="80dp"
+                        app:cardCornerRadius="20dp"
+                        android:layout_alignParentStart="true">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/imgUVIcon"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="10dp"
+                                android:src="@drawable/ic_uv_index" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/imgUVIcon"
+                                android:layout_centerHorizontal="true"
+                                android:text="High"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                android:layout_marginTop="10dp"/>
+
+                        </RelativeLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/cdWindSpeed"
+                        app:cardCornerRadius="20dp"
+                        android:elevation="80dp"
+                        android:backgroundTint="#3F51B5"
+                        android:layout_centerHorizontal="true">
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="90dp"
+                        android:layout_height="match_parent"
+                        android:id="@+id/cdHumidity"
+                        app:cardCornerRadius="20dp"
+                        android:elevation="80dp"
+                        android:backgroundTint="#3F51B5"
+                        android:layout_alignParentEnd="true">
+
+
+                    </androidx.cardview.widget.CardView>
+
+
+                </RelativeLayout>
+
+
+
+            </FrameLayout>
+
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</LinearLayout>

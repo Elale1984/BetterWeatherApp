@@ -2,4 +2,6 @@
     <string name="app_name">Better Weather</string>
     <string name="txtDayOfWeek">Friday</string>
     <string name="temp_high">65°</string>
+    <string name="kansas_city">Kansas City</string>
+    <string name="my_city">My City</string>
 </resources>
