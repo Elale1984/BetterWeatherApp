@@ -74,37 +74,82 @@
                                 android:src="@drawable/ic_uv_index" />
                             <TextView
                                 android:layout_width="wrap_content"
+                                android:id="@+id/txtUVLabel"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/imgUVIcon"
                                 android:layout_centerHorizontal="true"
-                                android:text="High"
+                                android:text="UV Index"
                                 android:textColor="@color/white"
                                 android:textSize="20sp"
                                 android:layout_marginTop="10dp"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/txtUVIndex"
+                                android:layout_below="@+id/txtUVLabel"
+                                android:layout_centerHorizontal="true"
+                                android:text="low"
+                                android:textColor="#49FF0C"
+                                android:textSize="15sp"
+                                android:layout_marginTop="2dp"/>
 
                         </RelativeLayout>
 
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cdWindSpeed"
                         android:layout_width="90dp"
                         android:layout_height="match_parent"
-                        android:id="@+id/cdWindSpeed"
-                        app:cardCornerRadius="20dp"
-                        android:elevation="80dp"
+                        android:layout_centerHorizontal="true"
                         android:backgroundTint="#3F51B5"
-                        android:layout_centerHorizontal="true">
+                        android:elevation="80dp"
+                        app:cardCornerRadius="20dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/imgWindSpeed"
+                                android:layout_centerHorizontal="true"
+                                android:layout_marginTop="10dp"
+                                android:src="@drawable/ic_wind_speed" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/txtWindLabel"
+                                android:layout_below="@+id/imgWindSpeed"
+                                android:layout_centerHorizontal="true"
+                                android:text="Wind"
+                                android:textColor="@color/white"
+                                android:textSize="20sp"
+                                android:layout_marginTop="10dp"/>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/txtWindSpeed"
+                                android:layout_below="@+id/txtWindLabel"
+                                android:layout_centerHorizontal="true"
+                                android:text="14 mph"
+                                android:textColor="#49FF0C"
+                                android:textSize="15sp"
+                                android:layout_marginTop="2dp"/>
+
+                        </RelativeLayout>
 
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cdHumidity"
                         android:layout_width="90dp"
                         android:layout_height="match_parent"
-                        android:id="@+id/cdHumidity"
-                        app:cardCornerRadius="20dp"
-                        android:elevation="80dp"
+                        android:layout_alignParentEnd="true"
                         android:backgroundTint="#3F51B5"
-                        android:layout_alignParentEnd="true">
+                        android:elevation="80dp"
+                        app:cardCornerRadius="20dp">
 
 
                     </androidx.cardview.widget.CardView>
