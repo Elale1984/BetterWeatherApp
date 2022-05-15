@@ -11,6 +11,7 @@
 
     // My App Colors
     <color name="card_background_color">#EFEFEF</color>
+    <color name="green">#49FF0C</color>
 
 
 </resources>

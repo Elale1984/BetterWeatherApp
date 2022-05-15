@@ -15,4 +15,5 @@
     <string name="wind_speed_value">14 mph</string>
     <string name="humidity_icon">Humidity Icon</string>
     <string name="humidity_percent_value">65%</string>
+    <string name="current_temp_value">71°</string>
 </resources>
