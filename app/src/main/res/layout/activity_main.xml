@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:fontFamily="sans-serif"
-                android:text="Lenexa"
+                android:text="@string/city_name"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="40sp" />
@@ -39,7 +39,8 @@
                 android:src="@drawable/sun_rain"
                 android:layout_centerHorizontal="true"
                 android:layout_below="@+id/txtCurrentCity"
-                android:layout_marginTop="20dp"/>
+                android:layout_marginTop="20dp"
+                android:contentDescription="@string/current_weather_Content_Description" />
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -71,14 +72,15 @@
                                 android:id="@+id/imgUVIcon"
                                 android:layout_centerHorizontal="true"
                                 android:layout_marginTop="10dp"
-                                android:src="@drawable/ic_uv_index" />
+                                android:src="@drawable/ic_uv_index"
+                                android:contentDescription="@string/icon_for_the_uv_index" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:id="@+id/txtUVLabel"
                                 android:layout_height="wrap_content"
                                 android:layout_below="@+id/imgUVIcon"
                                 android:layout_centerHorizontal="true"
-                                android:text="UV Index"
+                                android:text="@string/uv_index_text"
                                 android:textColor="@color/white"
                                 android:textSize="20sp"
                                 android:layout_marginTop="10dp"/>
@@ -88,7 +90,7 @@
                                 android:id="@+id/txtUVIndex"
                                 android:layout_below="@+id/txtUVLabel"
                                 android:layout_centerHorizontal="true"
-                                android:text="low"
+                                android:text="@string/uv_index_value"
                                 android:textColor="#49FF0C"
                                 android:textSize="15sp"
                                 android:layout_marginTop="2dp"/>
@@ -116,14 +118,15 @@
                                 android:id="@+id/imgWindSpeed"
                                 android:layout_centerHorizontal="true"
                                 android:layout_marginTop="10dp"
-                                android:src="@drawable/ic_wind_speed" />
+                                android:src="@drawable/ic_wind_speed"
+                                android:contentDescription="@string/wind_speed_icon" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/txtWindLabel"
                                 android:layout_below="@+id/imgWindSpeed"
                                 android:layout_centerHorizontal="true"
-                                android:text="Wind"
+                                android:text="@string/windLabel"
                                 android:textColor="@color/white"
                                 android:textSize="20sp"
                                 android:layout_marginTop="10dp"/>
@@ -133,7 +136,7 @@
                                 android:id="@+id/txtWindSpeed"
                                 android:layout_below="@+id/txtWindLabel"
                                 android:layout_centerHorizontal="true"
-                                android:text="14 mph"
+                                android:text="@string/wind_speed_value"
                                 android:textColor="#49FF0C"
                                 android:textSize="15sp"
                                 android:layout_marginTop="2dp"/>
@@ -161,14 +164,15 @@
                                 android:layout_height="wrap_content"
                                 android:layout_centerHorizontal="true"
                                 android:layout_marginTop="10dp"
-                                android:src="@drawable/ic_humidity" />
+                                android:src="@drawable/ic_humidity"
+                                android:contentDescription="@string/humidity_icon" />
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:id="@+id/txtHumidityLabel"
                                 android:layout_below="@+id/imgHumidity"
                                 android:layout_centerHorizontal="true"
-                                android:text="Humidity"
+                                android:text="@string/humidityLabel"
                                 android:textColor="@color/white"
                                 android:textSize="20sp"
                                 android:layout_marginTop="10dp"/>
@@ -178,7 +182,7 @@
                                 android:id="@+id/txtHumidityPercent"
                                 android:layout_below="@+id/txtHumidityLabel"
                                 android:layout_centerHorizontal="true"
-                                android:text="65%"
+                                android:text="@string/humidity_percent_value"
                                 android:textColor="#49FF0C"
                                 android:textSize="15sp"
                                 android:layout_marginTop="2dp"/>
