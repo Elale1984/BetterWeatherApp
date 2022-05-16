@@ -17,4 +17,12 @@
     <string name="humidity_percent_value">65%</string>
     <string name="current_temp_value">71°</string>
     <string name="ten_day_weather">Ten Day Weather</string>
+    <string name="cloud_background">Cloud background</string>
+    <string name="log_in">Log In</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="log_in_label">LOG IN</string>
+    <string name="breker">/</string>
+    <string name="night_weather">night weather</string>
+    <string name="tag">tag</string>
 </resources>
