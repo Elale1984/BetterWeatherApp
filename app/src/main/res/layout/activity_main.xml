@@ -10,7 +10,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="none">
+        android:scrollbars="none"
+        tools:ignore="UselessParent">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -96,7 +97,8 @@
                                         android:layout_centerHorizontal="true"
                                         android:layout_marginTop="10dp"
                                         android:src="@drawable/ic_uv_index"
-                                        android:contentDescription="@string/icon_for_the_uv_index" />
+                                        android:contentDescription="@string/icon_for_the_uv_index"
+                                        tools:ignore="TooDeepLayout" />
                                     <TextView
                                         android:layout_width="wrap_content"
                                         android:id="@+id/txtUVLabel"
