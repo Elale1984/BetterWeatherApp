@@ -43,8 +43,8 @@
             android:layout_centerVertical="true"
             android:layout_toEndOf="@+id/ivWeatherIconDay"
             android:background="@color/white"
-            android:src="@drawable/sun_rain"
-            android:backgroundTint="@color/card_background_color"/>
+            android:backgroundTint="@color/card_background_color"
+            android:src="@drawable/sun_rain" />
 
         <TextView
             android:id="@+id/txtTempHigh"
