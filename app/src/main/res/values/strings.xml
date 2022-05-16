@@ -2,4 +2,27 @@
     <string name="app_name">Better Weather</string>
     <string name="txtDayOfWeek">Friday</string>
     <string name="temp_high">65°</string>
+    <string name="kansas_city">Kansas City</string>
+    <string name="my_city">My City</string>
+    <string name="city_name">Lenexa</string>
+    <string name="current_weather_Content_Description">Current weather image</string>
+    <string name="windLabel">Wind</string>
+    <string name="humidityLabel">Humidity</string>
+    <string name="icon_for_the_uv_index">Icon for the UV Index</string>
+    <string name="uv_index_text">UV Index</string>
+    <string name="uv_index_value">low</string>
+    <string name="wind_speed_icon">Wind Speed Icon</string>
+    <string name="wind_speed_value">14 mph</string>
+    <string name="humidity_icon">Humidity Icon</string>
+    <string name="humidity_percent_value">65%</string>
+    <string name="current_temp_value">71°</string>
+    <string name="ten_day_weather">Ten Day Weather</string>
+    <string name="cloud_background">Cloud background</string>
+    <string name="log_in">Log In</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="log_in_label">LOG IN</string>
+    <string name="breker">/</string>
+    <string name="night_weather">night weather</string>
+    <string name="tag">tag</string>
 </resources>
