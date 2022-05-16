@@ -10,15 +10,25 @@ public class DayWeather {
     private ImageView eveningWeather;
     private String lowTemp;
     private String highTemp;
+    private String uvIndex;
+    private String windSpeed;
+    private String humidity;
+
 
 
     // Constructor
-    public DayWeather(String weekDay, ImageView morningWeather, ImageView eveningWeather, String lowTemp, String highTemp) {
+    public DayWeather(String weekDay, ImageView morningWeather, ImageView eveningWeather,
+                      String lowTemp, String highTemp, String uvIndex, String windSpeed,
+                      String humidity) {
         this.weekDay = weekDay;
         this.morningWeather = morningWeather;
         this.eveningWeather = eveningWeather;
         this.lowTemp = lowTemp;
         this.highTemp = highTemp;
+        this.uvIndex = uvIndex;
+        this.windSpeed = windSpeed;
+        this.humidity = humidity;
+
     }
 
     // Getters And Setters
@@ -61,4 +71,29 @@ public class DayWeather {
     public void setHighTemp(String highTemp) {
         this.highTemp = highTemp;
     }
+
+    public String getUvIndex() {
+        return uvIndex;
+    }
+
+    public void setUvIndex(String uvIndex) {
+        this.uvIndex = uvIndex;
+    }
+
+    public String getWindSpeed() {
+        return windSpeed;
+    }
+
+    public void setWindSpeed(String windSpeed) {
+        this.windSpeed = windSpeed;
+    }
+
+    public String getHumidity() {
+        return humidity;
+    }
+
+    public void setHumidity(String humidity) {
+        this.humidity = humidity;
+    }
+
 }
