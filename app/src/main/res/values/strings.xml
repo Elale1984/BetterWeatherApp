@@ -16,4 +16,5 @@
     <string name="humidity_icon">Humidity Icon</string>
     <string name="humidity_percent_value">65%</string>
     <string name="current_temp_value">71°</string>
+    <string name="ten_day_weather">Ten Day Weather</string>
 </resources>

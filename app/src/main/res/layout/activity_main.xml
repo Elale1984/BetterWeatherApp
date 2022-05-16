@@ -219,7 +219,7 @@
             </androidx.cardview.widget.CardView>
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="wrap_content"
                 android:backgroundTint="@color/purple_700"
                 app:cardCornerRadius="50dp"
                 android:elevation="50sp"
@@ -233,11 +233,20 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Ten Day Weather"
+                        android:text="@string/ten_day_weather"
                         android:textStyle="bold"
-                        android:textSize="30dp"
+                        android:textSize="30sp"
                         android:textColor="@color/green"
                         android:layout_centerHorizontal="true"/>
+
+                    <ListView
+                        android:layout_marginTop="75dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:id="@+id/lvTenDayWeather"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginBottom="40dp"/>
 
                 </RelativeLayout>
 
