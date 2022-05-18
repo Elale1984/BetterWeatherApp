@@ -91,24 +91,25 @@
                                     android:layout_height="match_parent">
 
                                     <ImageView
+                                        android:id="@+id/imgUVIcon"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:id="@+id/imgUVIcon"
                                         android:layout_centerHorizontal="true"
                                         android:layout_marginTop="10dp"
-                                        android:src="@drawable/ic_uv_index"
                                         android:contentDescription="@string/icon_for_the_uv_index"
+                                        android:src="@drawable/ic_uv_index"
                                         tools:ignore="TooDeepLayout" />
+
                                     <TextView
-                                        android:layout_width="wrap_content"
                                         android:id="@+id/txtUVLabel"
+                                        android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_below="@+id/imgUVIcon"
                                         android:layout_centerHorizontal="true"
+                                        android:layout_marginTop="10dp"
                                         android:text="@string/uv_index_text"
                                         android:textColor="@color/white"
-                                        android:textSize="20sp"
-                                        android:layout_marginTop="10dp"/>
+                                        android:textSize="20sp" />
 
                                     <TextView
                                         android:id="@+id/txtUVIndex"
@@ -260,7 +261,7 @@
                         android:elevation="50sp"
                         android:layout_margin="25dp"
                         android:layout_below="@+id/tenDayText"
-                        android:backgroundTint="@color/card_background_color"
+                        android:backgroundTint="@color/card_tint"
                         android:padding="5dp">
 
                         <RelativeLayout
@@ -278,19 +279,19 @@
                                 android:text="@string/txtDayOfWeek"
                                 android:textSize="25sp"
                                 android:textStyle="bold"
-                                android:textColor="@color/black"/>
+                                android:textColor="@color/green"/>
 
                             <ImageView
                                 android:id="@+id/ivWeatherIconDay"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
                                 android:layout_centerVertical="true"
+                                android:layout_marginEnd="6dp"
                                 android:layout_toEndOf="@+id/txtWeekDay"
                                 android:background="@color/white"
-                                android:src="@drawable/sun_rain"
-                                android:backgroundTint="@color/card_background_color"
-                                android:layout_marginEnd="6dp"
-                                android:contentDescription="@string/tag" />
+                                android:backgroundTint="@color/card_tint"
+                                android:contentDescription="@string/tag"
+                                android:src="@drawable/sun_rain" />
 
                             <ImageView
                                 android:id="@+id/ivWeatherIconNight"
@@ -300,7 +301,7 @@
                                 android:layout_toEndOf="@+id/ivWeatherIconDay"
                                 android:background="@color/white"
                                 android:src="@drawable/sun_rain"
-                                android:backgroundTint="@color/card_background_color"
+                                android:backgroundTint="@color/card_tint"
                                 android:contentDescription="@string/night_weather" />
 
                             <TextView
@@ -313,7 +314,7 @@
                                 android:text="@string/temp_high"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
-                                android:textColor="@color/black"/>
+                                android:textColor="@color/green"/>
 
                             <TextView
                                 android:id="@+id/txtTempSeperator"
@@ -324,7 +325,7 @@
                                 android:text="@string/breker"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
-                                android:textColor="@color/black"/>
+                                android:textColor="@color/green"/>
 
                             <TextView
                                 android:id="@+id/txtTempLow"
@@ -333,7 +334,7 @@
                                 android:layout_centerVertical="true"
                                 android:layout_alignParentEnd="true"
                                 android:text="@string/temp_high"
-                                android:textColor="@color/black"
+                                android:textColor="@color/green"
                                 android:textSize="20sp"
                                 android:textStyle="bold"
                                 android:layout_marginEnd="20dp"/>
