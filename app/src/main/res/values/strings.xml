@@ -33,4 +33,13 @@
     <string name="sunday">Sunday</string>
     <string name="saturday">Saturday</string>
     <string name="tuesday">Tuesday</string>
+    <string name="email">Email</string>
+    <string name="welcome_back">Log In</string>
+    <string name="sign_in">Sign In</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="re_enter_password">Re-Enter Password</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="sign_up">Register Account</string>
+    <string name="sign_up_head">Sign Up</string>
 </resources>
