@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BetterWeather">
         <activity
+            android:name=".RegisterUser"
+            android:exported="false" />
+        <activity
             android:name=".BWALoginView"
             android:exported="true">
             <intent-filter>
@@ -20,10 +23,7 @@
         </activity>
         <activity
             android:name=".MainUI"
-            android:exported="true">
-
-        </activity>
-
+            android:exported="true" />
     </application>
 
 </manifest>
