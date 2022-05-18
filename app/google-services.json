@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1087105476152",
+    "project_id": "better-weather-c16d1",
+    "storage_bucket": "better-weather-c16d1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1087105476152:android:5d873884f1f78864a8e8cd",
+        "android_client_info": {
+          "package_name": "edu.gcu.betterweather"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1087105476152-enekh5f5irspf0fnqi4bbcdgj8mr5a6v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnh1G3ImH8CPGQnxO0khwF7FWqHESBQIQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1087105476152-enekh5f5irspf0fnqi4bbcdgj8mr5a6v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

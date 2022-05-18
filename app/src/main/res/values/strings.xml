@@ -33,4 +33,7 @@
     <string name="sunday">Sunday</string>
     <string name="saturday">Saturday</string>
     <string name="tuesday">Tuesday</string>
+    <string name="email">Email</string>
+    <string name="welcome_back">Log In</string>
+    <string name="sign_in">Sign In</string>
 </resources>
