@@ -22,7 +22,15 @@
     <string name="password">Password</string>
     <string name="username">Username</string>
     <string name="log_in_label">LOG IN</string>
-    <string name="breker">/</string>
+    <string name="slash">/</string>
     <string name="night_weather">night weather</string>
     <string name="tag">tag</string>
+    <string name="daytwo">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="monday">Monday</string>
+    <string name="friday">Friday</string>
+    <string name="thursday">Thursday</string>
+    <string name="sunday">Sunday</string>
+    <string name="saturday">Saturday</string>
+    <string name="tuesday">Tuesday</string>
 </resources>

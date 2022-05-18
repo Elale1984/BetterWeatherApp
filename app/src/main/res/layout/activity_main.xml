@@ -1,31 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainUI"
     android:background="@color/black">
-
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="none"
-        tools:ignore="UselessParent">
-
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/HeaderCard"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
                 android:backgroundTint="@color/purple_700"
-                app:cardCornerRadius="50dp"
                 android:elevation="50sp"
-                android:layout_margin="20dp"
-                android:id="@+id/HeaderCard">
-
+                app:cardCornerRadius="50dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -44,14 +39,15 @@
                         android:textColor="#49FF0C"
                         android:textSize="40sp"
                         android:textStyle="bold" />
+
                     <TextView
                         android:id="@+id/txtCurrentTemp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_below="@id/txtCurrentCity"
                         android:layout_marginTop="15dp"
                         android:fontFamily="sans-serif"
                         android:text="@string/current_temp_value"
-                        android:layout_below="@id/txtCurrentCity"
                         android:textColor="#FFEB3B"
                         android:textSize="71sp" />
 
@@ -73,6 +69,7 @@
                         android:layout_below="@+id/ivCurrentWeather"
                         android:layout_centerHorizontal="true"
                         android:layout_marginTop="50dp">
+
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
@@ -81,34 +78,35 @@
                                 android:id="@+id/cdUVIndex"
                                 android:layout_width="90dp"
                                 android:layout_height="match_parent"
+                                android:layout_alignParentStart="true"
                                 android:backgroundTint="@color/card_tint"
                                 android:elevation="80dp"
-                                app:cardCornerRadius="20dp"
-                                android:layout_alignParentStart="true">
+                                app:cardCornerRadius="20dp">
 
                                 <RelativeLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent">
 
                                     <ImageView
+                                        android:id="@+id/imgUVIcon"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:id="@+id/imgUVIcon"
                                         android:layout_centerHorizontal="true"
                                         android:layout_marginTop="10dp"
-                                        android:src="@drawable/ic_uv_index"
                                         android:contentDescription="@string/icon_for_the_uv_index"
+                                        android:src="@drawable/ic_uv_index"
                                         tools:ignore="TooDeepLayout" />
+
                                     <TextView
-                                        android:layout_width="wrap_content"
                                         android:id="@+id/txtUVLabel"
+                                        android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_below="@+id/imgUVIcon"
                                         android:layout_centerHorizontal="true"
+                                        android:layout_marginTop="10dp"
                                         android:text="@string/uv_index_text"
                                         android:textColor="@color/white"
-                                        android:textSize="20sp"
-                                        android:layout_marginTop="10dp"/>
+                                        android:textSize="20sp" />
 
                                     <TextView
                                         android:id="@+id/txtUVIndex"
@@ -139,33 +137,35 @@
                                     android:layout_height="match_parent">
 
                                     <ImageView
+                                        android:id="@+id/imgWindSpeed"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:id="@+id/imgWindSpeed"
                                         android:layout_centerHorizontal="true"
                                         android:layout_marginTop="10dp"
-                                        android:src="@drawable/ic_wind_speed"
-                                        android:contentDescription="@string/wind_speed_icon" />
+                                        android:contentDescription="@string/wind_speed_icon"
+                                        android:src="@drawable/ic_wind_speed" />
+
                                     <TextView
+                                        android:id="@+id/txtWindLabel"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:id="@+id/txtWindLabel"
                                         android:layout_below="@+id/imgWindSpeed"
                                         android:layout_centerHorizontal="true"
+                                        android:layout_marginTop="10dp"
                                         android:text="@string/windLabel"
                                         android:textColor="@color/white"
-                                        android:textSize="20sp"
-                                        android:layout_marginTop="10dp"/>
+                                        android:textSize="20sp" />
+
                                     <TextView
+                                        android:id="@+id/txtWindSpeed"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:id="@+id/txtWindSpeed"
                                         android:layout_below="@+id/txtWindLabel"
                                         android:layout_centerHorizontal="true"
+                                        android:layout_marginTop="2dp"
                                         android:text="@string/wind_speed_value"
                                         android:textColor="#49FF0C"
-                                        android:textSize="15sp"
-                                        android:layout_marginTop="2dp"/>
+                                        android:textSize="15sp" />
 
                                 </RelativeLayout>
 
@@ -190,28 +190,30 @@
                                         android:layout_height="wrap_content"
                                         android:layout_centerHorizontal="true"
                                         android:layout_marginTop="10dp"
-                                        android:src="@drawable/ic_humidity"
-                                        android:contentDescription="@string/humidity_icon" />
+                                        android:contentDescription="@string/humidity_icon"
+                                        android:src="@drawable/ic_humidity" />
+
                                     <TextView
+                                        android:id="@+id/txtHumidityLabel"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:id="@+id/txtHumidityLabel"
                                         android:layout_below="@+id/imgHumidity"
                                         android:layout_centerHorizontal="true"
+                                        android:layout_marginTop="10dp"
                                         android:text="@string/humidityLabel"
                                         android:textColor="@color/white"
-                                        android:textSize="20sp"
-                                        android:layout_marginTop="10dp"/>
+                                        android:textSize="20sp" />
+
                                     <TextView
+                                        android:id="@+id/txtHumidityPercent"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
-                                        android:id="@+id/txtHumidityPercent"
                                         android:layout_below="@+id/txtHumidityLabel"
                                         android:layout_centerHorizontal="true"
+                                        android:layout_marginTop="2dp"
                                         android:text="@string/humidity_percent_value"
                                         android:textColor="@color/green"
-                                        android:textSize="15sp"
-                                        android:layout_marginTop="2dp"/>
+                                        android:textSize="15sp" />
 
                                 </RelativeLayout>
                             </androidx.cardview.widget.CardView>
@@ -225,8 +227,9 @@
                 android:backgroundTint="@color/purple_700"
                 app:cardCornerRadius="50dp"
                 android:elevation="50sp"
-                android:layout_margin="20dp"
-                android:layout_below="@+id/HeaderCard"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_below="@id/HeaderCard"
                 android:id="@+id/cdTenDayWeather">
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -242,109 +245,14 @@
                         android:textColor="@color/green"
                         android:layout_centerHorizontal="true"/>
 
-                    <LinearLayout
-                        android:id="@+id/llTenDayWeather"
+                    <include android:id="@+id/dayWeatherOne"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="75dp"
-                        android:layout_marginEnd="20dp"
-                        android:layout_marginBottom="40dp"
-                        android:orientation="vertical" />
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/dayWeatherCard"
-                        app:cardCornerRadius="50dp"
-                        android:elevation="50sp"
-                        android:layout_margin="25dp"
+                        android:layout_height="match_parent"
+                        layout="@layout/ten_day_weather_layout"
                         android:layout_below="@+id/tenDayText"
-                        android:backgroundTint="@color/card_background_color"
-                        android:padding="5dp">
-
-                        <RelativeLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
-
-                            <TextView
-
-                                android:id="@+id/txtWeekDay"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginStart="30dp"
-                                android:layout_marginEnd="30dp"
-                                android:text="@string/txtDayOfWeek"
-                                android:textSize="25sp"
-                                android:textStyle="bold"
-                                android:textColor="@color/black"/>
-
-                            <ImageView
-                                android:id="@+id/ivWeatherIconDay"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_centerVertical="true"
-                                android:layout_toEndOf="@+id/txtWeekDay"
-                                android:background="@color/white"
-                                android:src="@drawable/sun_rain"
-                                android:backgroundTint="@color/card_background_color"
-                                android:layout_marginEnd="6dp"
-                                android:contentDescription="@string/tag" />
-
-                            <ImageView
-                                android:id="@+id/ivWeatherIconNight"
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                android:layout_centerVertical="true"
-                                android:layout_toEndOf="@+id/ivWeatherIconDay"
-                                android:background="@color/white"
-                                android:src="@drawable/sun_rain"
-                                android:backgroundTint="@color/card_background_color"
-                                android:contentDescription="@string/night_weather" />
-
-                            <TextView
-                                android:id="@+id/txtTempHigh"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_marginStart="30dp"
-                               android:layout_toStartOf="@+id/txtTempSeperator"
-                                android:text="@string/temp_high"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="@color/black"/>
-
-                            <TextView
-                                android:id="@+id/txtTempSeperator"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_toStartOf="@+id/txtTempLow"
-                                android:text="@string/breker"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:textColor="@color/black"/>
-
-                            <TextView
-                                android:id="@+id/txtTempLow"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_alignParentEnd="true"
-                                android:text="@string/temp_high"
-                                android:textColor="@color/black"
-                                android:textSize="20sp"
-                                android:textStyle="bold"
-                                android:layout_marginEnd="20dp"/>
-
-                        </RelativeLayout>
-                    </androidx.cardview.widget.CardView>
+                        android:layout_margin="20dp"/>
 
                 </RelativeLayout>
-
-
             </androidx.cardview.widget.CardView>
         </RelativeLayout>
-    </ScrollView>
-</LinearLayout>
+</ScrollView>
