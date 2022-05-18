@@ -24,6 +24,8 @@ public class BWALoginView extends AppCompatActivity {
         });
     }
 
+    // navigate after login
+
     public void LoginSuccess(){
 
 
