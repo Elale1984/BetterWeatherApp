@@ -81,7 +81,9 @@ public class BWALoginView extends AppCompatActivity {
         FirebaseUser currUser = mAuth.getCurrentUser();
 
         if (currUser != null) {
-
+            // Navigate to main UI if user is already signed in
+            Intent intent = new Intent(BWALoginView.this, MainUI.class);
+            startActivity(intent);
         }
     }
 }
