@@ -29,7 +29,7 @@ public class WeatherRetrieve {
 
 
 
-    public static JSONObject requestForecast(String location) throws Exception {
+    public static ArrayList<WeatherData> requestForecast(String location) throws Exception {
         //set up the end point
         String apiEndPoint="https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/";
         String startDate=null;
@@ -81,7 +81,7 @@ public class WeatherRetrieve {
         return parseTimelineJson(rawResult);
 
     }
-    private static JSONObject parseTimelineJson(String rawResult) {
+    private static ArrayList<WeatherData> parseTimelineJson(String rawResult) {
 
         if (rawResult==null || rawResult.isEmpty()) {
             System.out.printf("No raw data%n");
@@ -90,7 +90,33 @@ public class WeatherRetrieve {
 
         JSONObject timelineResponse = new JSONObject(rawResult);
 
-        return timelineResponse;
+        // return timelineResponse;
+
+        ZoneId zoneId=ZoneId.of(timelineResponse.getString("timezone"));
+
+        JSONArray values=timelineResponse.getJSONArray("days");
+
+        ArrayList<WeatherData> forecastSet = new ArrayList<WeatherData>();
+
+        for (int i = 0; i < 10, i++) // get the first ten days of forecasts
+        {
+            JSONObject dayValue = values.getJsonObject(i);
+
+            ZonedDateTime datetime=ZonedDateTime.ofInstant(Instant.ofEpochSecond(dayValue.getLong("datetimeEpoch")), zoneId);
+
+            String maxtemp = dayValue.getString("tempmax");
+            String mintemp = dayValue.getString("tempmin");
+            String sunrise = dayValue.getString("sunrise");
+            String sunset = dayValue.getString("sunset");
+            String uvindex = dayValue.getString("uvindex");
+            String humidity = dayValue.getString("humidity");
+            String windspeed = dayValue.getString("windspeed")
+
+            WeatherData newForecast = new WeatherData(maxtemp, mintemp, sunrise, sunset, uvindex, humidity, windspeed);
+            forecastSet.add(newForecast);
+        }
+
+        return forecastSet;
         /*
         ZoneId zoneId=ZoneId.of(timelineResponse.getString("timezone"));
 
@@ -102,7 +128,7 @@ public class WeatherRetrieve {
         for (int i = 0; i < values.length(); i++) {
             JSONObject dayValue = values.getJSONObject(i);
 
-            ZonedDateTime datetime=ZonedDateTime.ofInstant(Instant.ofEpochSecond(dayValue.getLong("datetimeEpoch")), zoneId);
+
 
             double maxtemp=dayValue.getDouble("tempmax");
             double mintemp=dayValue.getDouble("tempmin");
