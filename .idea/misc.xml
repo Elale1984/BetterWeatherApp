@@ -3,8 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/MyAndroid/BetterWeatherApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
-        <entry key="..\:/MyAndroid/BetterWeatherApp/app/src/main/res/layout/day_card_weather_layout.xml" value="0.3890577507598784" />
+        <entry key="..\:/MyAndroid/BetterWeatherApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
+        <entry key="..\:/MyAndroid/BetterWeatherApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1" />
+        <entry key="..\:/MyAndroid/BetterWeatherApp/app/src/main/res/layout-v28/day_card_weather_layout.xml" value="0.3890577507598784" />
+        <entry key="..\:/MyAndroid/BetterWeatherApp/app/src/main/res/layout/activity_bwalogin_view.xml" value="0.3890577507598784" />
+        <entry key="..\:/MyAndroid/BetterWeatherApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/MyAndroid/BetterWeatherApp/app/src/main/res/layout/activity_test.xml" value="0.3890577507598784" />
+        <entry key="..\:/MyAndroid/BetterWeatherApp/app/src/main/res/layout/day_card_weather_layout.xml" value="0.23" />
+        <entry key="..\:/MyAndroid/BetterWeatherApp/app/src/main/res/layout/day_weather_layout.xml" value="0.266051912568306" />
+        <entry key="..\:/MyAndroid/BetterWeatherApp/app/src/main/res/layout/ten_day_weather_layout.xml" value="0.1" />
         <entry key="..\:/Users/edwar/AndroidStudioProjects/BetterWeather/app/src/main/res/layout-v28/day_card_weather_layout.xml" value="0.4" />
         <entry key="..\:/Users/edwar/AndroidStudioProjects/BetterWeather/app/src/main/res/layout/activity_main.xml" value="0.11302083333333333" />
         <entry key="..\:/Users/edwar/AndroidStudioProjects/BetterWeather/app/src/main/res/layout/day_card_weather_layout.xml" value="0.16799999999999998" />

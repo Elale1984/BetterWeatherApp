@@ -17,4 +17,20 @@
     <string name="humidity_percent_value">65%</string>
     <string name="current_temp_value">71°</string>
     <string name="ten_day_weather">Ten Day Weather</string>
+    <string name="cloud_background">Cloud background</string>
+    <string name="log_in">Log In</string>
+    <string name="password">Password</string>
+    <string name="username">Username</string>
+    <string name="log_in_label">LOG IN</string>
+    <string name="slash">/</string>
+    <string name="night_weather">night weather</string>
+    <string name="tag">tag</string>
+    <string name="daytwo">Tuesday</string>
+    <string name="wednesday">Wednesday</string>
+    <string name="monday">Monday</string>
+    <string name="friday">Friday</string>
+    <string name="thursday">Thursday</string>
+    <string name="sunday">Sunday</string>
+    <string name="saturday">Saturday</string>
+    <string name="tuesday">Tuesday</string>
 </resources>
