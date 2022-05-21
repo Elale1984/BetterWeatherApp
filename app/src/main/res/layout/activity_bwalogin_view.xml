@@ -55,6 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorLink="@color/green"
+            android:inputType="textEmailAddress"
             tools:ignore="TextContrastCheck,TextContrastCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -78,6 +79,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorLink="@color/green"
+            android:inputType="textPassword"
             tools:ignore="TextContrastCheck,TextContrastCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
