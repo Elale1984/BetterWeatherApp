@@ -7,15 +7,11 @@ import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
 import edu.gcu.betterweather.databinding.ActivityRegisterUserBinding;
 
 public class RegisterUser extends AppCompatActivity {
@@ -26,7 +22,6 @@ public class RegisterUser extends AppCompatActivity {
 
     // Progress Dialogue
     private ProgressDialog progressDialog;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +43,7 @@ public class RegisterUser extends AppCompatActivity {
     }
 
     private void validateData() {
+
         email = binding.etEmail.getText().toString().trim();
         password = binding.etMagicWord.getText().toString().trim();
         String re_password = binding.etRePass.getText().toString().trim();
@@ -70,15 +66,11 @@ public class RegisterUser extends AppCompatActivity {
             // Data was validated
             firebaseSignUp();
         }
-
-
-
     }
 
     private void firebaseSignUp() {
 
         progressDialog.show();
-
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnSuccessListener(authResult -> {
                     // Register New Account
@@ -109,7 +101,7 @@ public class RegisterUser extends AppCompatActivity {
 
         // using regex.... The password must have one special char, one uppercase letter,
         // one number, and minimum of 8 chars
-        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@#$%^&+=!])(?=\\S+$).{8,}$";
+        final String PASSWORD_PATTERN = "^(?=.*[0-9])(?=.*[A-Z])(?=.*[@_#$%^&+=!])(?=\\S+$).{8,}$";
         pattern = Pattern.compile(PASSWORD_PATTERN);
         matcher = pattern.matcher(password);
 

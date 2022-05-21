@@ -1,17 +1,13 @@
 package edu.gcu.betterweather;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -34,16 +30,11 @@ public class BWALoginView extends AppCompatActivity {
 
         // Login Button
         btnLogin = findViewById(R.id.btnLogIn);
-        btnLogin.setOnClickListener(view -> {
-
-            LoginSuccess();
-        });
+        btnLogin.setOnClickListener(view -> LoginSuccess());
 
         // Text button that takes user to register account page
         tbnRegisterAccount = findViewById(R.id.tbnRegisterAccount);
-        tbnRegisterAccount.setOnClickListener(view -> {
-            NavigateToRegistration();
-        });
+        tbnRegisterAccount.setOnClickListener(view -> NavigateToRegistration());
 
     }
 
@@ -63,24 +54,21 @@ public class BWALoginView extends AppCompatActivity {
 
         //checking our users inputs against firebase for correct login
 
-        mAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful() ) {
-                    Toast.makeText(BWALoginView.this, "Log In Successful",
-                            Toast.LENGTH_SHORT).show();
+        mAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(this, task -> {
+            if (task.isSuccessful() ) {
+                Toast.makeText(BWALoginView.this, "Log In Successful",
+                        Toast.LENGTH_SHORT).show();
 
-                    // Navigate to main UI
-                    Intent intent = new Intent(BWALoginView.this, MainUI.class);
-                    startActivity(intent);
-                }
-                else {
-                    // User login failed so error massage for incorrect credentials
-                    Toast.makeText(BWALoginView.this,
-                            "Log Failed. Check your email and password and try again. ",
-                            Toast.LENGTH_SHORT).show();
+                // Navigate to main UI
+                Intent intent = new Intent(BWALoginView.this, MainUI.class);
+                startActivity(intent);
+            }
+            else {
+                // User login failed so error massage for incorrect credentials
+                Toast.makeText(BWALoginView.this,
+                        "Log Failed. Check your email and password and try again. ",
+                        Toast.LENGTH_SHORT).show();
 
-                }
             }
         });
 
