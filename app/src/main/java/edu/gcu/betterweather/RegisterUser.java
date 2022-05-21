@@ -20,6 +20,7 @@ public class RegisterUser extends AppCompatActivity {
     private String email, password;
     private FirebaseAuth mAuth;
 
+
     // Progress Dialogue
     private ProgressDialog progressDialog;
 
@@ -39,7 +40,14 @@ public class RegisterUser extends AppCompatActivity {
         progressDialog.setMessage("Creating your account...");
         progressDialog.setCanceledOnTouchOutside(false);
 
+        // onclick for the sign up button
         binding.btnSignUp.setOnClickListener(v -> validateData());
+
+        // onclick for sign in text button launches to the sign in activity
+        binding.tbtnSignIn.setOnClickListener(v -> {
+            startActivity(new Intent(RegisterUser.this, BWALoginView.class));
+            finish();
+        });
     }
 
     private void validateData() {
