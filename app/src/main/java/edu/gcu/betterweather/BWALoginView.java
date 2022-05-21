@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class BWALoginView extends AppCompatActivity {
 
-    Button btnLogin;
+    Button btnLogin, tbnRegisterAccount;
     EditText email;
     EditText password;
 
@@ -32,13 +32,27 @@ public class BWALoginView extends AppCompatActivity {
         email = findViewById(R.id.etEmail);
         password = findViewById(R.id.etPass);
 
+        // Login Button
         btnLogin = findViewById(R.id.btnLogIn);
-
         btnLogin.setOnClickListener(view -> {
 
             LoginSuccess();
         });
+
+        // Text button that takes user to register account page
+        tbnRegisterAccount = findViewById(R.id.tbnRegisterAccount);
+        tbnRegisterAccount.setOnClickListener(view -> {
+            NavigateToRegistration();
+        });
+
     }
+
+    private void NavigateToRegistration() {
+
+        Intent registrationIntent = new Intent(BWALoginView.this, RegisterUser.class);
+        startActivity(registrationIntent);
+    }
+
 
     // navigate after login
 

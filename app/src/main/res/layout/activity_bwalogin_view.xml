@@ -10,6 +10,7 @@
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/cloud_background"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,8 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/cloud_background"
-        android:contentDescription="@string/cloud_background" />
+        app:srcCompat="@drawable/cloud_background" />
 
     <TextView
         android:id="@+id/tvWelcomeBack"
@@ -41,22 +41,21 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
         android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:hint="@string/email"
+        app:hintTextColor="@color/green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvWelcomeBack"
-        android:hint="@string/email"
-        app:hintTextColor="@color/green"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/tvWelcomeBack">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColorLink="@color/green"
-            />
+            tools:ignore="TextContrastCheck,TextContrastCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,27 +71,40 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/otfEmail"
-        >
+        app:layout_constraintTop_toBottomOf="@+id/otfEmail">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColorLink="@color/green"/>
+            android:textColorLink="@color/green"
+            tools:ignore="TextContrastCheck,TextContrastCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/btnLogIn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="141dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
         android:text="@string/sign_in"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.818"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/otfPass"
 
-        />
+        app:layout_constraintTop_toBottomOf="@+id/otfPass" />
+
+    <Button
+        android:id="@+id/tbnRegisterAccount"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:text="@string/need_an_account"
+        android:textColor="@color/green"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/btnLogIn"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogIn"
+        tools:ignore="TextContrastCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
