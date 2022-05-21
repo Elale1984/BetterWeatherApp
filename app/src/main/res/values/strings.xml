@@ -42,4 +42,8 @@
     <string name="enter_password">Enter Password</string>
     <string name="sign_up">Register Account</string>
     <string name="sign_up_head">Sign Up</string>
+    <string name="need_an_account">Need and Account?</string>
+    <string name="user_name">User Name</string>
+    <string name="user_usermail_com">user@usermail.com</string>
+    <string name="sign_out">Sign out</string>
 </resources>
