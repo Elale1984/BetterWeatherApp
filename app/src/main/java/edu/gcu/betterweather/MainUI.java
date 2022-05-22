@@ -35,7 +35,12 @@ public class MainUI extends AppCompatActivity {
             finish();
         });
         // display current weather
-        WeatherForecast forecast = new WeatherForecast("Hollywood, California");
+        WeatherForecast forecast = new WeatherForecast("Hollywood,California");
+        try {
+            forecast.requestForecast(forecast.Location);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         displayCurrentWeather(forecast);
         displayTenDay(forecast);
 
@@ -43,85 +48,73 @@ public class MainUI extends AppCompatActivity {
 
     private void displayCurrentWeather(WeatherForecast forecast)
     {
-        TextView city = (TextView)findViewById(R.id.txtCurrentCity);
-        city.setText(forecast.Location);
+        binding.txtCurrentCity.setText(forecast.Location);
+        binding.txtCurrentTemp.setText(forecast.forecast.get(0).getCurrTemp());
+        binding.txtUVIndex.setText(forecast.forecast.get(0).getCurrUVIndexLevel());
+        binding.txtWindSpeed.setText(forecast.forecast.get(0).getCurrWindSpeed());
+        binding.txtHumidityPercent.setText(forecast.forecast.get(0).getCurrHumidity());
 
-        TextView temp = (TextView)findViewById(R.id.txtCurrentTemp);
-        temp.setText(forecast.forecast.get(0).getCurrTemp());
-
-        TextView UVIndex = (TextView)findViewById(R.id.txtUVIndex);
-        UVIndex.setText(forecast.forecast.get(0).getCurrUVIndexLevel());
-
-        TextView wind = (TextView)findViewById(R.id.txtWindSpeed);
-        UVIndex.setText(forecast.forecast.get(0).getCurrWindSpeed());
-
-        TextView humidity = (TextView)findViewById(R.id.txtHumidityPercent);
-        UVIndex.setText(forecast.forecast.get(0).getCurrHumidity());
     }
 
     private void displayTenDay(WeatherForecast forecast)
     {
-        TextView date = (TextView)findViewById(R.id.txtWeekDayOne);
-        TextView maxtemp = (TextView)findViewById(R.id.txtTempHighOne);
-        TextView mintemp = (TextView)findViewById(R.id.txtTempLowOne);
-        // Day one weather
         for (int x = 0; x <forecast.forecast.size(); x++)
         {
+            String date = forecast.forecast.get(x).getCurrDay();
+            String maxtemp = forecast.forecast.get(x).getHighTemp();
+            String mintemp = forecast.forecast.get(x).getLowTemp();
             switch(x){
                 case 0:
-                    date = (TextView)findViewById(R.id.txtWeekDayOne);
-                    maxtemp = (TextView)findViewById(R.id.txtTempHighOne);
-                    mintemp = (TextView)findViewById(R.id.txtTempLowOne);
+                    binding.dayWeatherOne.txtWeekDayOne.setText(date);
+                    binding.dayWeatherOne.txtTempHighOne.setText(maxtemp);
+                    binding.dayWeatherOne.txtTempLowOne.setText(mintemp);
                     break;
                 case 1:
-                    date = (TextView)findViewById(R.id.txtWeekDayTwo);
-                    maxtemp = (TextView)findViewById(R.id.txtTempHighTwo);
-                    mintemp = (TextView)findViewById(R.id.txtTempLowTwo);
+                    binding.dayWeatherOne.txtWeekDayTwo.setText(date);
+                    binding.dayWeatherOne.txtTempHighTwo.setText(maxtemp);
+                    binding.dayWeatherOne.txtTempLowTwo.setText(mintemp);
                     break;
                 case 2:
-                    date = (TextView)findViewById(R.id.txtWeekDayThree);
-                    maxtemp = (TextView)findViewById(R.id.txtTempHighThree);
-                    mintemp = (TextView)findViewById(R.id.txtTempLowThree);
+                    binding.dayWeatherOne.txtWeekDayThree.setText(date);
+                    binding.dayWeatherOne.txtTempHighThree.setText(maxtemp);
+                    binding.dayWeatherOne.txtTempLowThree.setText(mintemp);
                     break;
                 case 3:
-                    date = (TextView)findViewById(R.id.txtWeekDayFour);
-                    maxtemp = (TextView)findViewById(R.id.txtTempHighFour);
-                    mintemp = (TextView)findViewById(R.id.txtTempLowFour);
+                    binding.dayWeatherOne.txtWeekDayFour.setText(date);
+                    binding.dayWeatherOne.txtTempHighFour.setText(maxtemp);
+                    binding.dayWeatherOne.txtTempLowFour.setText(mintemp);
                     break;
                 case 4:
-                    date = (TextView)findViewById(R.id.txtWeekDayFive);
-                    maxtemp = (TextView)findViewById(R.id.txtTempHighFive);
-                    mintemp = (TextView)findViewById(R.id.txtTempLowFive);
+                    binding.dayWeatherOne.txtWeekDayFive.setText(date);
+                    binding.dayWeatherOne.txtTempHighFive.setText(maxtemp);
+                    binding.dayWeatherOne.txtTempLowFive.setText(mintemp);
                     break;
                 case 5:
-                    date = (TextView)findViewById(R.id.txtWeekDaySix);
-                    maxtemp = (TextView)findViewById(R.id.txtTempHighSix);
-                    mintemp = (TextView)findViewById(R.id.txtTempLowSix);
+                    binding.dayWeatherOne.txtWeekDaySix.setText(date);
+                    binding.dayWeatherOne.txtTempHighSix.setText(maxtemp);
+                    binding.dayWeatherOne.txtTempLowSix.setText(mintemp);
                     break;
                 case 6:
-                    date = (TextView)findViewById(R.id.txtWeekDaySeven);
-                    maxtemp = (TextView)findViewById(R.id.txtTempHighSeven);
-                    mintemp = (TextView)findViewById(R.id.txtTempLowSeven);
+                    binding.dayWeatherOne.txtWeekDaySeven.setText(date);
+                    binding.dayWeatherOne.txtTempHighSeven.setText(maxtemp);
+                    binding.dayWeatherOne.txtTempLowSeven.setText(mintemp);
                     break;
                 case 7:
-                    date = (TextView)findViewById(R.id.txtWeekDayEight);
-                    maxtemp = (TextView)findViewById(R.id.txtTempHighEight);
-                    mintemp = (TextView)findViewById(R.id.txtTempLowEight);
+                    binding.dayWeatherOne.txtWeekDayEight.setText(date);
+                    binding.dayWeatherOne.txtTempHighEight.setText(maxtemp);
+                    binding.dayWeatherOne.txtTempLowEight.setText(mintemp);
                     break;
                 case 8:
-                    date = (TextView)findViewById(R.id.txtWeekDayNine);
-                    maxtemp = (TextView)findViewById(R.id.txtTempHighNine);
-                    mintemp = (TextView)findViewById(R.id.txtTempLowNine);
+                    binding.dayWeatherOne.txtWeekDayNine.setText(date);
+                    binding.dayWeatherOne.txtTempHighNine.setText(maxtemp);
+                    binding.dayWeatherOne.txtTempLowNine.setText(mintemp);
                     break;
                 case 9:
-                    date = (TextView)findViewById(R.id.txtWeekDayTen);
-                    maxtemp = (TextView)findViewById(R.id.txtTempHighTen);
-                    mintemp = (TextView)findViewById(R.id.txtTempLowTen);
+                    binding.dayWeatherOne.txtWeekDayTen.setText(date);
+                    binding.dayWeatherOne.txtTempHighTen.setText(maxtemp);
+                    binding.dayWeatherOne.txtTempLowTen.setText(mintemp);
                     break;
             }
-            date.setText(forecast.forecast.get(x).getCurrDay());
-            maxtemp.setText(forecast.forecast.get(x).getHighTemp());
-            mintemp.setText(forecast.forecast.get(x).getLowTemp());
         }
 
     }
