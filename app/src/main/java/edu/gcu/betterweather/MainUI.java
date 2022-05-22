@@ -3,9 +3,12 @@ package edu.gcu.betterweather;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -13,7 +16,12 @@ import org.json.JSONObject;
 
 import com.google.firebase.auth.FirebaseAuth;
 
+import java.util.List;
+
 import edu.gcu.betterweather.databinding.ActivityMainBinding;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MainUI extends AppCompatActivity {
@@ -35,35 +43,48 @@ public class MainUI extends AppCompatActivity {
             finish();
         });
         // display current weather
-        WeatherForecast forecast = new WeatherForecast("Hollywood,California");
-        try {
-            forecast.requestForecast(forecast.Location);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        displayCurrentWeather(forecast);
-        displayTenDay(forecast);
+        getForecast();
 
     }
 
-    private void displayCurrentWeather(WeatherForecast forecast)
-    {
-        binding.txtCurrentCity.setText(forecast.Location);
-        binding.txtCurrentTemp.setText(forecast.forecast.get(0).getCurrTemp());
-        binding.txtUVIndex.setText(forecast.forecast.get(0).getCurrUVIndexLevel());
-        binding.txtWindSpeed.setText(forecast.forecast.get(0).getCurrWindSpeed());
-        binding.txtHumidityPercent.setText(forecast.forecast.get(0).getCurrHumidity());
+    private void getForecast() {
+        Call<BWAForecast> call = RetrofitClient.getInstance().getMyApi().getForecast("9W8PBMYZLZRULGY57Q6BBLHN7");
+        call.enqueue(new Callback<BWAForecast>() {
+            @Override
+            public void onResponse(Call<BWAForecast> call, Response<BWAForecast> response) {
+                BWAForecast myForecast = response.body();
 
+                Log.d("myTag", response.toString());
+                displayCurrentWeather(myForecast);
+                displayTenDay(myForecast);
+            }
+
+            @Override
+            public void onFailure(Call<BWAForecast> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "An error has occured", Toast.LENGTH_LONG).show();
+                t.printStackTrace();
+            }
+
+        });
     }
 
-    private void displayTenDay(WeatherForecast forecast)
+    private void displayCurrentWeather(BWAForecast forecast)
     {
-        for (int x = 0; x <forecast.forecast.size(); x++)
+        binding.txtCurrentCity.setText("London, UK");
+        binding.txtCurrentTemp.setText(forecast.getDays()[0].getCurrTemp().toString());
+        binding.txtUVIndex.setText(forecast.getDays()[0].getCurrUVIndexLevel().toString());
+        binding.txtWindSpeed.setText(forecast.getDays()[0].getCurrWindSpeed().toString());
+        binding.txtHumidityPercent.setText(forecast.getDays()[0].getCurrHumidity().toString());
+    }
+
+    private void displayTenDay(BWAForecast forecast)
+    {
+        for (Integer i = 0; i <10; i++)
         {
-            String date = forecast.forecast.get(x).getCurrDay();
-            String maxtemp = forecast.forecast.get(x).getHighTemp();
-            String mintemp = forecast.forecast.get(x).getLowTemp();
-            switch(x){
+            String date = forecast.getDays()[i].getCurrDay();
+            String maxtemp = forecast.getDays()[i].getHighTemp().toString();
+            String mintemp = forecast.getDays()[i].getLowTemp().toString();
+            switch(i){
                 case 0:
                     binding.dayWeatherOne.txtWeekDayOne.setText(date);
                     binding.dayWeatherOne.txtTempHighOne.setText(maxtemp);
@@ -115,7 +136,7 @@ public class MainUI extends AppCompatActivity {
                     binding.dayWeatherOne.txtTempLowTen.setText(mintemp);
                     break;
             }
+            Log.d("myTag", "success");
         }
-
     }
 }
