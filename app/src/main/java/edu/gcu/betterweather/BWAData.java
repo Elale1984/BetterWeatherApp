@@ -1,17 +1,32 @@
 package edu.gcu.betterweather;
 
+import com.google.gson.annotations.SerializedName;
+
 public class BWAData {
+    @SerializedName("datetime")
     private String currDay;
-    private String currTemp;
-    private String currWindSpeed;
-    private String currUVIndexLevel;
-    private String currHumidity;
-    private String highTemp;
-    private String lowTemp;
+
+    @SerializedName("temp")
+    private Double currTemp;
+
+    @SerializedName("windspeed")
+    private Double currWindSpeed;
+
+    @SerializedName("uvindex")
+    private Double currUVIndexLevel;
+
+    @SerializedName("humidity")
+    private Double currHumidity;
+
+    @SerializedName("tempmax")
+    private Double highTemp;
+
+    @SerializedName("tempmin")
+    private Double lowTemp;
 
 
 
-    public BWAData(String currDay, String currTemp, String currWindSpeed, String currUVIndexLevel, String currHumidity, String highTemp, String lowTemp) {
+    public BWAData(String currDay, Double currTemp, Double currWindSpeed, Double currUVIndexLevel, Double currHumidity, Double highTemp, Double lowTemp) {
         this.currDay = currDay;
         this.currTemp = currTemp;
         this.currWindSpeed = currWindSpeed;
@@ -29,47 +44,47 @@ public class BWAData {
         this.currDay = currDay;
     }
 
-    public String getCurrTemp() {
+    public Double getCurrTemp() {
         return currTemp;
     }
 
-    public void setCurrTemp(String currTemp) {
+    public void setCurrTemp(Double currTemp) {
         this.currTemp = currTemp;
     }
 
-    public String getCurrWindSpeed() {
+    public Double getCurrWindSpeed() {
         return currWindSpeed;
     }
 
-    public void setCurrWindSpeed(String currWindSpeed) {
+    public void setCurrWindSpeed(Double currWindSpeed) {
         this.currWindSpeed = currWindSpeed;
     }
 
-    public String getCurrUVIndexLevel() {
+    public Double getCurrUVIndexLevel() {
         return currUVIndexLevel;
     }
 
-    public void setCurrUVIndexLevel(String currUVIndexLevel) {
+    public void setCurrUVIndexLevel(Double currUVIndexLevel) {
         this.currUVIndexLevel = currUVIndexLevel;
     }
 
-    public String getCurrHumidity() { return currHumidity;}
+    public Double getCurrHumidity() { return currHumidity;}
 
-    public void setCurrHumidity(String currHumidity) { this.currHumidity = currHumidity; }
+    public void setCurrHumidity(Double currHumidity) { this.currHumidity = currHumidity; }
 
-    public String getHighTemp() {
+    public Double getHighTemp() {
         return highTemp;
     }
 
-    public void setHighTemp(String highTemp) {
+    public void setHighTemp(Double highTemp) {
         this.highTemp = highTemp;
     }
 
-    public String getLowTemp() {
+    public Double getLowTemp() {
         return lowTemp;
     }
 
-    public void setLowTemp(String lowTemp) {
+    public void setLowTemp(Double lowTemp) {
         this.lowTemp = lowTemp;
     }
 }
