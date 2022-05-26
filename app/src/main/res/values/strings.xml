@@ -46,4 +46,10 @@
     <string name="user_name">User Name</string>
     <string name="user_usermail_com">user@usermail.com</string>
     <string name="sign_out">Sign out</string>
+    <string name="current_weather">Current Weather</string>
+    <string name="ten_day_forecast">Ten Day Forecast</string>
+    <string name="about_us">About Us</string>
+    <string name="sign_out_menu">Sign Out</string>
+    <string name="user_name_header">User Name</string>
+    <string name="user_email_header">User@user.com</string>
 </resources>
