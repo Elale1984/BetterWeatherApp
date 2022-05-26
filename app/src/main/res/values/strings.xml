@@ -52,7 +52,7 @@
     <string name="sign_out_menu">Sign Out</string>
     <string name="user_name_header">User Name</string>
     <string name="user_email_header">User@user.com</string>
-    <string name="open" >Open Navigation Drawer</string>
-    <string name="close" >Close Navigation Drawer</string>
+    <string name="open">Open Navigation Drawer</string>
+    <string name="close">Close Navigation Drawer</string>
 
 </resources>

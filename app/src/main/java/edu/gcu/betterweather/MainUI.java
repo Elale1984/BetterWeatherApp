@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -28,6 +27,11 @@ public class MainUI extends BetterWeatherMainActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+
+        // This will set the title in the toolbar
+        allocateActivityTitle("Current Weather");
+
+        // This sets the mAuth to the instance of firebase
         mAuth = FirebaseAuth.getInstance();
 
         binding.btnSignOut.setOnClickListener(v -> {
@@ -35,10 +39,12 @@ public class MainUI extends BetterWeatherMainActivity {
             startActivity(new Intent(MainUI.this, BWALoginView.class));
             finish();
         });
+
         // display current weather
         getForecast();
 
     }
+
 
     private void getForecast() {
         Call<BWAForecast> call = RetrofitClient.getInstance().getMyApi().getForecast("9W8PBMYZLZRULGY57Q6BBLHN7");
