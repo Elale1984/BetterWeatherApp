@@ -42,7 +42,7 @@
                     android:layout_centerHorizontal="true"
                     android:text="@string/_07_22"
                     android:textColor="@color/primaryTextColor"
-
+                    android:id="@+id/txtDate"
                     android:textStyle="bold" />
 
             </RelativeLayout>
