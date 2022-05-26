@@ -1,12 +1,15 @@
 package edu.gcu.betterweather;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -14,6 +17,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
@@ -28,6 +32,9 @@ public class MainUI extends AppCompatActivity {
     private ActivityMainBinding binding;
 
     private FirebaseAuth mAuth;
+
+    private String location = "90721";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,13 +49,29 @@ public class MainUI extends AppCompatActivity {
             startActivity(new Intent(MainUI.this, BWALoginView.class));
             finish();
         });
+
+        binding.txtCurrentCity.setOnClickListener(v -> {
+            MaterialAlertDialogBuilder textInput = new MaterialAlertDialogBuilder(MainUI.this);
+            textInput.setTitle("Change Location");
+            textInput.setMessage("Please input the name or postal code of the location here:");
+            final EditText input = new EditText(textInput.getContext());
+            textInput.setView(input);
+            textInput.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    location = input.getText().toString();
+                    getForecast(location);
+                }
+            });
+            textInput.show();
+        });
         // display current weather
-        getForecast();
+        getForecast(location);
 
     }
 
-    private void getForecast() {
-        Call<BWAForecast> call = RetrofitClient.getInstance().getMyApi().getForecast("9W8PBMYZLZRULGY57Q6BBLHN7");
+    private void getForecast(String address) {
+        Call<BWAForecast> call = RetrofitClient.getInstance().getMyApi().getForecast( address,"9W8PBMYZLZRULGY57Q6BBLHN7");
         call.enqueue(new Callback<BWAForecast>() {
             @Override
             public void onResponse(Call<BWAForecast> call, Response<BWAForecast> response) {
@@ -70,7 +93,11 @@ public class MainUI extends AppCompatActivity {
 
     private void displayCurrentWeather(BWAForecast forecast)
     {
-        binding.txtCurrentCity.setText("London, UK");
+        String[] fullAddress = forecast.getName().split(",");
+
+        String address = fullAddress[0] + ", " + fullAddress[1];
+
+        binding.txtCurrentCity.setText(address);
         binding.txtCurrentTemp.setText(forecast.getDays()[0].getCurrTemp().toString());
         binding.txtUVIndex.setText(forecast.getDays()[0].getCurrUVIndexLevel().toString());
         binding.txtWindSpeed.setText(forecast.getDays()[0].getCurrWindSpeed().toString());
