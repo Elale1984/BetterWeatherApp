@@ -17,7 +17,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class MainUI extends AppCompatActivity {
+public class MainUI extends BetterWeatherMainActivity {
     private ActivityMainBinding binding;
 
     private FirebaseAuth mAuth;

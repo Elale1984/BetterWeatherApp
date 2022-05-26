@@ -3,6 +3,7 @@ package edu.gcu.betterweather;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -10,66 +11,42 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 
 import com.google.android.material.navigation.NavigationView;
 
 import edu.gcu.betterweather.databinding.ActivityBetterWeatherMainBinding;
 
-public class BetterWeatherMainActivity extends AppCompatActivity {
+public class BetterWeatherMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private ActivityBetterWeatherMainBinding binding;
-    ActionBarDrawerToggle drawerToggle;
+    DrawerLayout drawerLayout;
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public void setContentView(View view) {
+        drawerLayout = (DrawerLayout) getLayoutInflater().inflate(R.layout.activity_better_weather_main, null);
+        FrameLayout container = drawerLayout.findViewById(R.id.activityContainer);
+        container.addView(view);
+        super.setContentView(drawerLayout);
 
-        if (drawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+        Toolbar toolbar = drawerLayout.findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        NavigationView navigationView = drawerLayout.findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = ActivityBetterWeatherMainBinding.inflate(getLayoutInflater());
-        View view = binding.getRoot();
-        setContentView(view);
-
-        drawerToggle = new ActionBarDrawerToggle(this, binding.drawerLayout, R.string.open, R.string.close);
-        binding.drawerLayout.addDrawerListener(drawerToggle);
-        drawerToggle.syncState();
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        binding.navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                
-                if(item.getItemId() == R.id.nav_curr_weather) {
-                    // TODO: 5/25/2022  
-                }
-                else if (item.getItemId() == R.id.nav_ten_day) {
-                    // TODO: 5/25/2022  
-                }
-                else if (item.getItemId() == R.id.nav_about) {
-                    // TODO: 5/25/2022  
-                }
-                else {
-                    // TODO: 5/25/2022  
-                }
-               
-                return false;
-            }
-        });
-
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        return false;
     }
 
-    @Override
-    public void onBackPressed() {
-        if(binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            binding.drawerLayout.closeDrawer(GravityCompat.START);
-        }
-        else {
-            super.onBackPressed();
+    protected void allocateActivityTitle(String titleString) {
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setTitle(titleString);
         }
     }
 }

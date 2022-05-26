@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="@string/user_name_header"
         android:textColor="@color/white"
-        android:textSize="50sp"
+        android:textSize="30sp"
         android:textStyle="bold"/>
 
     <TextView
@@ -23,7 +23,7 @@
         android:textColor="@color/white"
         android:textStyle="italic"
         android:text="@string/user_email_header"
-        android:textSize="22sp" />
+        android:textSize="18sp" />
 
 
 

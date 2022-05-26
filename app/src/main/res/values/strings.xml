@@ -53,6 +53,6 @@
     <string name="user_name_header">User Name</string>
     <string name="user_email_header">User@user.com</string>
     <string name="open" >Open Navigation Drawer</string>
-    <string name="close" >close Navigation Drawer</string>
+    <string name="close" >Close Navigation Drawer</string>
 
 </resources>
