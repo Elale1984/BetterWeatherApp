@@ -1,22 +1,15 @@
 package edu.gcu.betterweather;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
-
-import java.util.List;
 
 import edu.gcu.betterweather.databinding.ActivityMainBinding;
 import retrofit2.Call;
@@ -51,10 +44,11 @@ public class MainUI extends AppCompatActivity {
         Call<BWAForecast> call = RetrofitClient.getInstance().getMyApi().getForecast("9W8PBMYZLZRULGY57Q6BBLHN7");
         call.enqueue(new Callback<BWAForecast>() {
             @Override
-            public void onResponse(Call<BWAForecast> call, Response<BWAForecast> response) {
+            public void onResponse(Call<BWAForecast> call, @NonNull Response<BWAForecast> response) {
                 BWAForecast myForecast = response.body();
 
                 Log.d("myTag", response.toString());
+                assert myForecast != null;
                 displayCurrentWeather(myForecast);
                 displayTenDay(myForecast);
             }
@@ -70,8 +64,8 @@ public class MainUI extends AppCompatActivity {
 
     private void displayCurrentWeather(BWAForecast forecast)
     {
-        binding.txtCurrentCity.setText("London, UK");
-        binding.txtCurrentTemp.setText(forecast.getDays()[0].getCurrTemp().toString());
+        binding.txtCurrentCity.setText("Overland Park, Kansas");
+        binding.txtCurrentTemp.setText(forecast.getDays()[0].getCurrTemp().toString()+"°");
         binding.txtUVIndex.setText(forecast.getDays()[0].getCurrUVIndexLevel().toString());
         binding.txtWindSpeed.setText(forecast.getDays()[0].getCurrWindSpeed().toString());
         binding.txtHumidityPercent.setText(forecast.getDays()[0].getCurrHumidity().toString());
@@ -79,7 +73,7 @@ public class MainUI extends AppCompatActivity {
 
     private void displayTenDay(BWAForecast forecast)
     {
-        for (Integer i = 0; i <10; i++)
+        for (int i = 0; i <10; i++)
         {
             String date = forecast.getDays()[i].getCurrDay();
             String maxtemp = forecast.getDays()[i].getHighTemp().toString();
