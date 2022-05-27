@@ -17,9 +17,14 @@ import retrofit2.Response;
 
 
 public class MainUI extends BetterWeatherMainActivity {
+
+
     private ActivityMainBinding binding;
 
     private FirebaseAuth mAuth;
+
+    private String location = "90721";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,11 +39,7 @@ public class MainUI extends BetterWeatherMainActivity {
         // This sets the mAuth to the instance of firebase
         mAuth = FirebaseAuth.getInstance();
 
-        binding.btnSignOut.setOnClickListener(v -> {
-            mAuth.signOut();
-            startActivity(new Intent(MainUI.this, BWALoginView.class));
-            finish();
-        });
+
 
         // display current weather
         getForecast();
