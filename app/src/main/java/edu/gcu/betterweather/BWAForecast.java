@@ -1,17 +1,13 @@
 package edu.gcu.betterweather;
 
 
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class BWAForecast {
     @SerializedName("days")
     @Expose
-    private BWAData[] days = null;
+    private BWAData[] days;
 
     public BWAData[] getDays() {
         return days;

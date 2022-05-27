@@ -18,13 +18,33 @@ public class TenDayRecyclerViewAdapter extends RecyclerView.Adapter {
     private static final String TAG = "RecyclerViewAdapter";
 
     private ArrayList<BWAData> tenDayForecast;
+    private ArrayList<String> dates;
+    private ArrayList<String> highTemps;
+    private ArrayList<String> lowTemps;
+    private ArrayList<String> humidityPercents;
+    private ArrayList<String> windsSpeeds;
+    private ArrayList<String> uvLevels;
+
     private Context context;
 
-    public TenDayRecyclerViewAdapter( Context context, ArrayList<BWAData> tenDayForecast) {
-        this.tenDayForecast = tenDayForecast;
-        this.context = context;
-    }
+    public TenDayRecyclerViewAdapter
+            (Context context,
+             ArrayList<String> dates,
+             ArrayList<String> highTemps,
+             ArrayList<String> lowTemps,
+             ArrayList<String> humidityPercents,
+             ArrayList<String> windsSpeeds,
+             ArrayList<String> uvLevels)
+    {
 
+        this.context = context;
+        this.dates = dates;
+        this.highTemps = highTemps;
+        this.lowTemps = lowTemps;
+        this.humidityPercents = humidityPercents;
+        this.windsSpeeds = windsSpeeds;
+        this.uvLevels = uvLevels;
+    }
 
 
     @NonNull
@@ -40,7 +60,6 @@ public class TenDayRecyclerViewAdapter extends RecyclerView.Adapter {
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
         Log.d(TAG, "onBindViewHolder: called");
-
 
 
     }
@@ -69,8 +88,6 @@ public class TenDayRecyclerViewAdapter extends RecyclerView.Adapter {
             windSpeed = itemView.findViewById(R.id.txtWind);
             morningWeather = itemView.findViewById(R.id.imgMorningWeather);
             eveningWeather = itemView.findViewById(R.id.imgEveningWeather);
-
-
 
 
         }

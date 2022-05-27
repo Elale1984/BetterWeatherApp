@@ -56,7 +56,7 @@ public class MainUI extends BetterWeatherMainActivity {
                 Log.d("myTag", response.toString());
                 assert myForecast != null;
                 displayCurrentWeather(myForecast);
-                displayTenDay(myForecast);
+
             }
 
             @Override
@@ -77,66 +77,4 @@ public class MainUI extends BetterWeatherMainActivity {
         binding.txtHumidityPercent.setText(forecast.getDays()[0].getCurrHumidity().toString());
     }
 
-    private void displayTenDay(BWAForecast forecast)
-    {
-        for (int i = 0; i <10; i++)
-        {
-            String date = forecast.getDays()[i].getCurrDay();
-            String maxtemp = forecast.getDays()[i].getHighTemp().toString();
-            String mintemp = forecast.getDays()[i].getLowTemp().toString();
-            switch(i){
-                case 0:
-                    binding.dayWeatherOne.txtWeekDayOne.setText(date);
-                    binding.dayWeatherOne.txtTempHighOne.setText(maxtemp);
-                    binding.dayWeatherOne.txtTempLowOne.setText(mintemp);
-                    break;
-                case 1:
-                    binding.dayWeatherOne.txtWeekDayTwo.setText(date);
-                    binding.dayWeatherOne.txtTempHighTwo.setText(maxtemp);
-                    binding.dayWeatherOne.txtTempLowTwo.setText(mintemp);
-                    break;
-                case 2:
-                    binding.dayWeatherOne.txtWeekDayThree.setText(date);
-                    binding.dayWeatherOne.txtTempHighThree.setText(maxtemp);
-                    binding.dayWeatherOne.txtTempLowThree.setText(mintemp);
-                    break;
-                case 3:
-                    binding.dayWeatherOne.txtWeekDayFour.setText(date);
-                    binding.dayWeatherOne.txtTempHighFour.setText(maxtemp);
-                    binding.dayWeatherOne.txtTempLowFour.setText(mintemp);
-                    break;
-                case 4:
-                    binding.dayWeatherOne.txtWeekDayFive.setText(date);
-                    binding.dayWeatherOne.txtTempHighFive.setText(maxtemp);
-                    binding.dayWeatherOne.txtTempLowFive.setText(mintemp);
-                    break;
-                case 5:
-                    binding.dayWeatherOne.txtWeekDaySix.setText(date);
-                    binding.dayWeatherOne.txtTempHighSix.setText(maxtemp);
-                    binding.dayWeatherOne.txtTempLowSix.setText(mintemp);
-                    break;
-                case 6:
-                    binding.dayWeatherOne.txtWeekDaySeven.setText(date);
-                    binding.dayWeatherOne.txtTempHighSeven.setText(maxtemp);
-                    binding.dayWeatherOne.txtTempLowSeven.setText(mintemp);
-                    break;
-                case 7:
-                    binding.dayWeatherOne.txtWeekDayEight.setText(date);
-                    binding.dayWeatherOne.txtTempHighEight.setText(maxtemp);
-                    binding.dayWeatherOne.txtTempLowEight.setText(mintemp);
-                    break;
-                case 8:
-                    binding.dayWeatherOne.txtWeekDayNine.setText(date);
-                    binding.dayWeatherOne.txtTempHighNine.setText(maxtemp);
-                    binding.dayWeatherOne.txtTempLowNine.setText(mintemp);
-                    break;
-                case 9:
-                    binding.dayWeatherOne.txtWeekDayTen.setText(date);
-                    binding.dayWeatherOne.txtTempHighTen.setText(maxtemp);
-                    binding.dayWeatherOne.txtTempLowTen.setText(mintemp);
-                    break;
-            }
-            Log.d("myTag", "success");
-        }
-    }
 }
