@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_width="300dp"
+    android:layout_height="500dp"
     android:layout_margin="1dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.google.android.material.card.MaterialCardView
-        android:layout_width="150dp"
-        android:layout_height="400dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:cardCornerRadius="10dp"
+        android:layout_margin="10dp"
         app:cardElevation="1dp"
         app:cardMaxElevation="2dp"
         android:layout_centerInParent="true"
@@ -29,11 +30,10 @@
                     android:id="@+id/txtDayOfWeek"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
                     android:text="@string/th"
                     android:textColor="@color/secondaryColor"
-                    android:textSize="30sp"
-                    android:layout_centerHorizontal="true"
-                    />
+                    android:textSize="50sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -43,6 +43,7 @@
                     android:text="@string/_07_22"
                     android:textColor="@color/primaryTextColor"
                     android:id="@+id/txtDate"
+                    android:textSize="30sp"
                     android:textStyle="bold" />
 
             </RelativeLayout>
@@ -64,7 +65,7 @@
                     android:text="@string/day_temp_temp"
 
                     android:textColor="@color/secondaryLightColor"
-                    android:textSize="30sp" />
+                    android:textSize="50sp" />
 
                 <TextView
                     android:id="@+id/txtLowDegree"
@@ -73,7 +74,7 @@
                     android:layout_toEndOf="@+id/txtHighTemp"
                     android:text="@string/degrees"
                     android:textColor="@color/secondaryLightColor"
-                    android:textSize="30sp" />
+                    android:textSize="50sp" />
 
                 <TextView
                     android:id="@+id/txtSlash"
@@ -82,15 +83,16 @@
                     android:layout_toEndOf="@+id/txtLowDegree"
                     android:text="@string/seperate"
                     android:textColor="@color/secondaryLightColor"
-                    android:textSize="30sp"/>
+                    android:textSize="50sp"/>
                 <TextView
                     android:id="@+id/txtLowTemp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+
                     android:text="@string/day_temp_temp"
                     android:layout_toEndOf="@+id/txtSlash"
                     android:textColor="@color/secondaryLightColor"
-                    android:textSize="30sp"
+                    android:textSize="50sp"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -98,7 +100,7 @@
                     android:layout_toEndOf="@+id/txtLowTemp"
                     android:text="@string/degrees"
                     android:textColor="@color/secondaryLightColor"
-                    android:textSize="30sp"/>
+                    android:textSize="50sp"/>
 
             </RelativeLayout>
 
