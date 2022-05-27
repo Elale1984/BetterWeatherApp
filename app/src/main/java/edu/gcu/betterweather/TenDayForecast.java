@@ -16,7 +16,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TenDayForecast extends AppCompatActivity {
+public class TenDayForecast extends BetterWeatherMainActivity {
 
     private static final String TAG = "TenDayForecast";
 
@@ -38,7 +38,7 @@ public class TenDayForecast extends AppCompatActivity {
         setContentView(view);
 
         getForecast();
-
+        buildRecyclerView();
     }
 
 

@@ -66,7 +66,7 @@ public class TenDayRecyclerViewAdapter extends RecyclerView.Adapter {
 
     @Override
     public int getItemCount() {
-        return tenDayForecast.size();
+        return 10;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
