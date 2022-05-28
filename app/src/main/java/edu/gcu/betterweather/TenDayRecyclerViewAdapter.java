@@ -11,13 +11,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.card.MaterialCardView;
+
 import java.util.ArrayList;
 
-public class TenDayRecyclerViewAdapter extends RecyclerView.Adapter {
+
+public class TenDayRecyclerViewAdapter extends RecyclerView.Adapter<TenDayRecyclerViewAdapter.ViewHolder> {
 
     private static final String TAG = "RecyclerViewAdapter";
+    private OnWeatherClickListener onWeatherClickListener;
 
-    private ArrayList<BWAData> tenDayForecast;
     private ArrayList<String> dates;
     private ArrayList<String> highTemps;
     private ArrayList<String> lowTemps;
@@ -27,6 +30,7 @@ public class TenDayRecyclerViewAdapter extends RecyclerView.Adapter {
 
     private Context context;
 
+
     public TenDayRecyclerViewAdapter
             (Context context,
              ArrayList<String> dates,
@@ -34,7 +38,8 @@ public class TenDayRecyclerViewAdapter extends RecyclerView.Adapter {
              ArrayList<String> lowTemps,
              ArrayList<String> humidityPercents,
              ArrayList<String> windsSpeeds,
-             ArrayList<String> uvLevels)
+             ArrayList<String> uvLevels,
+             OnWeatherClickListener onWeatherClickListener)
     {
 
         this.context = context;
@@ -44,22 +49,26 @@ public class TenDayRecyclerViewAdapter extends RecyclerView.Adapter {
         this.humidityPercents = humidityPercents;
         this.windsSpeeds = windsSpeeds;
         this.uvLevels = uvLevels;
+        this.onWeatherClickListener = onWeatherClickListener;
     }
 
 
-    @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public TenDayRecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         Log.d(TAG, "onCreateViewHolder: called");
 
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_day_weather, parent, false);
-        return new ViewHolder(view);
+        return new ViewHolder(view, onWeatherClickListener);
     }
 
+
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         Log.d(TAG, "onBindViewHolder: called");
+        holder.date.setText(dates.get(position));
+        holder.highTemp.setText(highTemps.get(position));
+        holder.lowTemp.setText(lowTemps.get(position));
 
 
     }
@@ -69,16 +78,20 @@ public class TenDayRecyclerViewAdapter extends RecyclerView.Adapter {
         return 10;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        OnWeatherClickListener onWeatherClickListener;
         TextView dayOfWeek, date, highTemp, lowTemp,
                 humidityPercent, uvLevel, windSpeed;
 
         ImageView morningWeather, eveningWeather;
 
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(View itemView, OnWeatherClickListener onWeatherClickListener) {
             super(itemView);
+
+
+
             dayOfWeek = itemView.findViewById(R.id.txtDayOfWeek);
             date = itemView.findViewById(R.id.txtDate);
             highTemp = itemView.findViewById(R.id.txtHighTemp);
@@ -89,7 +102,16 @@ public class TenDayRecyclerViewAdapter extends RecyclerView.Adapter {
             morningWeather = itemView.findViewById(R.id.imgMorningWeather);
             eveningWeather = itemView.findViewById(R.id.imgEveningWeather);
 
-
+            this.onWeatherClickListener = onWeatherClickListener;
+            itemView.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            onWeatherClickListener.onDayClickListener(getAbsoluteAdapterPosition());
+        }
+    }
+    public interface OnWeatherClickListener{
+        void onDayClickListener(int position);
     }
 }

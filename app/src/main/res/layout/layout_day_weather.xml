@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="300dp"
-    android:layout_height="500dp"
+    android:layout_height="400dp"
     android:layout_margin="1dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -12,7 +12,6 @@
         android:layout_margin="10dp"
         app:cardElevation="1dp"
         app:cardMaxElevation="2dp"
-        android:layout_centerInParent="true"
         android:backgroundTint="@color/primaryColor">
 
         <RelativeLayout
@@ -20,9 +19,9 @@
             android:layout_height="match_parent">
 
             <RelativeLayout
+                android:id="@+id/txtDateGroup"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/txtDateGroup"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp">
 
@@ -36,13 +35,13 @@
                     android:textSize="50sp" />
 
                 <TextView
+                    android:id="@+id/txtDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/txtDayOfWeek"
                     android:layout_centerHorizontal="true"
                     android:text="@string/_07_22"
                     android:textColor="@color/primaryTextColor"
-                    android:id="@+id/txtDate"
                     android:textSize="30sp"
                     android:textStyle="bold" />
 
@@ -124,120 +123,6 @@
                     android:layout_centerHorizontal="true"
                     android:layout_toEndOf="@+id/imgMorningWeather"/>
             </RelativeLayout>
-
-            <com.google.android.material.divider.MaterialDivider
-                android:id="@+id/divider"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/imgWeatherGroup"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@color/secondary_text"
-                app:dividerThickness="5dp" />
-
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/humidityGroup"
-                android:layout_below="@+id/divider"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp">
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_humidity"
-                    android:id="@+id/imgHumid"/>
-
-                <TextView
-                    android:id="@+id/txtHumidity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_toEndOf="@+id/imgHumid"
-                    android:text="@string/humPerc"
-                    android:textColor="@color/secondaryLightColor"
-                    android:textSize="30sp" />
-
-                <TextView
-
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/txtHumidity"
-                    android:text="@string/perc"
-                    android:textColor="@color/secondaryLightColor"
-                    android:textSize="30sp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/uvGroup"
-                android:layout_below="@+id/humidityGroup"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp">
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_uv_index"
-                    android:id="@+id/imgUV"/>
-
-                <TextView
-                    android:id="@+id/txtUV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_toEndOf="@+id/imgUV"
-                    android:text="@string/lowuv"
-                    android:textColor="@color/secondaryLightColor"
-                    android:textSize="30sp" />
-
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/windGroup"
-                android:layout_below="@+id/uvGroup"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp">
-
-                <ImageView
-                    android:layout_marginStart="10dp"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_wind_speed"
-                    android:id="@+id/imgWind"/>
-
-                <TextView
-                    android:id="@+id/txtWind"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="7dp"
-                    android:layout_toEndOf="@+id/imgWind"
-                    android:text="@string/wspeed"
-                    android:textColor="@color/secondaryLightColor"
-                    android:textSize="30sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="2dp"
-                    android:layout_toEndOf="@+id/txtWind"
-                    android:layout_alignBottom="@+id/txtWind"
-                    android:text="@string/mph"
-                    android:textColor="@color/secondaryLightColor"
-                    android:textSize="12sp" />
-
-
-            </RelativeLayout>
-
 
 
 
