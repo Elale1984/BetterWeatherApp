@@ -1,887 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/dayWeatherCard"
-    app:cardCornerRadius="50dp"
-    android:elevation="50sp"
-    android:layout_margin="15dp"
-    android:layout_below="@+id/tenDayText"
-    android:padding="5dp">
+    android:background="@color/black"
+    android:orientation="vertical"
+    tools:context=".TenDayForecast">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/dayOneWeather"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/card_tint"
-        app:cardCornerRadius="50dp"
-        android:elevation="50dp">
+        android:id="@+id/rvTenDayWeather"
+        android:orientation="horizontal">
+
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="bottom"
+        android:layout_weight="2"
+        android:backgroundTint="@color/primaryColor"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="1dp"
+        app:cardMaxElevation="2dp">
+
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-
-                android:id="@+id/txtWeekDayOne"
+            android:layout_height="match_parent"
+            >
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="30dp"
-                android:text="@string/monday"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                android:textColor="@color/green"/>
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:id="@+id/title">
 
-            <ImageView
-                android:id="@+id/ivWeatherIconDayOne"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/ivWeatherIconNightOne"
-                android:background="@color/white"
-                android:backgroundTint="@color/card_tint"
-                android:contentDescription="@string/tag"
-                android:src="@drawable/sun_rain" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/details"
+                    android:textColor="@color/secondaryDarkColor"
+                    android:textSize="50sp"
+                    android:textStyle="bold"
 
-            <ImageView
-                android:id="@+id/ivWeatherIconNightOne"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@id/txtTempHighOne"
-                android:background="@color/white"
-                android:src="@drawable/sun_rain"
-                android:backgroundTint="@color/card_tint"
-                android:contentDescription="@string/night_weather" />
+                    />
 
-            <TextView
-                android:id="@+id/txtTempHighOne"
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="10dp"
-                android:layout_toStartOf="@+id/txtTempSeperatorOne"
-                android:text="@string/temp_high"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/green"/>
+                android:id="@+id/humidityGroup"
+                android:layout_below="@+id/title"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp">
 
-            <TextView
-                android:id="@+id/txtTempSeperatorOne"
+
+
+                <ImageView
+                    android:id="@+id/imgHumid"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_humidity" />
+
+                <TextView
+                    android:id="@+id/txtHumidity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/imgHumid"
+                    android:text="@string/humPerc"
+                    android:textColor="@color/secondaryLightColor"
+                    android:textSize="30sp" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@+id/txtHumidity"
+                    android:text="@string/perc"
+                    android:textColor="@color/secondaryLightColor"
+                    android:textSize="30sp" />
+
+            </RelativeLayout>
+
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/txtTempLowOne"
-                android:text="@string/slash"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/green"/>
+                android:id="@+id/uvGroup"
+                android:layout_below="@+id/humidityGroup"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp">
 
-            <TextView
-                android:id="@+id/txtTempLowOne"
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_uv_index"
+                    android:id="@+id/imgUV"/>
+
+                <TextView
+                    android:id="@+id/txtUV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/imgUV"
+                    android:text="@string/lowuv"
+                    android:textColor="@color/secondaryLightColor"
+                    android:textSize="30sp" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"
-                android:text="@string/temp_high"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginEnd="10dp"/>
+                android:id="@+id/windGroup"
+                android:layout_below="@+id/uvGroup"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:layout_marginStart="10dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:src="@drawable/ic_wind_speed"
+                    android:id="@+id/imgWind"/>
+
+                <TextView
+                    android:id="@+id/txtWind"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="7dp"
+                    android:layout_toEndOf="@+id/imgWind"
+                    android:text="@string/wspeed"
+                    android:textColor="@color/secondaryLightColor"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="2dp"
+                    android:layout_toEndOf="@+id/txtWind"
+                    android:layout_alignBottom="@+id/txtWind"
+                    android:text="@string/mph"
+                    android:textColor="@color/secondaryLightColor"
+                    android:textSize="12sp" />
+
+
+            </RelativeLayout>
+
+
+
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/dayTwoWeather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/card_tint"
-        app:cardCornerRadius="50dp"
-        android:elevation="50dp"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/dayOneWeather">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-
-                android:id="@+id/txtWeekDayTwo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="30dp"
-                android:text="@string/daytwo"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                android:textColor="@color/green"/>
-
-            <ImageView
-                android:id="@+id/ivWeatherIconDayTwo"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/ivWeatherIconNightTwo"
-                android:background="@color/white"
-                android:backgroundTint="@color/card_tint"
-                android:contentDescription="@string/tag"
-                android:src="@drawable/sun_rain" />
-
-            <ImageView
-                android:id="@+id/ivWeatherIconNightTwo"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@id/txtTempHighTwo"
-                android:background="@color/white"
-                android:src="@drawable/sun_rain"
-                android:backgroundTint="@color/card_tint"
-                android:contentDescription="@string/night_weather" />
-
-            <TextView
-                android:id="@+id/txtTempHighTwo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="10dp"
-                android:layout_toStartOf="@+id/txtTempSeperatorTwo"
-                android:text="@string/temp_high"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/green"/>
-
-            <TextView
-                android:id="@+id/txtTempSeperatorTwo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/txtTempLowTwo"
-                android:text="@string/slash"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/green"/>
-
-            <TextView
-                android:id="@+id/txtTempLowTwo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"
-                android:text="@string/temp_high"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginEnd="10dp"/>
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/dayThreeWeather"
-        android:layout_below="@+id/dayTwoWeather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/card_tint"
-        app:cardCornerRadius="50dp"
-        android:elevation="50dp"
-        android:layout_marginTop="10dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-
-                android:id="@+id/txtWeekDayThree"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="30dp"
-                android:text="@string/wednesday"
-                android:textColor="@color/green"
-                android:textSize="25sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/ivWeatherIconDayThree"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/ivWeatherIconNightThree"
-                android:background="@color/white"
-                android:backgroundTint="@color/card_tint"
-                android:contentDescription="@string/tag"
-                android:src="@drawable/sun_rain" />
-
-            <ImageView
-                android:id="@+id/ivWeatherIconNightThree"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@id/txtTempHighThree"
-                android:background="@color/white"
-                android:backgroundTint="@color/card_tint"
-                android:contentDescription="@string/night_weather"
-                android:src="@drawable/sun_rain" />
-
-            <TextView
-                android:id="@+id/txtTempHighThree"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="10dp"
-                android:layout_toStartOf="@+id/txtTempSeperatorThree"
-                android:text="@string/temp_high"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtTempSeperatorThree"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/txtTempLowThree"
-                android:text="@string/slash"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtTempLowThree"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
-                android:text="@string/temp_high"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/dayFourWeather"
-        android:layout_below="@+id/dayThreeWeather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/card_tint"
-        app:cardCornerRadius="50dp"
-        android:elevation="50dp"
-        android:layout_marginTop="10dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-
-                android:id="@+id/txtWeekDayFour"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="30dp"
-                android:text="@string/thursday"
-                android:textColor="@color/green"
-                android:textSize="25sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/ivWeatherIconDayFour"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/ivWeatherIconNightFour"
-                android:background="@color/white"
-                android:backgroundTint="@color/card_tint"
-                android:contentDescription="@string/tag"
-                android:src="@drawable/sun_rain" />
-
-            <ImageView
-                android:id="@+id/ivWeatherIconNightFour"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@id/txtTempHighFour"
-                android:background="@color/white"
-                android:backgroundTint="@color/card_tint"
-                android:contentDescription="@string/night_weather"
-                android:src="@drawable/sun_rain" />
-
-            <TextView
-                android:id="@+id/txtTempHighFour"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="10dp"
-                android:layout_toStartOf="@+id/txtTempSeperatorFour"
-                android:text="@string/temp_high"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtTempSeperatorFour"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/txtTempLowFour"
-                android:text="@string/slash"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtTempLowFour"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
-                android:text="@string/temp_high"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/dayFiveWeather"
-        android:layout_below="@+id/dayFourWeather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/card_tint"
-        app:cardCornerRadius="50dp"
-        android:elevation="50dp"
-        android:layout_marginTop="10dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-
-                android:id="@+id/txtWeekDayFive"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="30dp"
-                android:text="@string/friday"
-                android:textColor="@color/green"
-                android:textSize="25sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/ivWeatherIconDayFive"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/ivWeatherIconNightFive"
-                android:background="@color/white"
-                android:backgroundTint="@color/card_tint"
-                android:contentDescription="@string/tag"
-                android:src="@drawable/sun_rain" />
-
-            <ImageView
-                android:id="@+id/ivWeatherIconNightFive"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@id/txtTempHighFive"
-                android:background="@color/white"
-                android:backgroundTint="@color/card_tint"
-                android:contentDescription="@string/night_weather"
-                android:src="@drawable/sun_rain" />
-
-            <TextView
-                android:id="@+id/txtTempHighFive"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="10dp"
-                android:layout_toStartOf="@+id/txtTempSeperatorFive"
-                android:text="@string/temp_high"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtTempSeperatorFive"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/txtTempLowFive"
-                android:text="@string/slash"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtTempLowFive"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
-                android:text="@string/temp_high"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/daySixWeather"
-        android:layout_below="@+id/dayFiveWeather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/card_tint"
-        app:cardCornerRadius="50dp"
-        android:elevation="50dp"
-        android:layout_marginTop="10dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-
-                android:id="@+id/txtWeekDaySix"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="30dp"
-                android:text="@string/saturday"
-                android:textColor="@color/green"
-                android:textSize="25sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/ivWeatherIconDaySix"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/ivWeatherIconNightSix"
-                android:background="@color/white"
-                android:backgroundTint="@color/card_tint"
-                android:contentDescription="@string/tag"
-                android:src="@drawable/sun_rain" />
-
-            <ImageView
-                android:id="@+id/ivWeatherIconNightSix"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@id/txtTempHighSix"
-                android:background="@color/white"
-                android:backgroundTint="@color/card_tint"
-                android:contentDescription="@string/night_weather"
-                android:src="@drawable/sun_rain" />
-
-            <TextView
-                android:id="@+id/txtTempHighSix"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="10dp"
-                android:layout_toStartOf="@+id/txtTempSeperatorSix"
-                android:text="@string/temp_high"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtTempSeperatorSix"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/txtTempLowSix"
-                android:text="@string/slash"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtTempLowSix"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
-                android:text="@string/temp_high"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/daySevenWeather"
-        android:layout_below="@+id/daySixWeather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/card_tint"
-        app:cardCornerRadius="50dp"
-        android:elevation="50dp"
-        android:layout_marginTop="10dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-
-                android:id="@+id/txtWeekDaySeven"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="30dp"
-                android:text="@string/sunday"
-                android:textColor="@color/green"
-                android:textSize="25sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/ivWeatherIconDaySeven"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/ivWeatherIconNightSeven"
-                android:background="@color/white"
-                android:backgroundTint="@color/card_tint"
-                android:contentDescription="@string/tag"
-                android:src="@drawable/sun_rain" />
-
-            <ImageView
-                android:id="@+id/ivWeatherIconNightSeven"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@id/txtTempHighSeven"
-                android:background="@color/white"
-                android:backgroundTint="@color/card_tint"
-                android:contentDescription="@string/night_weather"
-                android:src="@drawable/sun_rain" />
-
-            <TextView
-                android:id="@+id/txtTempHighSeven"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="10dp"
-                android:layout_toStartOf="@+id/txtTempSeperatorSeven"
-                android:text="@string/temp_high"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtTempSeperatorSeven"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/txtTempLowSeven"
-                android:text="@string/slash"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtTempLowSeven"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
-                android:text="@string/temp_high"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/dayEightWeather"
-        android:layout_below="@+id/daySevenWeather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/card_tint"
-        app:cardCornerRadius="50dp"
-        android:elevation="50dp"
-        android:layout_marginTop="10dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-
-                android:id="@+id/txtWeekDayEight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="30dp"
-                android:text="@string/monday"
-                android:textColor="@color/green"
-                android:textSize="25sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/ivWeatherIconDayEight"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/ivWeatherIconNightEight"
-                android:background="@color/white"
-                android:backgroundTint="@color/card_tint"
-                android:contentDescription="@string/tag"
-                android:src="@drawable/sun_rain" />
-
-            <ImageView
-                android:id="@+id/ivWeatherIconNightEight"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@id/txtTempHighEight"
-                android:background="@color/white"
-                android:backgroundTint="@color/card_tint"
-                android:contentDescription="@string/night_weather"
-                android:src="@drawable/sun_rain" />
-
-            <TextView
-                android:id="@+id/txtTempHighEight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="10dp"
-                android:layout_toStartOf="@+id/txtTempSeperatorEight"
-                android:text="@string/temp_high"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtTempSeperatorEight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/txtTempLowEight"
-                android:text="@string/slash"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtTempLowEight"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
-                android:text="@string/temp_high"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/dayNineWeather"
-        android:layout_below="@+id/dayEightWeather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/card_tint"
-        app:cardCornerRadius="50dp"
-        android:elevation="50dp"
-        android:layout_marginTop="10dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-
-                android:id="@+id/txtWeekDayNine"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="30dp"
-                android:text="@string/tuesday"
-                android:textColor="@color/green"
-                android:textSize="25sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/ivWeatherIconDayNine"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/ivWeatherIconNightNine"
-                android:background="@color/white"
-                android:backgroundTint="@color/card_tint"
-                android:contentDescription="@string/tag"
-                android:src="@drawable/sun_rain" />
-
-            <ImageView
-                android:id="@+id/ivWeatherIconNightNine"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@id/txtTempHighNine"
-                android:background="@color/white"
-                android:backgroundTint="@color/card_tint"
-                android:contentDescription="@string/night_weather"
-                android:src="@drawable/sun_rain" />
-
-            <TextView
-                android:id="@+id/txtTempHighNine"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="10dp"
-                android:layout_toStartOf="@+id/txtTempSeperatorNine"
-                android:text="@string/temp_high"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtTempSeperatorNine"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/txtTempLowNine"
-                android:text="@string/slash"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtTempLowNine"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
-                android:text="@string/temp_high"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
-
-
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/dayTenWeather"
-        android:layout_below="@+id/dayNineWeather"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/card_tint"
-        app:cardCornerRadius="50dp"
-        android:elevation="50dp"
-        android:layout_marginTop="10dp">
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-
-                android:id="@+id/txtWeekDayTen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="30dp"
-                android:text="@string/wednesday"
-                android:textColor="@color/green"
-                android:textSize="25sp"
-                android:textStyle="bold" />
-
-            <ImageView
-                android:id="@+id/ivWeatherIconDayTen"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/ivWeatherIconNightTen"
-                android:background="@color/white"
-                android:backgroundTint="@color/card_tint"
-                android:contentDescription="@string/tag"
-                android:src="@drawable/sun_rain" />
-
-            <ImageView
-                android:id="@+id/ivWeatherIconNightTen"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@id/txtTempHighTen"
-                android:background="@color/white"
-                android:backgroundTint="@color/card_tint"
-                android:contentDescription="@string/night_weather"
-                android:src="@drawable/sun_rain" />
-
-            <TextView
-                android:id="@+id/txtTempHighTen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="10dp"
-                android:layout_toStartOf="@+id/txtTempSeperatorTen"
-                android:text="@string/temp_high"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtTempSeperatorTen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toStartOf="@+id/txtTempLowTen"
-                android:text="@string/slash"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/txtTempLowTen"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="10dp"
-                android:text="@string/temp_high"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-        </RelativeLayout>
-    </androidx.cardview.widget.CardView>
-
-
-
-
-
-</RelativeLayout>
+</LinearLayout>

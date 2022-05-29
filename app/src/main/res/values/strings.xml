@@ -46,4 +46,25 @@
     <string name="user_name">User Name</string>
     <string name="user_usermail_com">user@usermail.com</string>
     <string name="sign_out">Sign out</string>
+    <string name="current_weather">Current Weather</string>
+    <string name="ten_day_forecast">Ten Day Forecast</string>
+    <string name="about_us">About Us</string>
+    <string name="sign_out_menu">Sign Out</string>
+    <string name="user_name_header">User Name</string>
+    <string name="user_email_header">User@user.com</string>
+    <string name="open">Open Navigation Drawer</string>
+    <string name="close">Close Navigation Drawer</string>
+    <string name="day_temp_temp">60</string>
+    <string name="degrees">°</string>
+    <string name="dowtext">Monday</string>
+    <string name="th">Thursday</string>
+    <string name="_07_22">07/22</string>
+    <string name="seperate">/</string>
+    <string name="humPerc">80</string>
+    <string name="perc">%</string>
+    <string name="lowuv">Low</string>
+    <string name="wspeed">14</string>
+    <string name="mph">mph</string>
+    <string name="details">Details</string>
+
 </resources>

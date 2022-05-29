@@ -36,6 +36,7 @@ public class BWAData {
         this.lowTemp = lowTemp;
     }
 
+
     public String getCurrDay() {
         return currDay;
     }
