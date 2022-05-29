@@ -1,32 +1,23 @@
 package edu.gcu.betterweather;
 
 import static edu.gcu.betterweather.MainUI.humidityPercents;
+import static edu.gcu.betterweather.MainUI.location;
 import static edu.gcu.betterweather.MainUI.uvLevels;
 import static edu.gcu.betterweather.MainUI.windsSpeeds;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import java.util.ArrayList;
-
 import edu.gcu.betterweather.databinding.ActivityTenDayForcastBinding;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class TenDayForecast extends BetterWeatherMainActivity implements TenDayRecyclerViewAdapter.OnWeatherClickListener{
 
     private static final String TAG = "TenDayForecast";
 
 
     private ActivityTenDayForcastBinding binding;
-
 
 
     @Override
@@ -38,10 +29,14 @@ public class TenDayForecast extends BetterWeatherMainActivity implements TenDayR
         // This will set the title in the toolbar
         allocateActivityTitle("10 Day Forecast");
 
+        // display current weather
+        getForecast(location);
 
         buildRecyclerView();
     }
 
+    private void getForecast(String location) {
+    }
 
 
     private void buildRecyclerView() {

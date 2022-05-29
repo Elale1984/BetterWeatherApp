@@ -1,13 +1,13 @@
 package edu.gcu.betterweather;
 
-import android.content.Intent;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
@@ -29,9 +29,7 @@ public class MainUI extends BetterWeatherMainActivity {
 
     private ActivityMainBinding binding;
 
-    private FirebaseAuth mAuth;
-
-    private String location = "90721";
+    public static String location = "90721";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,23 +43,40 @@ public class MainUI extends BetterWeatherMainActivity {
         allocateActivityTitle("Current Weather");
 
         // This sets the mAuth to the instance of firebase
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+        binding.txtCurrentCity.setOnClickListener(v -> {
+            MaterialAlertDialogBuilder textInput = new MaterialAlertDialogBuilder(MainUI.this);
+            textInput.setTitle("Change Location");
+            textInput.setMessage("Please input the name or postal code of the location here:");
+            final EditText input = new EditText(textInput.getContext());
+            textInput.setView(input);
+            textInput.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    location = input.getText().toString();
+                    getForecast(location);
+                }
+            });
+            textInput.show();
+        });
 
 
 
         // display current weather
-        getForecast("66212");
+        getForecast(location);
 
 
     }
 
 
-    private void getForecast(String address) {
+    public void getForecast(String address) {
         Call<BWAForecast> call = RetrofitClient.getInstance().getMyApi().getForecast( address,"9W8PBMYZLZRULGY57Q6BBLHN7");
         call.enqueue(new Callback<BWAForecast>() {
             @Override
             public void onResponse(Call<BWAForecast> call, Response<BWAForecast> response) {
                 BWAForecast myForecast = response.body();
+                resetData();
 
                 Log.d("myTag", response.toString());
                 for (int i = 0; i <10; i++)
@@ -88,6 +103,16 @@ public class MainUI extends BetterWeatherMainActivity {
 
         });
     }
+
+    private void resetData() {
+        dates.clear();
+        highTemps.clear();
+        lowTemps.clear();
+        humidityPercents.clear();
+        windsSpeeds.clear();
+        uvLevels.clear();
+    }
+
     private void displayCurrentWeather(BWAForecast forecast)
     {
         String[] fullAddress = forecast.getName().split(",");
