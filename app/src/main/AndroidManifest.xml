@@ -11,9 +11,7 @@
         android:roundIcon="@drawable/ic_launcher_foreground"
         android:supportsRtl="true"
         android:theme="@style/Theme.BetterWeather">
-        <activity
-            android:name=".AboutPage"
-            android:exported="false" />
+
         <activity
             android:name=".TenDayForecast"
             android:exported="false" />
