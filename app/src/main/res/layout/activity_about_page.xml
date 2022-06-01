@@ -10,63 +10,77 @@
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="121dp"
-        android:layout_height="108dp"
-        app:srcCompat="@drawable/ic_curr_weather"
-        tools:layout_editor_absoluteX="134dp"
-        tools:layout_editor_absoluteY="122dp"
-        tools:ignore="MissingConstraints" />
+        android:layout_height="0dp"
+        android:layout_marginTop="122dp"
+        android:layout_marginBottom="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_curr_weather" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="200"
-        android:layout_height="44dp"
+        android:layout_width="200dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="11dp"
         android:text="Better Weather App"
-        tools:layout_editor_absoluteX="134dp"
-        tools:layout_editor_absoluteY="248dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintBottom_toTopOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginBottom="19dp"
         android:text="Version 1.0.0"
-        tools:layout_editor_absoluteX="164dp"
-        tools:layout_editor_absoluteY="303dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintBottom_toTopOf="@+id/textView3"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="239dp"
-        android:layout_height="31dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="69dp"
+        android:layout_marginBottom="19dp"
         android:text="2022 - 2034 Weather App Inc."
-        tools:layout_editor_absoluteX="103dp"
-        tools:layout_editor_absoluteY="341dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintBottom_toTopOf="@+id/textView4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginBottom="17dp"
         android:text="Edward Lale "
-        tools:layout_editor_absoluteX="153dp"
-        tools:layout_editor_absoluteY="391dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintBottom_toTopOf="@+id/textView5"
+        app:layout_constraintStart_toStartOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="11dp"
         android:text="Nathan Meyer "
-        tools:layout_editor_absoluteX="151dp"
-        tools:layout_editor_absoluteY="427dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintBottom_toTopOf="@+id/textView6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="255dp"
         android:text="Lindsay Blood"
-        tools:layout_editor_absoluteX="153dp"
-        tools:layout_editor_absoluteY="457dp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 </androidx.constraintlayout.widget.ConstraintLayout>

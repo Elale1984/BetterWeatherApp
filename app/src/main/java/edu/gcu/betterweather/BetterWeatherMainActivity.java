@@ -15,10 +15,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class BetterWeatherMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final String TAG = "BetterWeatherMainActivity";
 
     DrawerLayout drawerLayout;
 
@@ -60,7 +62,8 @@ public class BetterWeatherMainActivity extends AppCompatActivity implements Navi
                 overridePendingTransition(0,0);
                 break;
             case R.id.nav_about:
-                Toast.makeText(this, "Add About Class Later", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, AboutPage.class));
+                overridePendingTransition(0,0);
                 break;
             case R.id.nav_sign_out:
                 mAuth.signOut();

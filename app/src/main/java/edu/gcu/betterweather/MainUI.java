@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -29,8 +30,12 @@ public class MainUI extends BetterWeatherMainActivity {
 
     private ActivityMainBinding binding;
 
-    public static String location = "90721";
+    private static final String KEY_CURRENT_LOCATION = "current location";
 
+
+
+    public static String location = "90721";
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
