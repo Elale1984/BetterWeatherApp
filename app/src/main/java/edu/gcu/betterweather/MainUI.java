@@ -1,17 +1,24 @@
 package edu.gcu.betterweather;
 
 import android.content.DialogInterface;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import edu.gcu.betterweather.databinding.ActivityMainBinding;
 import retrofit2.Call;
@@ -30,7 +37,8 @@ public class MainUI extends BetterWeatherMainActivity {
 
     private ActivityMainBinding binding;
 
-    private static final String KEY_CURRENT_LOCATION = "current location";
+    private static final String KEY_CITY_ZIPCODE = "zipcode";
+
 
 
 
@@ -43,6 +51,7 @@ public class MainUI extends BetterWeatherMainActivity {
         View view = binding.getRoot();
         setContentView(view);
 
+        Map<String, Object> myLocations = new HashMap<>();
 
         // This will set the title in the toolbar
         allocateActivityTitle("Current Weather");
@@ -60,13 +69,25 @@ public class MainUI extends BetterWeatherMainActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     location = input.getText().toString();
+                    myLocations.put(KEY_CITY_ZIPCODE, location);
+                    db.collection("Cities").document("MyCities").set(myLocations)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void unused) {
+                                            Toast.makeText(MainUI.this, "City Saved", Toast.LENGTH_SHORT).show();
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Toast.makeText(MainUI.this, "Error!", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
                     getForecast(location);
                 }
             });
             textInput.show();
         });
-
-
 
         // display current weather
         getForecast(location);
