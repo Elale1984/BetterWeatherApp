@@ -14,6 +14,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -38,19 +40,19 @@ public class MainUI extends BetterWeatherMainActivity {
     private ActivityMainBinding binding;
 
     private static final String KEY_CITY_ZIPCODE = "zipcode";
-
-
-
-
     public static String location = "90721";
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private DocumentReference currentCityReference = db.document("Cities/MyCities");
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
-        setContentView(view);
 
+
+        setContentView(view);
+        loadLocation();
         Map<String, Object> myLocations = new HashMap<>();
 
         // This will set the title in the toolbar
@@ -92,6 +94,28 @@ public class MainUI extends BetterWeatherMainActivity {
         // display current weather
         getForecast(location);
 
+
+    }
+
+    private void loadLocation() {
+
+        currentCityReference.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                if(documentSnapshot.exists()){
+                    location = documentSnapshot.getString(KEY_CITY_ZIPCODE);
+                }
+                else{
+                    Toast.makeText(MainUI.this, "Document Does not Exist", Toast.LENGTH_SHORT).show();
+                }
+            }
+        })
+        .addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(MainUI.this, "Error retrieving data!", Toast.LENGTH_SHORT).show();
+            }
+        });
 
     }
 
