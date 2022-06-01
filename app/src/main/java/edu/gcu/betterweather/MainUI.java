@@ -33,7 +33,7 @@ public class MainUI extends BetterWeatherMainActivity {
     private static final String KEY_CURRENT_LOCATION = "current location";
 
 
-
+    public static String units = "us";
     public static String location = "90721";
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     @Override
@@ -60,23 +60,29 @@ public class MainUI extends BetterWeatherMainActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     location = input.getText().toString();
-                    getForecast(location);
+                    getForecast(location, units);
                 }
             });
             textInput.show();
         });
 
-
+        binding.switchUnits.setOnCheckedChangeListener((v, s) -> {
+            if ( s /*binding.switchUnits.isChecked()*/)
+                units = "metric";
+            else
+                units = "us";
+            getForecast(location, units);
+        });
 
         // display current weather
-        getForecast(location);
+        getForecast(location, units);
 
 
     }
 
 
-    public void getForecast(String address) {
-        Call<BWAForecast> call = RetrofitClient.getInstance().getMyApi().getForecast( address,"9W8PBMYZLZRULGY57Q6BBLHN7");
+    public void getForecast(String address, String units) {
+        Call<BWAForecast> call = RetrofitClient.getInstance().getMyApi().getForecast( address, units, "9W8PBMYZLZRULGY57Q6BBLHN7");
         call.enqueue(new Callback<BWAForecast>() {
             @Override
             public void onResponse(Call<BWAForecast> call, Response<BWAForecast> response) {

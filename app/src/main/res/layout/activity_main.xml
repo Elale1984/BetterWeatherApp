@@ -28,6 +28,18 @@
                     android:layout_height="match_parent"
                     android:padding="20dp">
 
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switchUnits"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="30dp"
+                        android:layout_toEndOf="@+id/txtCurrentCity"
+                        android:fontFamily="sans-serif"
+                        android:text="F/C"
+                        android:textAlignment="center"
+                        android:textColor="#49FF0C"
+                        android:textSize="20sp" />
+
                     <TextView
                         android:id="@+id/txtCurrentCity"
                         android:layout_width="180sp"
