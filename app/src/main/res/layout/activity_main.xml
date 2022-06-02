@@ -23,15 +23,17 @@
                 android:elevation="50sp"
                 app:cardCornerRadius="50dp">
 
+
+
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="649dp"
                     android:padding="20dp">
 
                     <com.google.android.material.switchmaterial.SwitchMaterial
                         android:id="@+id/switchUnits"
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="30dp"
                         android:layout_toEndOf="@+id/txtCurrentCity"
                         android:fontFamily="sans-serif"
