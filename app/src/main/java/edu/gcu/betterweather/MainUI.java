@@ -27,6 +27,8 @@ public class MainUI extends BetterWeatherMainActivity {
     public static ArrayList<String> uvLevels= new ArrayList<>();
     public static ArrayList<String> humidityPercents= new ArrayList<>();
     public static ArrayList<String> windsSpeeds= new ArrayList<>();
+    public static ArrayList<String> sunrises = new ArrayList<>();
+    public static ArrayList<String> sunsets = new ArrayList<>();
 
     private ActivityMainBinding binding;
 
@@ -100,6 +102,10 @@ public class MainUI extends BetterWeatherMainActivity {
                     humidityPercents.add(myForecast.getDays()[i].getCurrHumidity().toString());
                     windsSpeeds.add(myForecast.getDays()[i].getCurrWindSpeed().toString());
                     uvLevels.add(myForecast.getDays()[i].getCurrUVIndexLevel().toString());
+                    Log.d("sunrise", myForecast.getDays()[i].getSunrise());
+                    Log.d("sunset", myForecast.getDays()[i].getSunset());
+                    sunrises.add(myForecast.getDays()[i].getSunrise());
+                    sunsets.add(myForecast.getDays()[i].getSunset());
 
                 }
                 displayCurrentWeather(myForecast);
@@ -122,6 +128,8 @@ public class MainUI extends BetterWeatherMainActivity {
         humidityPercents.clear();
         windsSpeeds.clear();
         uvLevels.clear();
+        sunrises.clear();
+        sunsets.clear();
     }
 
     private void displayCurrentWeather(BWAForecast forecast)
@@ -135,6 +143,8 @@ public class MainUI extends BetterWeatherMainActivity {
         binding.txtUVIndex.setText(forecast.getDays()[0].getCurrUVIndexLevel().toString());
         binding.txtWindSpeed.setText(forecast.getDays()[0].getCurrWindSpeed().toString());
         binding.txtHumidityPercent.setText(forecast.getDays()[0].getCurrHumidity().toString());
+        binding.txtSunrise.setText(forecast.getDays()[0].getSunrise());
+        binding.txtSunset.setText(forecast.getDays()[0].getSunset());
     }
 
 }

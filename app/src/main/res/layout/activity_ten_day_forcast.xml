@@ -7,7 +7,6 @@
     tools:context=".TenDayForecast">
 
 
-
     <include
         android:id="@+id/dayWeatherOne"
         layout="@layout/ten_day_weather_layout"

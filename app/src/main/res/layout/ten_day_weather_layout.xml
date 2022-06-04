@@ -32,6 +32,80 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             >
+
+            <FrameLayout
+                android:id="@+id/TDRowOne"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/title"
+                android:layout_centerHorizontal="true">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/humidityGroup"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginTop="10dp">
+
+                        <ImageView
+                            android:id="@+id/imgHumid"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_humidity" />
+
+                        <TextView
+                            android:id="@+id/txtHumidity"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/imgHumid"
+                            android:text="@string/humPerc"
+                            android:textColor="@color/secondaryLightColor"
+                            android:textSize="30sp" />
+
+                        <TextView
+
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_toEndOf="@+id/txtHumidity"
+                            android:text="@string/perc"
+                            android:textColor="@color/secondaryLightColor"
+                            android:textSize="30sp" />
+
+                    </RelativeLayout> <!-- Humidity -->
+
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/uvGroup"
+
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginTop="10dp">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_uv_index"
+                            android:id="@+id/imgUV"/>
+
+                        <TextView
+                            android:id="@+id/txtUV"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/imgUV"
+                            android:text="@string/lowuv"
+                            android:textColor="@color/secondaryLightColor"
+                            android:textSize="30sp" />
+
+
+                    </RelativeLayout> <!-- UV -->
+                </RelativeLayout>
+
+            </FrameLayout>
+
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -49,78 +123,78 @@
 
                     />
 
-            </RelativeLayout>
+            </RelativeLayout> <!-- Title -->
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/humidityGroup"
-                android:layout_below="@+id/title"
+            <FrameLayout
+                android:id="@+id/TDRowTwo"
+                android:layout_width="300dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/TDRowOne"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/sunriseGroup"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp">
+
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_sunrise"
+                            android:id="@+id/imgSunriseTD"/>
+
+                        <TextView
+                            android:id="@+id/txtSunriseTD"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/imgSunriseTD"
+                            android:text="---"
+                            android:textColor="@color/secondaryLightColor"
+                            android:textSize="20sp" />
 
 
+                    </RelativeLayout> <!-- Sunrise -->
 
-                <ImageView
-                    android:id="@+id/imgHumid"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_humidity" />
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/sunsetGroup"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="10dp">
 
-                <TextView
-                    android:id="@+id/txtHumidity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_toEndOf="@+id/imgHumid"
-                    android:text="@string/humPerc"
-                    android:textColor="@color/secondaryLightColor"
-                    android:textSize="30sp" />
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/ic_sunset"
+                            android:id="@+id/imgSunsetTD"/>
 
-                <TextView
+                        <TextView
+                            android:id="@+id/txtSunsetTD"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_toEndOf="@+id/imgSunsetTD"
+                            android:text="---"
+                            android:textColor="@color/secondaryLightColor"
+                            android:textSize="20sp" />
 
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toEndOf="@+id/txtHumidity"
-                    android:text="@string/perc"
-                    android:textColor="@color/secondaryLightColor"
-                    android:textSize="30sp" />
-
-            </RelativeLayout>
-
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/uvGroup"
-                android:layout_below="@+id/humidityGroup"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp">
-
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_uv_index"
-                    android:id="@+id/imgUV"/>
-
-                <TextView
-                    android:id="@+id/txtUV"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_toEndOf="@+id/imgUV"
-                    android:text="@string/lowuv"
-                    android:textColor="@color/secondaryLightColor"
-                    android:textSize="30sp" />
-
-
-            </RelativeLayout>
+                    </RelativeLayout> <!-- Sunset -->
+                </RelativeLayout>
+            </FrameLayout>
 
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/windGroup"
-                android:layout_below="@+id/uvGroup"
+                android:layout_below="@+id/TDRowTwo"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="10dp">
 
@@ -152,7 +226,9 @@
                     android:textSize="12sp" />
 
 
-            </RelativeLayout>
+            </RelativeLayout> <!-- Wind -->
+
+
 
 
 
