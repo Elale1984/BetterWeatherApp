@@ -65,6 +65,9 @@ public class MainUI extends BetterWeatherMainActivity {
         allocateActivityTitle("Current Weather");
 
         // Access the local cache to get user data
+        UserData userData;
+
+        userData = new UserData()
         CacheDatabase cacheDatabase = new CacheDatabase(MainUI.this);
 
 

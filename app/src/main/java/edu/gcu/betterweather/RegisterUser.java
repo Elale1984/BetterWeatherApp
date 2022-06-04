@@ -14,10 +14,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import edu.gcu.betterweather.databinding.ActivityRegisterUserBinding;
 
-public class RegisterUser extends AppCompatActivity {
+public class RegisterUser extends AppCompatActivity implements SetCityDialog.SetCityDialogListener {
 
     private ActivityRegisterUserBinding binding;
-    private String email, password;
+    private String name, email, password, city;
     private FirebaseAuth mAuth;
 
 
@@ -55,6 +55,7 @@ public class RegisterUser extends AppCompatActivity {
         email = binding.etEmail.getText().toString().trim();
         password = binding.etMagicWord.getText().toString().trim();
         String re_password = binding.etRePass.getText().toString().trim();
+
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             binding.etEmail.setError("Invalid Email Format");
         }
@@ -71,9 +72,27 @@ public class RegisterUser extends AppCompatActivity {
             binding.etRePass.setError("The second password you entered does not match the first");
         }
         else {
+
+            // Show dialog for getting zip
+            openGetCityDialog();
+            // Create Local Cache Entry
+            UserData userData;
+            try {
+                userData = new UserData(email, name, city);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
             // Data was validated
             firebaseSignUp();
         }
+    }
+
+    private void openGetCityDialog() {
+
+        SetCityDialog setCityDialog = new SetCityDialog();
+        setCityDialog.show(getSupportFragmentManager(), "Enter Zip Code");
     }
 
     private void firebaseSignUp() {
@@ -115,5 +134,11 @@ public class RegisterUser extends AppCompatActivity {
 
         return matcher.matches();
 
+    }
+
+
+    @Override
+    public void passZipCode(String zipCode) {
+        city = zipCode;
     }
 }

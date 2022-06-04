@@ -66,5 +66,6 @@
     <string name="wspeed">14</string>
     <string name="mph">mph</string>
     <string name="details">Details</string>
+    <string name="enter_zip_code">Enter Zip Code</string>
 
 </resources>

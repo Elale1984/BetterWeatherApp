@@ -11,7 +11,7 @@ public class UserData {
 
     public UserData(){
         // Default
-    };
+    }
 
 
     public UserData(String email, String fName, String currentLocation, String altCity1,
@@ -21,6 +21,13 @@ public class UserData {
         this.currentLocation = currentLocation;
         this.altCity1 = altCity1;
         this.altCity2 = altCity2;
+    }
+
+    // constructor for initial setup
+    public UserData(String email, String fName, String currentLocation) {
+        this.email = email;
+        this.fName = fName;
+        this.currentLocation = currentLocation;
     }
 
     @Override
