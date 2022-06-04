@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTintMode="add"
     tools:context=".Settings">
 
     <TextView
@@ -40,83 +41,4 @@
         app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="46dp"
-        android:autoText="false"
-        android:text="Distance"
-        android:textSize="30sp"
-        app:autoSizeTextType="uniform"
-        app:layout_constraintStart_toStartOf="@+id/checkBox3"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
-
-    <CheckBox
-        android:id="@+id/checkBox3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="49dp"
-        android:text="Miles"
-        app:layout_constraintBaseline_toBaselineOf="@+id/checkBox4"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <CheckBox
-        android:id="@+id/checkBox4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="39dp"
-        android:text="Kilometers"
-        app:layout_constraintStart_toEndOf="@+id/checkBox3"
-        app:layout_constraintTop_toBottomOf="@+id/textView9" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="38dp"
-        android:layout_marginTop="54dp"
-        android:text="Precip(Rain / Snow)"
-        android:textSize="30sp"
-        app:layout_constraintStart_toStartOf="@+id/checkBox5"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
-
-    <CheckBox
-        android:id="@+id/checkBox5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="21dp"
-        android:text="mph"
-        app:layout_constraintBaseline_toBaselineOf="@+id/checkBox6"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <CheckBox
-        android:id="@+id/checkBox6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="18dp"
-        android:text="mps"
-        app:layout_constraintBaseline_toBaselineOf="@+id/checkBox7"
-        app:layout_constraintEnd_toStartOf="@+id/checkBox7" />
-
-    <CheckBox
-        android:id="@+id/checkBox7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="17dp"
-        android:text="kph"
-        app:layout_constraintEnd_toStartOf="@+id/checkBox8"
-        app:layout_constraintTop_toBottomOf="@+id/textView10" />
-
-    <CheckBox
-        android:id="@+id/checkBox8"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="18dp"
-        android:text="knot"
-        app:layout_constraintBaseline_toBaselineOf="@+id/checkBox7"
-        app:layout_constraintEnd_toEndOf="@+id/textView10" />
 </androidx.constraintlayout.widget.ConstraintLayout>
