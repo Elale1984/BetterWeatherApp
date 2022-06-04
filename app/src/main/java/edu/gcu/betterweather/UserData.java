@@ -3,6 +3,7 @@ package edu.gcu.betterweather;
 
 public class UserData {
 
+    private int ID;
     private String email;
     private String fName;
     private String currentLocation;
@@ -14,8 +15,9 @@ public class UserData {
     }
 
 
-    public UserData(String email, String fName, String currentLocation, String altCity1,
+    public UserData(int id, String email, String fName, String currentLocation, String altCity1,
                     String altCity2) {
+        ID = id;
         this.email = email;
         this.fName = fName;
         this.currentLocation = currentLocation;
@@ -24,7 +26,8 @@ public class UserData {
     }
 
     // constructor for initial setup
-    public UserData(String email, String fName, String currentLocation) {
+    public UserData(int id, String email, String fName, String currentLocation) {
+        ID = id;
         this.email = email;
         this.fName = fName;
         this.currentLocation = currentLocation;
@@ -39,6 +42,14 @@ public class UserData {
                 ", altCity1='" + altCity1 + '\'' +
                 ", altCity2='" + altCity2 + '\'' +
                 '}';
+    }
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 
     public String getEmail() {

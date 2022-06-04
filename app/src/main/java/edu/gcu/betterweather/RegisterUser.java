@@ -14,11 +14,13 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import edu.gcu.betterweather.databinding.ActivityRegisterUserBinding;
 
-public class RegisterUser extends AppCompatActivity implements SetCityDialog.SetCityDialogListener {
+public class RegisterUser extends AppCompatActivity {
 
     private ActivityRegisterUserBinding binding;
     private String name, email, password, city;
     private FirebaseAuth mAuth;
+
+    // Local Cache Reference
 
 
     // Progress Dialogue
@@ -58,42 +60,36 @@ public class RegisterUser extends AppCompatActivity implements SetCityDialog.Set
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             binding.etEmail.setError("Invalid Email Format");
-        }
-        else if (TextUtils.isEmpty(password)) {
+        } else if (TextUtils.isEmpty(password)) {
             // password not entered in field
             binding.etMagicWord.setError("Password Field is empty");
-        }
-        else if (!isValidPassword(password)) {
+        } else if (!isValidPassword(password)) {
             // Password does not meet format requirements
             binding.etMagicWord.setError("Password must contain One Uppercase letter, one number, " +
                     "one special character, and be at least 8 characters long.");
-        }
-        else if (!re_password.equals(password)) {
+        } else if (!re_password.equals(password)) {
             binding.etRePass.setError("The second password you entered does not match the first");
-        }
-        else {
+        } else {
 
-            // Show dialog for getting zip
-            openGetCityDialog();
+
             // Create Local Cache Entry
             UserData userData;
+            CacheDatabase cacheDatabase;
             try {
-                userData = new UserData(email, name, city);
+                userData = new UserData(-1, "e@g.com", "e", "81001");
 
             } catch (Exception e) {
-                e.printStackTrace();
+                Toast.makeText(this, "Error Creating Local Cache", Toast.LENGTH_SHORT).show();
+                userData = new UserData(-1, "tester", "a", "81001");
             }
-
+            cacheDatabase = new CacheDatabase(RegisterUser.this);
+            boolean success = cacheDatabase.addOne(userData);
+            Toast.makeText(this, "Success = " + success, Toast.LENGTH_SHORT).show();
             // Data was validated
             firebaseSignUp();
         }
     }
 
-    private void openGetCityDialog() {
-
-        SetCityDialog setCityDialog = new SetCityDialog();
-        setCityDialog.show(getSupportFragmentManager(), "Enter Zip Code");
-    }
 
     private void firebaseSignUp() {
 
@@ -115,7 +111,7 @@ public class RegisterUser extends AppCompatActivity implements SetCityDialog.Set
                 })
                 .addOnFailureListener(e -> {
                     // Failed Registration of new user
-                    Toast.makeText(RegisterUser.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterUser.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 
@@ -136,9 +132,4 @@ public class RegisterUser extends AppCompatActivity implements SetCityDialog.Set
 
     }
 
-
-    @Override
-    public void passZipCode(String zipCode) {
-        city = zipCode;
-    }
 }
