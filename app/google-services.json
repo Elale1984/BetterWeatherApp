@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "1087105476152",
+    "firebase_url": "https://better-weather-c16d1-default-rtdb.firebaseio.com",
     "project_id": "better-weather-c16d1",
     "storage_bucket": "better-weather-c16d1.appspot.com"
   },
