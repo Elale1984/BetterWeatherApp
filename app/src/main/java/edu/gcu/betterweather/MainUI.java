@@ -1,7 +1,6 @@
 package edu.gcu.betterweather;
 
 import android.content.DialogInterface;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,20 +8,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -47,12 +40,12 @@ public class MainUI extends BetterWeatherMainActivity {
 
 
 
-    public static String location;
+    public static String location = "81001";
     private static  FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    private static String uID;
-    DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("Users").child("current_city");
+    private static String uID = mAuth.getUid();
+    DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users");
 
-    CacheDatabase cacheDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +57,19 @@ public class MainUI extends BetterWeatherMainActivity {
         // This will set the title in the toolbar
         allocateActivityTitle("Current Weather");
 
+        // Getting data from local cache
+
+//        myRef.child(uID).child("current_city").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DataSnapshot> task) {
+//                if (!task.isSuccessful()) {
+//                    Toast.makeText(MainUI.this, "Failed to get data from firebase", Toast.LENGTH_SHORT).show();
+//                }
+//                else {
+//                    Toast.makeText(MainUI.this, "Success get data from firebase", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        });
 
 
         // button click to change the current location

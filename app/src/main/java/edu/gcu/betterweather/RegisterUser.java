@@ -1,19 +1,19 @@
 package edu.gcu.betterweather;
 
 import android.app.ProgressDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import edu.gcu.betterweather.databinding.ActivityRegisterUserBinding;
@@ -22,7 +22,17 @@ public class RegisterUser extends AppCompatActivity {
 
     private ActivityRegisterUserBinding binding;
     private String name, email, password, city;
+
+    // Firebase Authorization
     private FirebaseAuth mAuth;
+    public static User userData;
+
+    // Firebase Realtime Database
+    private FirebaseDatabase root;
+    private DatabaseReference mRef;
+
+    // Firebase User ID
+    private String uID;
 
 
     // Progress Dialogue
@@ -37,6 +47,13 @@ public class RegisterUser extends AppCompatActivity {
 
         // init firebase auth
         mAuth = FirebaseAuth.getInstance();
+
+        // Init Firebase Realtime Database
+        root = FirebaseDatabase.getInstance();
+        mRef = root.getReference("users");
+
+
+
 
         // configure progress dialogue
         progressDialog = new ProgressDialog(this);
@@ -75,19 +92,6 @@ public class RegisterUser extends AppCompatActivity {
         } else {
 
 
-            // Create Local Cache Entry
-            UserData userData;
-            CacheDatabase cacheDatabase;
-            try {
-                userData = new UserData(-1, email, name, city);
-
-            } catch (Exception e) {
-                Toast.makeText(this, "Error Creating Local Cache", Toast.LENGTH_SHORT).show();
-                userData = new UserData(-1, "tester", "a", "81001");
-            }
-            cacheDatabase = new CacheDatabase(RegisterUser.this);
-            boolean success = cacheDatabase.addOne(userData);
-            Toast.makeText(this, "Success = " + success, Toast.LENGTH_SHORT).show();
             // Data was validated
             firebaseSignUp();
         }
@@ -102,11 +106,17 @@ public class RegisterUser extends AppCompatActivity {
                     // Register New Account
                     progressDialog.dismiss();
 
+                    // Init User ID
+                    uID = FirebaseAuth.getInstance().getUid();
+
                     // get the users info
                     FirebaseUser firebaseUser = mAuth.getCurrentUser();
                     assert firebaseUser != null;
                     String userEmail = firebaseUser.getEmail();
                     Toast.makeText(RegisterUser.this, "Account Created\n" + userEmail, Toast.LENGTH_SHORT).show();
+
+                    // Create Realtime Database
+                    writeUserData(uID, name, email, city);
 
                     // log in user and launch weather app
                     startActivity(new Intent(RegisterUser.this, MainUI.class));
@@ -117,6 +127,15 @@ public class RegisterUser extends AppCompatActivity {
                     Toast.makeText(RegisterUser.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
+
+    private void writeUserData(String uID, String name, String email, String city) {
+
+        UserHelperClass newUser = new UserHelperClass(name, email, city);
+
+        mRef.child(uID).setValue(newUser);
+
+    }
+
 
     // Method to check for standard requirements of passwords. Returns true if password meets
     // these requirements

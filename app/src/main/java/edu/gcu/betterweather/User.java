@@ -1,7 +1,9 @@
 package edu.gcu.betterweather;
 
+import com.google.firebase.database.IgnoreExtraProperties;
 
-public class UserData {
+@IgnoreExtraProperties
+public class User {
 
     private int ID;
     private String email;
@@ -10,13 +12,13 @@ public class UserData {
     private String altCity1;
     private String altCity2;
 
-    public UserData(){
+    public User(){
         // Default
     }
 
 
-    public UserData(int id, String email, String fName, String currentLocation, String altCity1,
-                    String altCity2) {
+    public User(int id, String email, String fName, String currentLocation, String altCity1,
+                String altCity2) {
         ID = id;
         this.email = email;
         this.fName = fName;
@@ -26,8 +28,7 @@ public class UserData {
     }
 
     // constructor for initial setup
-    public UserData(int id, String email, String fName, String currentLocation) {
-        ID = id;
+    public User(String email, String fName, String currentLocation) {
         this.email = email;
         this.fName = fName;
         this.currentLocation = currentLocation;
