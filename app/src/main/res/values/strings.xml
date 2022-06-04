@@ -67,5 +67,6 @@
     <string name="mph">mph</string>
     <string name="details">Details</string>
     <string name="enter_zip_code">Enter Zip Code</string>
+    <string name="zip_code">Zip Code</string>
 
 </resources>

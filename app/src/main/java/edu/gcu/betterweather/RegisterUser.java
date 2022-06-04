@@ -1,13 +1,17 @@
 package edu.gcu.betterweather;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import java.util.regex.Matcher;
@@ -19,9 +23,6 @@ public class RegisterUser extends AppCompatActivity {
     private ActivityRegisterUserBinding binding;
     private String name, email, password, city;
     private FirebaseAuth mAuth;
-    //
-
-    // Local Cache Reference
 
 
     // Progress Dialogue
@@ -54,9 +55,10 @@ public class RegisterUser extends AppCompatActivity {
     }
 
     private void validateData() {
-
+        name = binding.etFName.getText().toString().trim();
         email = binding.etEmail.getText().toString().trim();
         password = binding.etMagicWord.getText().toString().trim();
+        city = binding.etCityZipCode.getText().toString().trim();
         String re_password = binding.etRePass.getText().toString().trim();
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
@@ -77,7 +79,7 @@ public class RegisterUser extends AppCompatActivity {
             UserData userData;
             CacheDatabase cacheDatabase;
             try {
-                userData = new UserData(-1, "e@g.com", "e", "81001");
+                userData = new UserData(-1, email, name, city);
 
             } catch (Exception e) {
                 Toast.makeText(this, "Error Creating Local Cache", Toast.LENGTH_SHORT).show();
