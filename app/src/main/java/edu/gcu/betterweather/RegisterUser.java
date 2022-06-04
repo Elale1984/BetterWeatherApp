@@ -19,6 +19,7 @@ public class RegisterUser extends AppCompatActivity {
     private ActivityRegisterUserBinding binding;
     private String name, email, password, city;
     private FirebaseAuth mAuth;
+    //
 
     // Local Cache Reference
 
