@@ -82,7 +82,10 @@ public class RegisterUser extends AppCompatActivity {
         } else if (TextUtils.isEmpty(password)) {
             // password not entered in field
             binding.etMagicWord.setError("Password Field is empty");
-        } else if (!isValidPassword(password)) {
+        } else if (!isValidZipCode(city)){
+            binding.etCityZipCode.setError("This is not a valid us postal code");
+        }
+        else if (!isValidPassword(password)) {
             // Password does not meet format requirements
             binding.etMagicWord.setError("Password must contain One Uppercase letter, " +
                     "one number, one special character, and be at least 8 characters long.");
@@ -94,6 +97,18 @@ public class RegisterUser extends AppCompatActivity {
             // Data was validated
             firebaseSignUp();
         }
+    }
+
+    private boolean isValidZipCode(String city) {
+        Pattern zipPattern;
+        Matcher matcher;
+
+        final String ZIPCODE_PATTERN = "^[0-9]{5}(?:-[0-9]{4})?$";
+        zipPattern = Pattern.compile(ZIPCODE_PATTERN);
+        matcher = zipPattern.matcher(city);
+
+        return matcher.matches();
+
     }
 
 

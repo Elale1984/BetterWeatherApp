@@ -1,10 +1,12 @@
 package edu.gcu.betterweather;
 
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -12,6 +14,7 @@ import androidx.annotation.NonNull;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -65,25 +68,9 @@ public class MainUI extends BetterWeatherMainActivity {
 
         // button click to change the current location
         binding.txtCurrentCity.setOnClickListener(v -> {
-            MaterialAlertDialogBuilder textInput = new MaterialAlertDialogBuilder(MainUI.this);
-            textInput.setTitle("Change Location");
-            textInput.setMessage("Please input the name or postal code of the location here:");
-            final EditText input = new EditText(textInput.getContext());
-            textInput.setView(input);
-            textInput.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    location = input.getText().toString();
 
-                    // update Realtime Database with the new city
-                    myRef.child(uID).child("city").setValue(location);
-                    myRef.keepSynced(true);
+            openMyCitiesDialog();
 
-                    // updates the UI with the new forecast information
-                    getForecast(location, units);
-                }
-            });
-            textInput.show();
         });
 
         // Listener for the f/c switch
@@ -119,6 +106,68 @@ public class MainUI extends BetterWeatherMainActivity {
 
 
 
+    }
+
+    private void openMyCitiesDialog() {
+
+        Dialog myCitiesDialog = new Dialog(this, R.style.DialogStyle);
+        myCitiesDialog.setContentView(R.layout.change_location_dialog);
+        myCitiesDialog.getWindow().setBackgroundDrawableResource(R.drawable.bg_window);
+        TextView currentCity = myCitiesDialog.findViewById(R.id.tvItemCurrentCity);
+        TextView secondCity = myCitiesDialog.findViewById(R.id.tvItemCityTwo);
+        TextView thirdCity = myCitiesDialog.findViewById(R.id.tvItemCityThree);
+        FloatingActionButton addCity = myCitiesDialog.findViewById(R.id.fabAddCity);
+
+        if(thirdCity.getVisibility() == View.VISIBLE){
+            addCity.setVisibility(View.INVISIBLE);
+        }
+
+        addCity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(secondCity.getVisibility() == View.INVISIBLE) {
+                    setCity(secondCity);
+                }
+                else {
+                    setCity(thirdCity);
+                    addCity.setVisibility(View.INVISIBLE);
+                }
+
+            }
+        });
+        myCitiesDialog.show();
+
+    }
+
+    private void setCity(TextView cityView) {
+        MaterialAlertDialogBuilder textInput = new MaterialAlertDialogBuilder(MainUI.this);
+        textInput.setTitle("Change Location");
+        textInput.setMessage("Please input the name or postal code of the location here:");
+        final EditText input = new EditText(textInput.getContext());
+        textInput.setView(input);
+        textInput.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                location = input.getText().toString();
+
+                setDataFromDatabase();
+
+                // updates the UI with the new forecast information
+                getForecast(location, units);
+                cityView.setText(location);
+                cityView.setVisibility(View.VISIBLE);
+            }
+        });
+        textInput.show();
+    }
+
+    private void setDataFromDatabase() {
+        // update Realtime Database with the new city
+        if(location == null || location.equals(""))
+            location = "66212";
+        myRef.child(uID).child("city").setValue(location);
+
+        myRef.keepSynced(true);
     }
 
     /*
