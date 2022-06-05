@@ -2,6 +2,8 @@ package edu.gcu.betterweather;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.sql.Time;
+
 public class BWAData {
     @SerializedName("datetime")
     private String currDay;
@@ -24,7 +26,11 @@ public class BWAData {
     @SerializedName("tempmin")
     private Double lowTemp;
 
+    @SerializedName("sunrise")
+    private String sunrise;
 
+    @SerializedName("sunset")
+    private String sunset;
 
     public BWAData(String currDay, Double currTemp, Double currWindSpeed, Double currUVIndexLevel, Double currHumidity, Double highTemp, Double lowTemp) {
         this.currDay = currDay;
@@ -87,5 +93,21 @@ public class BWAData {
 
     public void setLowTemp(Double lowTemp) {
         this.lowTemp = lowTemp;
+    }
+
+    public String getSunrise() {
+        return sunrise;
+    }
+
+    public void setSunrise(String sunrise) {
+        this.sunrise = sunrise;
+    }
+
+    public String getSunset() {
+        return sunset;
+    }
+
+    public void setSunset(String sunset) {
+        this.sunset = sunset;
     }
 }

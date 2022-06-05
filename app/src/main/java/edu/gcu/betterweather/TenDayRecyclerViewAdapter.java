@@ -27,6 +27,8 @@ public class TenDayRecyclerViewAdapter extends RecyclerView.Adapter<TenDayRecycl
     private ArrayList<String> humidityPercents;
     private ArrayList<String> windsSpeeds;
     private ArrayList<String> uvLevels;
+    private ArrayList<String> sunrises;
+    private ArrayList<String> sunsets;
 
     private Context context;
 
@@ -39,6 +41,8 @@ public class TenDayRecyclerViewAdapter extends RecyclerView.Adapter<TenDayRecycl
              ArrayList<String> humidityPercents,
              ArrayList<String> windsSpeeds,
              ArrayList<String> uvLevels,
+             ArrayList<String> sunrises,
+             ArrayList<String> sunsets,
              OnWeatherClickListener onWeatherClickListener)
     {
 
@@ -49,6 +53,8 @@ public class TenDayRecyclerViewAdapter extends RecyclerView.Adapter<TenDayRecycl
         this.humidityPercents = humidityPercents;
         this.windsSpeeds = windsSpeeds;
         this.uvLevels = uvLevels;
+        this.sunrises = sunrises;
+        this.sunsets = sunsets;
         this.onWeatherClickListener = onWeatherClickListener;
     }
 
@@ -69,6 +75,8 @@ public class TenDayRecyclerViewAdapter extends RecyclerView.Adapter<TenDayRecycl
         holder.date.setText(dates.get(position));
         holder.highTemp.setText(highTemps.get(position));
         holder.lowTemp.setText(lowTemps.get(position));
+        // holder.sunrise.setText(sunrises.get(position));
+        // holder.sunset.setText(sunsets.get(position));
 
 
     }
@@ -82,7 +90,7 @@ public class TenDayRecyclerViewAdapter extends RecyclerView.Adapter<TenDayRecycl
 
         OnWeatherClickListener onWeatherClickListener;
         TextView dayOfWeek, date, highTemp, lowTemp,
-                humidityPercent, uvLevel, windSpeed;
+                humidityPercent, uvLevel, windSpeed, sunrise, sunset;
 
         ImageView morningWeather, eveningWeather;
 
@@ -101,6 +109,10 @@ public class TenDayRecyclerViewAdapter extends RecyclerView.Adapter<TenDayRecycl
             windSpeed = itemView.findViewById(R.id.txtWind);
             morningWeather = itemView.findViewById(R.id.imgMorningWeather);
             eveningWeather = itemView.findViewById(R.id.imgEveningWeather);
+            /*
+            sunrise = itemView.findViewById(R.id.txtSunriseRecycle);
+            sunset = itemView.findViewById(R.id.txtSunsetRecycle);
+             */
 
             this.onWeatherClickListener = onWeatherClickListener;
             itemView.setOnClickListener(this);

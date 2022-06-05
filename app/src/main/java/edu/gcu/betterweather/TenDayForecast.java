@@ -4,6 +4,8 @@ import static edu.gcu.betterweather.MainUI.humidityPercents;
 import static edu.gcu.betterweather.MainUI.location;
 import static edu.gcu.betterweather.MainUI.uvLevels;
 import static edu.gcu.betterweather.MainUI.windsSpeeds;
+import static edu.gcu.betterweather.MainUI.sunrises;
+import static edu.gcu.betterweather.MainUI.sunsets;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -45,7 +47,7 @@ public class TenDayForecast extends BetterWeatherMainActivity implements TenDayR
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
         binding.dayWeatherOne.rvTenDayWeather.setLayoutManager(layoutManager);
 
-        TenDayRecyclerViewAdapter adapter = new TenDayRecyclerViewAdapter(this, MainUI.dates, MainUI.highTemps, MainUI.lowTemps, humidityPercents, MainUI.windsSpeeds, MainUI.uvLevels, this);
+        TenDayRecyclerViewAdapter adapter = new TenDayRecyclerViewAdapter(this, MainUI.dates, MainUI.highTemps, MainUI.lowTemps, humidityPercents, MainUI.windsSpeeds, MainUI.uvLevels, MainUI.sunrises, MainUI.sunsets, this);
         binding.dayWeatherOne.rvTenDayWeather.setAdapter(adapter);
     }
 
@@ -55,7 +57,7 @@ public class TenDayForecast extends BetterWeatherMainActivity implements TenDayR
         binding.dayWeatherOne.txtHumidity.setText(humidityPercents.get(position));
         binding.dayWeatherOne.txtUV.setText(uvLevels.get(position));
         binding.dayWeatherOne.txtWind.setText(windsSpeeds.get(position));
-
-
+        binding.dayWeatherOne.txtSunriseTD.setText(sunrises.get(position));
+        binding.dayWeatherOne.txtSunsetTD.setText(sunsets.get(position));
     }
 }
