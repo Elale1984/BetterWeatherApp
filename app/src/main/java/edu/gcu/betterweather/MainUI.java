@@ -14,8 +14,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -35,14 +37,11 @@ public class MainUI extends BetterWeatherMainActivity {
     public static ArrayList<String> windsSpeeds= new ArrayList<>();
 
     private ActivityMainBinding binding;
+    public static String location;
 
-    private static final String KEY_CURRENT_LOCATION = "current location";
-
-
-
-    public static String location = "81001";
+    // Firebase variables
     private static  FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    private static String uID = mAuth.getUid();
+    private final String uID = mAuth.getUid();
     DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users");
 
 
@@ -57,19 +56,7 @@ public class MainUI extends BetterWeatherMainActivity {
         // This will set the title in the toolbar
         allocateActivityTitle("Current Weather");
 
-        // Getting data from local cache
 
-//        myRef.child(uID).child("current_city").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-//            @Override
-//            public void onComplete(@NonNull Task<DataSnapshot> task) {
-//                if (!task.isSuccessful()) {
-//                    Toast.makeText(MainUI.this, "Failed to get data from firebase", Toast.LENGTH_SHORT).show();
-//                }
-//                else {
-//                    Toast.makeText(MainUI.this, "Success get data from firebase", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
 
 
         // button click to change the current location
@@ -83,18 +70,54 @@ public class MainUI extends BetterWeatherMainActivity {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     location = input.getText().toString();
-                    myRef.child("users").child(uID).child("current_city").setValue(location);
+
+                    // update Realtime Database with the new city
+                    myRef.child(uID).child("city").setValue(location);
+
+                    // updates the UI with the new forecast information
                     getForecast(location);
                 }
             });
             textInput.show();
         });
 
-        getForecast(location);
+        /*
+         * This listener will be called when the city is changed and when the
+         * onCreate method is called. It will call a method to get the data from the
+         * snapshot of the current database for the specific user.
+         *
+         */
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                updateUI(snapshot);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
 
 
     }
 
+    /*
+     *
+     * This method gets the data from the snapshot and updates the UI with the appropriate
+     * data, then retrieves the forecast.
+     */
+    private void updateUI(DataSnapshot snapshot) {
+
+        UserHelperClass user = new UserHelperClass();
+        user.setName(snapshot.child(uID).getValue(UserHelperClass.class).getName());
+        user.setEmail(snapshot.child(uID).getValue(UserHelperClass.class).getEmail());
+        user.setCity(snapshot.child(uID).getValue(UserHelperClass.class).getCity());
+
+        location = user.city;
+        getForecast(location);
+    }
 
 
     @Override
@@ -110,7 +133,8 @@ public class MainUI extends BetterWeatherMainActivity {
         Call<BWAForecast> call = RetrofitClient.getInstance().getMyApi().getForecast( address,"9W8PBMYZLZRULGY57Q6BBLHN7");
         call.enqueue(new Callback<BWAForecast>() {
             @Override
-            public void onResponse(Call<BWAForecast> call, Response<BWAForecast> response) {
+            public void onResponse(@NonNull Call<BWAForecast> call,
+                                   @NonNull Response<BWAForecast> response) {
                 BWAForecast myForecast = response.body();
                 resetData();
 
@@ -119,6 +143,7 @@ public class MainUI extends BetterWeatherMainActivity {
                 {
 
 
+                    assert myForecast != null;
                     dates.add(myForecast.getDays()[i].getCurrDay());
                     highTemps.add(myForecast.getDays()[i].getHighTemp().toString() + "°");
                     lowTemps.add(myForecast.getDays()[i].getLowTemp().toString() + "°");
@@ -132,8 +157,9 @@ public class MainUI extends BetterWeatherMainActivity {
             }
 
             @Override
-            public void onFailure(Call<BWAForecast> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "An error has occured", Toast.LENGTH_LONG).show();
+            public void onFailure(@NonNull Call<BWAForecast> call, @NonNull Throwable t) {
+                Toast.makeText(getApplicationContext(), "There was an error getting " +
+                        "the forecast from the weather API", Toast.LENGTH_LONG).show();
                 t.printStackTrace();
             }
 
@@ -160,6 +186,19 @@ public class MainUI extends BetterWeatherMainActivity {
         binding.txtUVIndex.setText(forecast.getDays()[0].getCurrUVIndexLevel().toString());
         binding.txtWindSpeed.setText(forecast.getDays()[0].getCurrWindSpeed().toString());
         binding.txtHumidityPercent.setText(forecast.getDays()[0].getCurrHumidity().toString());
+
+        // Getting data from realtime database
+        myRef.child(uID).child("current_city").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (!task.isSuccessful()) {
+                    Toast.makeText(MainUI.this, "Failed to get data from firebase", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(MainUI.this, String.valueOf(task.getResult().getValue()), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
 }

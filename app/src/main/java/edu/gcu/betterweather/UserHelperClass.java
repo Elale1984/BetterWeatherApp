@@ -1,5 +1,8 @@
 package edu.gcu.betterweather;
 
+import com.google.firebase.database.IgnoreExtraProperties;
+
+@IgnoreExtraProperties
 public class UserHelperClass {
 
     String name;
