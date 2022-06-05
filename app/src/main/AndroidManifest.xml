@@ -10,7 +10,8 @@
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_launcher_foreground"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BetterWeather">
+        android:theme="@style/Theme.BetterWeather"
+        android:name=".BetterWeatherApp">
         <activity
             android:name=".ui.AboutPage"
             android:exported="false" />

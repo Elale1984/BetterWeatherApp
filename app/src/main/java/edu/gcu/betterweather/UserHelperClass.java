@@ -5,9 +5,9 @@ import com.google.firebase.database.IgnoreExtraProperties;
 @IgnoreExtraProperties
 public class UserHelperClass {
 
-    String name;
-    String email;
-    String city;
+     String name;
+     String email;
+     String city;
 
     public UserHelperClass(String name, String email, String city) {
         this.name = name;

@@ -1,9 +1,12 @@
 package edu.gcu.betterweather;
 
+import static edu.gcu.betterweather.MainUI.user;
+
 import android.content.Intent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -14,6 +17,11 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import edu.gcu.betterweather.ui.AboutPage;
 
@@ -24,7 +32,10 @@ public class BetterWeatherMainActivity extends AppCompatActivity implements Navi
 
     DrawerLayout drawerLayout;
 
-    private FirebaseAuth mAuth;
+    // Firebase variables
+    private static  FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+
 
     @Override
     public void setContentView(View view) {
@@ -40,12 +51,15 @@ public class BetterWeatherMainActivity extends AppCompatActivity implements Navi
         Toolbar toolbar = drawerLayout.findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         NavigationView navigationView = drawerLayout.findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
+
+
     }
 
     @Override

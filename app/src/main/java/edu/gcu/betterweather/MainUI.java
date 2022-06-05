@@ -47,6 +47,7 @@ public class MainUI extends BetterWeatherMainActivity {
     private final String uID = mAuth.getUid();
     DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users");
 
+    public static UserHelperClass user;
 
 
     @Override
@@ -76,6 +77,7 @@ public class MainUI extends BetterWeatherMainActivity {
 
                     // update Realtime Database with the new city
                     myRef.child(uID).child("city").setValue(location);
+                    myRef.keepSynced(true);
 
                     // updates the UI with the new forecast information
                     getForecast(location, units);
@@ -126,12 +128,13 @@ public class MainUI extends BetterWeatherMainActivity {
      */
     private void updateUI(DataSnapshot snapshot) {
 
-        UserHelperClass user = new UserHelperClass();
+        user = new UserHelperClass();
         user.setName(snapshot.child(uID).getValue(UserHelperClass.class).getName());
         user.setEmail(snapshot.child(uID).getValue(UserHelperClass.class).getEmail());
         user.setCity(snapshot.child(uID).getValue(UserHelperClass.class).getCity());
 
         location = user.city;
+
         getForecast(location, units);
     }
 
