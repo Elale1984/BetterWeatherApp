@@ -27,6 +27,9 @@
     <color name="primaryTextColor">#ffffff</color>
     <color name="secondaryTextColor">#000000</color>
     <color name="messageColor">#FFEB3B</color>
+    <color name="dialogPrimary">#A779FB</color>
+    <color name="onCardPrimary">#47CCBF</color>
+    <color name="onCardSecondary">#321278</color>
 
 
 </resources>
