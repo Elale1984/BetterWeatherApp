@@ -25,7 +25,6 @@ public class RegisterUser extends AppCompatActivity {
 
     // Firebase Authorization
     private FirebaseAuth mAuth;
-    public static User userData;
 
     // Firebase Realtime Database
     private FirebaseDatabase root;
@@ -85,8 +84,8 @@ public class RegisterUser extends AppCompatActivity {
             binding.etMagicWord.setError("Password Field is empty");
         } else if (!isValidPassword(password)) {
             // Password does not meet format requirements
-            binding.etMagicWord.setError("Password must contain One Uppercase letter, one number, " +
-                    "one special character, and be at least 8 characters long.");
+            binding.etMagicWord.setError("Password must contain One Uppercase letter, " +
+                    "one number, one special character, and be at least 8 characters long.");
         } else if (!re_password.equals(password)) {
             binding.etRePass.setError("The second password you entered does not match the first");
         } else {
@@ -113,7 +112,8 @@ public class RegisterUser extends AppCompatActivity {
                     FirebaseUser firebaseUser = mAuth.getCurrentUser();
                     assert firebaseUser != null;
                     String userEmail = firebaseUser.getEmail();
-                    Toast.makeText(RegisterUser.this, "Account Created\n" + userEmail, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterUser.this, "Account Created\n" + userEmail,
+                            Toast.LENGTH_SHORT).show();
 
                     // Create Realtime Database
                     writeUserData(uID, name, email, city);
@@ -124,7 +124,9 @@ public class RegisterUser extends AppCompatActivity {
                 })
                 .addOnFailureListener(e -> {
                     // Failed Registration of new user
-                    Toast.makeText(RegisterUser.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterUser.this, "There was an error " +
+                            "creating the new user" + e.getMessage(),
+                            Toast.LENGTH_SHORT).show();
                 });
     }
 

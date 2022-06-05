@@ -146,7 +146,8 @@ public class MainUI extends BetterWeatherMainActivity {
 
 
     public void getForecast(String address, String units) {
-        Call<BWAForecast> call = RetrofitClient.getInstance().getMyApi().getForecast( address, units, "9W8PBMYZLZRULGY57Q6BBLHN7");
+        Call<BWAForecast> call = RetrofitClient.getInstance().getMyApi().
+                getForecast( address, units, "9W8PBMYZLZRULGY57Q6BBLHN7");
         call.enqueue(new Callback<BWAForecast>() {
             @Override
             public void onResponse(Call<BWAForecast> call, Response<BWAForecast> response) {
@@ -176,7 +177,8 @@ public class MainUI extends BetterWeatherMainActivity {
 
             @Override
             public void onFailure(Call<BWAForecast> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "An error has occured", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "An error has occurred getting the " +
+                        "forecast from the weather api", Toast.LENGTH_LONG).show();
                 t.printStackTrace();
             }
 
@@ -209,14 +211,17 @@ public class MainUI extends BetterWeatherMainActivity {
         binding.txtSunset.setText(forecast.getDays()[0].getSunset());
 
         // Getting data from realtime database
-        myRef.child(uID).child("current_city").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+        myRef.child(uID).child("current_city").get()
+                .addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (!task.isSuccessful()) {
-                    Toast.makeText(MainUI.this, "Failed to get data from firebase", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainUI.this, "Failed to get data from firebase",
+                            Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Toast.makeText(MainUI.this, String.valueOf(task.getResult().getValue()), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainUI.this, String.valueOf(task.getResult().getValue()),
+                            Toast.LENGTH_SHORT).show();
                 }
             }
         });

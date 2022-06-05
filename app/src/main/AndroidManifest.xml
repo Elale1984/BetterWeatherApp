@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BetterWeather">
         <activity
-            android:name=".AboutPage"
+            android:name=".ui.AboutPage"
             android:exported="false" />
         <activity
             android:name=".TenDayForecast"

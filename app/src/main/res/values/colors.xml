@@ -26,6 +26,7 @@
     <color name="secondaryDarkColor">#32cb00</color>
     <color name="primaryTextColor">#ffffff</color>
     <color name="secondaryTextColor">#000000</color>
+    <color name="messageColor">#FFEB3B</color>
 
 
 </resources>

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -15,7 +14,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.FirebaseFirestore;
+
+import edu.gcu.betterweather.ui.AboutPage;
 
 
 public class BetterWeatherMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
