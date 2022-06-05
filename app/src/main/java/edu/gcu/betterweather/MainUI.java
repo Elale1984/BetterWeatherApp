@@ -35,9 +35,12 @@ public class MainUI extends BetterWeatherMainActivity {
     public static ArrayList<String> uvLevels= new ArrayList<>();
     public static ArrayList<String> humidityPercents= new ArrayList<>();
     public static ArrayList<String> windsSpeeds= new ArrayList<>();
+    public static ArrayList<String> sunrises = new ArrayList<>();
+    public static ArrayList<String> sunsets = new ArrayList<>();
 
     private ActivityMainBinding binding;
     public static String location;
+    public static String units = "us";
 
     // Firebase variables
     private static  FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -75,11 +78,24 @@ public class MainUI extends BetterWeatherMainActivity {
                     myRef.child(uID).child("city").setValue(location);
 
                     // updates the UI with the new forecast information
-                    getForecast(location);
+                    getForecast(location, units);
                 }
             });
             textInput.show();
         });
+
+        // Listener for the f/c switch
+        binding.switchUnits.setOnCheckedChangeListener((v, s) -> {
+            if ( s /*binding.switchUnits.isChecked()*/)
+                units = "metric";
+            else
+                units = "us";
+            getForecast(location, units);
+        });
+
+        // display current weather
+        getForecast(location, units);
+
 
         /*
          * This listener will be called when the city is changed and when the
@@ -116,7 +132,7 @@ public class MainUI extends BetterWeatherMainActivity {
         user.setCity(snapshot.child(uID).getValue(UserHelperClass.class).getCity());
 
         location = user.city;
-        getForecast(location);
+        getForecast(location, units);
     }
 
 
@@ -129,12 +145,11 @@ public class MainUI extends BetterWeatherMainActivity {
 
 
 
-    public void getForecast(String address) {
-        Call<BWAForecast> call = RetrofitClient.getInstance().getMyApi().getForecast( address,"9W8PBMYZLZRULGY57Q6BBLHN7");
+    public void getForecast(String address, String units) {
+        Call<BWAForecast> call = RetrofitClient.getInstance().getMyApi().getForecast( address, units, "9W8PBMYZLZRULGY57Q6BBLHN7");
         call.enqueue(new Callback<BWAForecast>() {
             @Override
-            public void onResponse(@NonNull Call<BWAForecast> call,
-                                   @NonNull Response<BWAForecast> response) {
+            public void onResponse(Call<BWAForecast> call, Response<BWAForecast> response) {
                 BWAForecast myForecast = response.body();
                 resetData();
 
@@ -143,13 +158,16 @@ public class MainUI extends BetterWeatherMainActivity {
                 {
 
 
-                    assert myForecast != null;
                     dates.add(myForecast.getDays()[i].getCurrDay());
                     highTemps.add(myForecast.getDays()[i].getHighTemp().toString() + "°");
                     lowTemps.add(myForecast.getDays()[i].getLowTemp().toString() + "°");
                     humidityPercents.add(myForecast.getDays()[i].getCurrHumidity().toString());
                     windsSpeeds.add(myForecast.getDays()[i].getCurrWindSpeed().toString());
                     uvLevels.add(myForecast.getDays()[i].getCurrUVIndexLevel().toString());
+                    Log.d("sunrise", myForecast.getDays()[i].getSunrise());
+                    Log.d("sunset", myForecast.getDays()[i].getSunset());
+                    sunrises.add(myForecast.getDays()[i].getSunrise());
+                    sunsets.add(myForecast.getDays()[i].getSunset());
 
                 }
                 displayCurrentWeather(myForecast);
@@ -157,9 +175,8 @@ public class MainUI extends BetterWeatherMainActivity {
             }
 
             @Override
-            public void onFailure(@NonNull Call<BWAForecast> call, @NonNull Throwable t) {
-                Toast.makeText(getApplicationContext(), "There was an error getting " +
-                        "the forecast from the weather API", Toast.LENGTH_LONG).show();
+            public void onFailure(Call<BWAForecast> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), "An error has occured", Toast.LENGTH_LONG).show();
                 t.printStackTrace();
             }
 
@@ -173,6 +190,8 @@ public class MainUI extends BetterWeatherMainActivity {
         humidityPercents.clear();
         windsSpeeds.clear();
         uvLevels.clear();
+        sunrises.clear();
+        sunsets.clear();
     }
 
     private void displayCurrentWeather(BWAForecast forecast)
@@ -186,6 +205,8 @@ public class MainUI extends BetterWeatherMainActivity {
         binding.txtUVIndex.setText(forecast.getDays()[0].getCurrUVIndexLevel().toString());
         binding.txtWindSpeed.setText(forecast.getDays()[0].getCurrWindSpeed().toString());
         binding.txtHumidityPercent.setText(forecast.getDays()[0].getCurrHumidity().toString());
+        binding.txtSunrise.setText(forecast.getDays()[0].getSunrise());
+        binding.txtSunset.setText(forecast.getDays()[0].getSunset());
 
         // Getting data from realtime database
         myRef.child(uID).child("current_city").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
