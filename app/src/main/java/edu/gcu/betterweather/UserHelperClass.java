@@ -7,12 +7,32 @@ public class UserHelperClass {
 
      String name;
      String email;
-     String city;
+     String currentCity;
+     String secondCity;
+     String thirdCity;
 
-    public UserHelperClass(String name, String email, String city) {
+    public String getSecondCity() {
+        return secondCity;
+    }
+
+    public void setSecondCity(String secondCity) {
+        this.secondCity = secondCity;
+    }
+
+    public String getThirdCity() {
+        return thirdCity;
+    }
+
+    public void setThirdCity(String thirdCity) {
+        this.thirdCity = thirdCity;
+    }
+
+    public UserHelperClass(String name, String email, String currentCity, String secondCity, String thirdCity) {
         this.name = name;
         this.email = email;
-        this.city = city;
+        this.currentCity = currentCity;
+        this.secondCity = secondCity;
+        this.thirdCity = thirdCity;
     }
 
     public UserHelperClass() {
@@ -34,11 +54,11 @@ public class UserHelperClass {
         this.email = email;
     }
 
-    public String getCity() {
-        return city;
+    public String getCurrentCity() {
+        return currentCity;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setCurrentCity(String currentCity) {
+        this.currentCity = currentCity;
     }
 }

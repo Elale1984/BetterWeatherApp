@@ -147,7 +147,7 @@ public class RegisterUser extends AppCompatActivity {
 
     private void writeUserData(String uID, String name, String email, String city) {
 
-        UserHelperClass newUser = new UserHelperClass(name, email, city);
+        UserHelperClass newUser = new UserHelperClass(name, email, city, null, null);
 
         mRef.child(uID).setValue(newUser);
         mRef.keepSynced(true);

@@ -30,7 +30,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class MainUI extends BetterWeatherMainActivity {
+public class MainUI extends BetterWeatherMainActivity implements View.OnLongClickListener, View.OnClickListener {
 
     public static ArrayList<String> dates = new ArrayList<>();
     public static ArrayList<String> highTemps= new ArrayList<>();
@@ -43,6 +43,9 @@ public class MainUI extends BetterWeatherMainActivity {
 
     private ActivityMainBinding binding;
     public static String location;
+    public Dialog myCitiesDialog;
+    public TextView currentCity, secondCity, thirdCity;
+
     public static String units = "us";
 
     // Firebase variables
@@ -110,17 +113,47 @@ public class MainUI extends BetterWeatherMainActivity {
 
     private void openMyCitiesDialog() {
 
-        Dialog myCitiesDialog = new Dialog(this, R.style.DialogStyle);
+        myCitiesDialog = new Dialog(this, R.style.DialogStyle);
         myCitiesDialog.setContentView(R.layout.change_location_dialog);
         myCitiesDialog.getWindow().setBackgroundDrawableResource(R.drawable.bg_window);
-        TextView currentCity = myCitiesDialog.findViewById(R.id.tvItemCurrentCity);
-        TextView secondCity = myCitiesDialog.findViewById(R.id.tvItemCityTwo);
-        TextView thirdCity = myCitiesDialog.findViewById(R.id.tvItemCityThree);
+        currentCity = myCitiesDialog.findViewById(R.id.tvItemCurrentCity);
+        secondCity = myCitiesDialog.findViewById(R.id.tvItemCityTwo);
+        thirdCity = myCitiesDialog.findViewById(R.id.tvItemCityThree);
         FloatingActionButton addCity = myCitiesDialog.findViewById(R.id.fabAddCity);
 
+
+
+
+
+        currentCity.setText(user.getCurrentCity());
+
+        if(user.getSecondCity() != null) {
+
+            secondCity.setText(user.getSecondCity());
+            secondCity.setVisibility(View.VISIBLE);
+        }
+
+        if(user.getThirdCity() != null){
+            thirdCity.setText(user.getThirdCity());
+            thirdCity.setVisibility(View.VISIBLE);
+        }
+
+
+        // sets the FAB visibility to INVISIBLE if there are 3 cities already added
         if(thirdCity.getVisibility() == View.VISIBLE){
             addCity.setVisibility(View.INVISIBLE);
         }
+
+        // set onClickListenter to select a different city
+        currentCity.setOnClickListener(this);
+        secondCity.setOnClickListener(this);
+        thirdCity.setOnClickListener(this);
+
+        // set onLongClickListener to update a favorite cities to new city
+        currentCity.setOnLongClickListener(this);
+        secondCity.setOnLongClickListener(this);
+        thirdCity.setOnLongClickListener(this);
+
 
         addCity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,26 +181,56 @@ public class MainUI extends BetterWeatherMainActivity {
         textInput.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                location = input.getText().toString();
 
-                setDataFromDatabase();
+
+                String cityZipCode = input.getText().toString();
+
+                // Update FireStore realtime data with new cities
+                if(cityView.getId() == R.id.tvItemCurrentCity){
+                    location = cityZipCode;
+                    updateCurrentCityToFirebaseRealtimeDatabase();
+                    cityZipCode = location;
+                }
+                if(cityView.getId() == R.id.tvItemCityTwo){
+                    user.setSecondCity(cityZipCode);
+                    updateSecondCityToFirebaseRealtimeDatabase(user.getSecondCity());
+                }
+                if(cityView.getId() == R.id.tvItemCityThree){
+                    user.setThirdCity(input.getText().toString());
+                    updateThirdCityToFirebaseRealtimeDatabase(user.getThirdCity());
+                }
 
                 // updates the UI with the new forecast information
-                getForecast(location, units);
-                cityView.setText(location);
+                cityView.setText(cityZipCode);
                 cityView.setVisibility(View.VISIBLE);
+
+
             }
         });
         textInput.show();
     }
 
-    private void setDataFromDatabase() {
+    private void updateThirdCityToFirebaseRealtimeDatabase(String thirdCity) {
+        myRef.child(uID).child("thirdCity").setValue(thirdCity);
+        myRef.keepSynced(true);
+    }
+
+    private void updateSecondCityToFirebaseRealtimeDatabase(String secondCity) {
+        // update Realtime Database with the new city
+
+        myRef.child(uID).child("secondCity").setValue(secondCity);
+        myRef.keepSynced(true);
+    }
+
+    private void updateCurrentCityToFirebaseRealtimeDatabase() {
         // update Realtime Database with the new city
         if(location == null || location.equals(""))
             location = "66212";
         myRef.child(uID).child("city").setValue(location);
 
         myRef.keepSynced(true);
+
+
     }
 
     /*
@@ -180,9 +243,11 @@ public class MainUI extends BetterWeatherMainActivity {
         user = new UserHelperClass();
         user.setName(snapshot.child(uID).getValue(UserHelperClass.class).getName());
         user.setEmail(snapshot.child(uID).getValue(UserHelperClass.class).getEmail());
-        user.setCity(snapshot.child(uID).getValue(UserHelperClass.class).getCity());
+        user.setCurrentCity(snapshot.child(uID).getValue(UserHelperClass.class).getCurrentCity());
+        user.setSecondCity(snapshot.child(uID).getValue(UserHelperClass.class).getSecondCity());
+        user.setThirdCity(snapshot.child(uID).getValue(UserHelperClass.class).getThirdCity());
 
-        location = user.city;
+        location = user.currentCity;
 
         getForecast(location, units);
     }
@@ -279,4 +344,37 @@ public class MainUI extends BetterWeatherMainActivity {
         });
     }
 
+    // this onLongClick event will handle the event for each city in favorites cities
+
+    @Override
+    public boolean onLongClick(View view) {
+        if(view.getId() == R.id.tvItemCurrentCity){
+            setCity(currentCity);
+        }
+        if (view.getId() == R.id.tvItemCityTwo) {
+            setCity(secondCity);
+        }
+        if (view.getId() == R.id.tvItemCityThree) {
+            setCity(thirdCity);
+        }
+
+        return false;
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view.getId() == R.id.tvItemCurrentCity){
+            location = currentCity.getText().toString();
+
+        }
+        if (view.getId() == R.id.tvItemCityTwo) {
+            location = secondCity.getText().toString();
+
+        }
+        if (view.getId() == R.id.tvItemCityThree) {
+            location = thirdCity.getText().toString();
+        }
+        getForecast(location, units);
+        myCitiesDialog.dismiss();
+    }
 }
