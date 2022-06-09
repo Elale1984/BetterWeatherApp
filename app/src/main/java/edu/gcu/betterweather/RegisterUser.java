@@ -8,8 +8,12 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import edu.gcu.betterweather.databinding.ActivityRegisterUserBinding;
@@ -17,8 +21,17 @@ import edu.gcu.betterweather.databinding.ActivityRegisterUserBinding;
 public class RegisterUser extends AppCompatActivity {
 
     private ActivityRegisterUserBinding binding;
-    private String email, password;
+    private String name, email, password, city;
+
+    // Firebase Authorization
     private FirebaseAuth mAuth;
+
+    // Firebase Realtime Database
+    private FirebaseDatabase root;
+    private DatabaseReference mRef;
+
+    // Firebase User ID
+    private String uID;
 
 
     // Progress Dialogue
@@ -33,6 +46,13 @@ public class RegisterUser extends AppCompatActivity {
 
         // init firebase auth
         mAuth = FirebaseAuth.getInstance();
+
+        // Init Firebase Realtime Database
+        root = FirebaseDatabase.getInstance();
+        mRef = root.getReference("users");
+
+
+
 
         // configure progress dialogue
         progressDialog = new ProgressDialog(this);
@@ -51,30 +71,46 @@ public class RegisterUser extends AppCompatActivity {
     }
 
     private void validateData() {
-
+        name = binding.etFName.getText().toString().trim();
         email = binding.etEmail.getText().toString().trim();
         password = binding.etMagicWord.getText().toString().trim();
+        city = binding.etCityZipCode.getText().toString().trim();
         String re_password = binding.etRePass.getText().toString().trim();
+
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             binding.etEmail.setError("Invalid Email Format");
-        }
-        else if (TextUtils.isEmpty(password)) {
+        } else if (TextUtils.isEmpty(password)) {
             // password not entered in field
             binding.etMagicWord.setError("Password Field is empty");
+        } else if (!isValidZipCode(city)){
+            binding.etCityZipCode.setError("This is not a valid us postal code");
         }
         else if (!isValidPassword(password)) {
             // Password does not meet format requirements
-            binding.etMagicWord.setError("Password must contain One Uppercase letter, one number, " +
-                    "one special character, and be at least 8 characters long.");
-        }
-        else if (!re_password.equals(password)) {
+            binding.etMagicWord.setError("Password must contain One Uppercase letter, " +
+                    "one number, one special character, and be at least 8 characters long.");
+        } else if (!re_password.equals(password)) {
             binding.etRePass.setError("The second password you entered does not match the first");
-        }
-        else {
+        } else {
+
+
             // Data was validated
             firebaseSignUp();
         }
     }
+
+    private boolean isValidZipCode(String city) {
+        Pattern zipPattern;
+        Matcher matcher;
+
+        final String ZIPCODE_PATTERN = "^[0-9]{5}(?:-[0-9]{4})?$";
+        zipPattern = Pattern.compile(ZIPCODE_PATTERN);
+        matcher = zipPattern.matcher(city);
+
+        return matcher.matches();
+
+    }
+
 
     private void firebaseSignUp() {
 
@@ -84,11 +120,18 @@ public class RegisterUser extends AppCompatActivity {
                     // Register New Account
                     progressDialog.dismiss();
 
+                    // Init User ID
+                    uID = FirebaseAuth.getInstance().getUid();
+
                     // get the users info
                     FirebaseUser firebaseUser = mAuth.getCurrentUser();
                     assert firebaseUser != null;
                     String userEmail = firebaseUser.getEmail();
-                    Toast.makeText(RegisterUser.this, "Account Created\n" + userEmail, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterUser.this, "Account Created\n" + userEmail,
+                            Toast.LENGTH_SHORT).show();
+
+                    // Create Realtime Database
+                    writeUserData(uID, name, email, city);
 
                     // log in user and launch weather app
                     startActivity(new Intent(RegisterUser.this, MainUI.class));
@@ -96,9 +139,21 @@ public class RegisterUser extends AppCompatActivity {
                 })
                 .addOnFailureListener(e -> {
                     // Failed Registration of new user
-                    Toast.makeText(RegisterUser.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterUser.this, "There was an error " +
+                            "creating the new user" + e.getMessage(),
+                            Toast.LENGTH_SHORT).show();
                 });
     }
+
+    private void writeUserData(String uID, String name, String email, String city) {
+
+        UserHelperClass newUser = new UserHelperClass(name, email, city, null, null);
+
+        mRef.child(uID).setValue(newUser);
+        mRef.keepSynced(true);
+
+    }
+
 
     // Method to check for standard requirements of passwords. Returns true if password meets
     // these requirements
@@ -116,4 +171,5 @@ public class RegisterUser extends AppCompatActivity {
         return matcher.matches();
 
     }
+
 }

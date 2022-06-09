@@ -4,23 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FF333542"
+    android:background="@color/grey"
     tools:context=".RegisterUser">
 
     <TextView
+        android:id="@+id/txtRegHeader"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/green"
-        android:id="@+id/txtRegHeader"
-        android:text="@string/sign_up_head"
-        android:textSize="50sp"
-        android:fontFamily="serif"
         android:layout_marginTop="50sp"
+        android:fontFamily="serif"
+        android:text="@string/sign_up_head"
+        android:textColor="#1B5E20"
+        android:textSize="50sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/otfRegEmail"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -31,13 +30,14 @@
         android:layout_marginEnd="50dp"
         android:hint="@string/email"
         app:hintTextColor="@color/green"
-        app:layout_constraintTop_toBottomOf="@+id/otfRegLName">
+        app:layout_constraintTop_toBottomOf="@+id/otfCityZipCode">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
+            android:textColorHint="#263238"
             android:textColorLink="@color/green" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -52,7 +52,7 @@
         android:layout_marginEnd="50sp"
         android:hint="@string/first_name"
         app:hintTextColor="@color/green"
-        app:layout_constraintBottom_toTopOf="@+id/otfRegLName"
+        app:layout_constraintBottom_toTopOf="@+id/otfCityZipCode"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,27 +64,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
+            android:textColorHint="#263238"
             android:textColorLink="@color/green" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/otfRegLName"
+        android:id="@+id/otfCityZipCode"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="50dp"
-        android:hint="@string/last_name"
+        android:hint="@string/zip_code"
         app:hintTextColor="@color/green"
         app:layout_constraintTop_toBottomOf="@+id/otfRegFName">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etLName"
+            android:id="@+id/etCityZipCode"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="text"
+            android:inputType="number"
+            android:textColorHint="#263238"
             android:textColorLink="@color/green" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -110,6 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
+            android:textColorHint="#263238"
             android:textColorLink="@color/green" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -134,6 +137,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
+            android:textColorHint="#263238"
             android:textColorLink="@color/green" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -148,15 +152,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/otfReg2MagicWord"
         android:layout_marginTop="20dp"/>
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/already_have_account"
+        android:textColor="@color/messageColor"
+        app:layout_constraintEnd_toStartOf="@id/tbtnSignIn"
+        app:layout_constraintTop_toTopOf="@+id/tbtnSignIn"
+        android:layout_marginEnd="3dp"
+        />
     <TextView
         android:id="@+id/tbtnSignIn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
         android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
         android:clickable="true"
         android:focusable="true"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
         android:text="@string/sign_in"
         android:textColor="@color/green"
         app:layout_constraintEnd_toEndOf="@+id/btnSignUp"

@@ -66,5 +66,15 @@
     <string name="wspeed">14</string>
     <string name="mph">mph</string>
     <string name="details">Details</string>
+    <string name="enter_zip_code">Enter Zip Code</string>
+    <string name="zip_code">Zip Code</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="already_have_account">Already have an account?</string>
+    <string name="favorite_locations">Favorite Locations</string>
+    <string name="current_city">Current_City</string>
+    <string name="add_city">Add City</string>
+    <string name="second_city">Second City</string>
+    <string name="current_cityd">Current City</string>
+    <string name="third_city">Third City</string>
 
 </resources>

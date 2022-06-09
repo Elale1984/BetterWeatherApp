@@ -1,8 +1,10 @@
-package edu.gcu.betterweather;
+package edu.gcu.betterweather.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import edu.gcu.betterweather.R;
 
 public class AboutPage extends AppCompatActivity {
 
