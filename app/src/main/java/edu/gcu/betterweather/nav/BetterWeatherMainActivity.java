@@ -1,12 +1,9 @@
-package edu.gcu.betterweather;
-
-import static edu.gcu.betterweather.MainUI.user;
+package edu.gcu.betterweather.nav;
 
 import android.content.Intent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -17,13 +14,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
+import edu.gcu.betterweather.R;
 import edu.gcu.betterweather.ui.AboutPage;
+import edu.gcu.betterweather.ui.BWALoginView;
+import edu.gcu.betterweather.ui.MainUI;
+import edu.gcu.betterweather.ui.TenDayForecast;
 
 
 public class BetterWeatherMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {

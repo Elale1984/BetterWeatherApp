@@ -16,16 +16,16 @@
             android:name=".ui.AboutPage"
             android:exported="false" />
         <activity
-            android:name=".TenDayForecast"
+            android:name=".ui.TenDayForecast"
             android:exported="false" />
         <activity
-            android:name=".BetterWeatherMainActivity"
+            android:name=".nav.BetterWeatherMainActivity"
             android:exported="false" />
         <activity
-            android:name=".RegisterUser"
+            android:name=".ui.RegisterUser"
             android:exported="false" />
         <activity
-            android:name=".BWALoginView"
+            android:name=".ui.BWALoginView"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainUI"
+            android:name=".ui.MainUI"
             android:exported="true" />
     </application>
 

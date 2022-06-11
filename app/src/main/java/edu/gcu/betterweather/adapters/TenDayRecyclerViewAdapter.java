@@ -1,4 +1,4 @@
-package edu.gcu.betterweather;
+package edu.gcu.betterweather.adapters;
 
 import android.content.Context;
 import android.util.Log;
@@ -8,12 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.card.MaterialCardView;
-
 import java.util.ArrayList;
+
+import edu.gcu.betterweather.R;
 
 
 public class TenDayRecyclerViewAdapter extends RecyclerView.Adapter<TenDayRecyclerViewAdapter.ViewHolder> {

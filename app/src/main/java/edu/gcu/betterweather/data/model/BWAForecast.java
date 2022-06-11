@@ -1,8 +1,10 @@
-package edu.gcu.betterweather;
+package edu.gcu.betterweather.data.model;
 
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import edu.gcu.betterweather.data.model.BWAData;
 
 public class BWAForecast {
     @SerializedName("days")

@@ -1,4 +1,4 @@
-package edu.gcu.betterweather;
+package edu.gcu.betterweather.ui;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -16,6 +16,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import edu.gcu.betterweather.utils.UserHelperClass;
 import edu.gcu.betterweather.databinding.ActivityRegisterUserBinding;
 
 public class RegisterUser extends AppCompatActivity {

@@ -1,11 +1,11 @@
-package edu.gcu.betterweather;
+package edu.gcu.betterweather.ui;
 
-import static edu.gcu.betterweather.MainUI.humidityPercents;
-import static edu.gcu.betterweather.MainUI.location;
-import static edu.gcu.betterweather.MainUI.uvLevels;
-import static edu.gcu.betterweather.MainUI.windsSpeeds;
-import static edu.gcu.betterweather.MainUI.sunrises;
-import static edu.gcu.betterweather.MainUI.sunsets;
+import static edu.gcu.betterweather.ui.MainUI.humidityPercents;
+import static edu.gcu.betterweather.ui.MainUI.location;
+import static edu.gcu.betterweather.ui.MainUI.uvLevels;
+import static edu.gcu.betterweather.ui.MainUI.windsSpeeds;
+import static edu.gcu.betterweather.ui.MainUI.sunrises;
+import static edu.gcu.betterweather.ui.MainUI.sunsets;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -13,8 +13,11 @@ import android.view.View;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import edu.gcu.betterweather.nav.BetterWeatherMainActivity;
+import edu.gcu.betterweather.adapters.TenDayRecyclerViewAdapter;
 import edu.gcu.betterweather.databinding.ActivityTenDayForcastBinding;
-public class TenDayForecast extends BetterWeatherMainActivity implements TenDayRecyclerViewAdapter.OnWeatherClickListener{
+
+public class TenDayForecast extends BetterWeatherMainActivity implements TenDayRecyclerViewAdapter.OnWeatherClickListener {
 
     private static final String TAG = "TenDayForecast";
 

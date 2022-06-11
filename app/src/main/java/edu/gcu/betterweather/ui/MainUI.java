@@ -1,4 +1,4 @@
-package edu.gcu.betterweather;
+package edu.gcu.betterweather.ui;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -24,6 +24,11 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import edu.gcu.betterweather.data.model.BWAForecast;
+import edu.gcu.betterweather.nav.BetterWeatherMainActivity;
+import edu.gcu.betterweather.R;
+import edu.gcu.betterweather.data.api.RetrofitClient;
+import edu.gcu.betterweather.utils.UserHelperClass;
 import edu.gcu.betterweather.databinding.ActivityMainBinding;
 import retrofit2.Call;
 import retrofit2.Callback;

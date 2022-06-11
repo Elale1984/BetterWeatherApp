@@ -1,4 +1,4 @@
-package edu.gcu.betterweather;
+package edu.gcu.betterweather.utils;
 
 import com.google.firebase.database.IgnoreExtraProperties;
 
@@ -7,7 +7,7 @@ public class UserHelperClass {
 
      String name;
      String email;
-     String currentCity;
+     public String currentCity;
      String secondCity;
      String thirdCity;
 
