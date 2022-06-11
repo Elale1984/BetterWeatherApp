@@ -1,6 +1,6 @@
-package edu.gcu.betterweather;
+package edu.gcu.betterweather.data.api;
 
-import edu.gcu.betterweather.BWAForecast;
+import edu.gcu.betterweather.data.model.BWAForecast;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

@@ -1,9 +1,7 @@
-package edu.gcu.betterweather;
+package edu.gcu.betterweather.ui;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -11,8 +9,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,14 +19,21 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
+import edu.gcu.betterweather.R;
+import edu.gcu.betterweather.data.api.RetrofitClient;
+import edu.gcu.betterweather.data.model.BWAForecast;
 import edu.gcu.betterweather.databinding.ActivityMainBinding;
+import edu.gcu.betterweather.nav.BetterWeatherMainActivity;
+import edu.gcu.betterweather.utils.UserHelperClass;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class MainUI extends BetterWeatherMainActivity implements View.OnLongClickListener, View.OnClickListener {
+public class MainUI extends BetterWeatherMainActivity
+        implements View.OnLongClickListener, View.OnClickListener {
 
     public static ArrayList<String> dates = new ArrayList<>();
     public static ArrayList<String> highTemps= new ArrayList<>();
@@ -49,7 +52,7 @@ public class MainUI extends BetterWeatherMainActivity implements View.OnLongClic
     public static String units = "us";
 
     // Firebase variables
-    private static  FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private static final FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private final String uID = mAuth.getUid();
     DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users");
 
@@ -70,11 +73,7 @@ public class MainUI extends BetterWeatherMainActivity implements View.OnLongClic
 
 
         // button click to change the current location
-        binding.txtCurrentCity.setOnClickListener(v -> {
-
-            openMyCitiesDialog();
-
-        });
+        binding.txtCurrentCity.setOnClickListener(v -> openMyCitiesDialog());
 
         // Listener for the f/c switch
         binding.switchUnits.setOnCheckedChangeListener((v, s) -> {
@@ -144,7 +143,7 @@ public class MainUI extends BetterWeatherMainActivity implements View.OnLongClic
             addCity.setVisibility(View.INVISIBLE);
         }
 
-        // set onClickListenter to select a different city
+        // set onClickListener to select a different city
         currentCity.setOnClickListener(this);
         secondCity.setOnClickListener(this);
         thirdCity.setOnClickListener(this);
@@ -155,18 +154,15 @@ public class MainUI extends BetterWeatherMainActivity implements View.OnLongClic
         thirdCity.setOnLongClickListener(this);
 
 
-        addCity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(secondCity.getVisibility() == View.INVISIBLE) {
-                    setCity(secondCity);
-                }
-                else {
-                    setCity(thirdCity);
-                    addCity.setVisibility(View.INVISIBLE);
-                }
-
+        addCity.setOnClickListener(view -> {
+            if(secondCity.getVisibility() == View.INVISIBLE) {
+                setCity(secondCity);
             }
+            else {
+                setCity(thirdCity);
+                addCity.setVisibility(View.INVISIBLE);
+            }
+
         });
         myCitiesDialog.show();
 
@@ -178,34 +174,31 @@ public class MainUI extends BetterWeatherMainActivity implements View.OnLongClic
         textInput.setMessage("Please input the name or postal code of the location here:");
         final EditText input = new EditText(textInput.getContext());
         textInput.setView(input);
-        textInput.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
+        textInput.setPositiveButton("OK", (dialog, which) -> {
 
 
-                String cityZipCode = input.getText().toString();
+            String cityZipCode = input.getText().toString();
 
-                // Update FireStore realtime data with new cities
-                if(cityView.getId() == R.id.tvItemCurrentCity){
-                    location = cityZipCode;
-                    updateCurrentCityToFirebaseRealtimeDatabase();
-                    cityZipCode = location;
-                }
-                if(cityView.getId() == R.id.tvItemCityTwo){
-                    user.setSecondCity(cityZipCode);
-                    updateSecondCityToFirebaseRealtimeDatabase(user.getSecondCity());
-                }
-                if(cityView.getId() == R.id.tvItemCityThree){
-                    user.setThirdCity(input.getText().toString());
-                    updateThirdCityToFirebaseRealtimeDatabase(user.getThirdCity());
-                }
-
-                // updates the UI with the new forecast information
-                cityView.setText(cityZipCode);
-                cityView.setVisibility(View.VISIBLE);
-
-
+            // Update FireStore realtime data with new cities
+            if(cityView.getId() == R.id.tvItemCurrentCity){
+                location = cityZipCode;
+                updateCurrentCityToFirebaseRealtimeDatabase();
+                cityZipCode = location;
             }
+            if(cityView.getId() == R.id.tvItemCityTwo){
+                user.setSecondCity(cityZipCode);
+                updateSecondCityToFirebaseRealtimeDatabase(user.getSecondCity());
+            }
+            if(cityView.getId() == R.id.tvItemCityThree){
+                user.setThirdCity(input.getText().toString());
+                updateThirdCityToFirebaseRealtimeDatabase(user.getThirdCity());
+            }
+
+            // updates the UI with the new forecast information
+            cityView.setText(cityZipCode);
+            cityView.setVisibility(View.VISIBLE);
+
+
         });
         textInput.show();
     }
@@ -241,11 +234,11 @@ public class MainUI extends BetterWeatherMainActivity implements View.OnLongClic
     private void updateUI(DataSnapshot snapshot) {
 
         user = new UserHelperClass();
-        user.setName(snapshot.child(uID).getValue(UserHelperClass.class).getName());
-        user.setEmail(snapshot.child(uID).getValue(UserHelperClass.class).getEmail());
-        user.setCurrentCity(snapshot.child(uID).getValue(UserHelperClass.class).getCurrentCity());
-        user.setSecondCity(snapshot.child(uID).getValue(UserHelperClass.class).getSecondCity());
-        user.setThirdCity(snapshot.child(uID).getValue(UserHelperClass.class).getThirdCity());
+        user.setName(Objects.requireNonNull(snapshot.child(uID).getValue(UserHelperClass.class)).getName());
+        user.setEmail(Objects.requireNonNull(snapshot.child(uID).getValue(UserHelperClass.class)).getEmail());
+        user.setCurrentCity(Objects.requireNonNull(snapshot.child(uID).getValue(UserHelperClass.class)).getCurrentCity());
+        user.setSecondCity(Objects.requireNonNull(snapshot.child(uID).getValue(UserHelperClass.class)).getSecondCity());
+        user.setThirdCity(Objects.requireNonNull(snapshot.child(uID).getValue(UserHelperClass.class)).getThirdCity());
 
         location = user.currentCity;
 
@@ -267,23 +260,22 @@ public class MainUI extends BetterWeatherMainActivity implements View.OnLongClic
                 getForecast( address, units, "9W8PBMYZLZRULGY57Q6BBLHN7");
         call.enqueue(new Callback<BWAForecast>() {
             @Override
-            public void onResponse(Call<BWAForecast> call, Response<BWAForecast> response) {
+            public void onResponse(@NonNull Call<BWAForecast> call, @NonNull Response<BWAForecast> response) {
                 BWAForecast myForecast = response.body();
                 resetData();
 
-                Log.d("myTag", response.toString());
                 for (int i = 0; i <10; i++)
                 {
 
 
+                    assert myForecast != null;
                     dates.add(myForecast.getDays()[i].getCurrDay());
                     highTemps.add(myForecast.getDays()[i].getHighTemp().toString() + "°");
                     lowTemps.add(myForecast.getDays()[i].getLowTemp().toString() + "°");
                     humidityPercents.add(myForecast.getDays()[i].getCurrHumidity().toString());
                     windsSpeeds.add(myForecast.getDays()[i].getCurrWindSpeed().toString());
                     uvLevels.add(myForecast.getDays()[i].getCurrUVIndexLevel().toString());
-                    Log.d("sunrise", myForecast.getDays()[i].getSunrise());
-                    Log.d("sunset", myForecast.getDays()[i].getSunset());
+
                     sunrises.add(myForecast.getDays()[i].getSunrise());
                     sunsets.add(myForecast.getDays()[i].getSunset());
 
@@ -293,10 +285,8 @@ public class MainUI extends BetterWeatherMainActivity implements View.OnLongClic
             }
 
             @Override
-            public void onFailure(Call<BWAForecast> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), "An error has occurred getting the " +
-                        "forecast from the weather api", Toast.LENGTH_LONG).show();
-                t.printStackTrace();
+            public void onFailure(@NonNull Call<BWAForecast> call, @NonNull Throwable t) {
+
             }
 
         });
@@ -329,19 +319,13 @@ public class MainUI extends BetterWeatherMainActivity implements View.OnLongClic
 
         // Getting data from realtime database
         myRef.child(uID).child("current_city").get()
-                .addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                if (!task.isSuccessful()) {
-                    Toast.makeText(MainUI.this, "Failed to get data from firebase",
-                            Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    Toast.makeText(MainUI.this, String.valueOf(task.getResult().getValue()),
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+                .addOnCompleteListener(task -> {
+                    if (!task.isSuccessful()) {
+                        Toast.makeText(MainUI.this, "Failed to get data from firebase",
+                                Toast.LENGTH_SHORT).show();
+                    }
+
+                });
     }
 
     // this onLongClick event will handle the event for each city in favorites cities

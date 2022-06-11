@@ -1,8 +1,7 @@
-package edu.gcu.betterweather;
-
-import static edu.gcu.betterweather.MainUI.user;
+package edu.gcu.betterweather.nav;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -23,18 +22,21 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Objects;
+
+import edu.gcu.betterweather.R;
 import edu.gcu.betterweather.ui.AboutPage;
+import edu.gcu.betterweather.ui.BWALoginView;
+import edu.gcu.betterweather.ui.MainUI;
+import edu.gcu.betterweather.ui.TenDayForecast;
+import edu.gcu.betterweather.utils.UserHelperClass;
 
 
 public class BetterWeatherMainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private static final String TAG = "BetterWeatherMainActivity";
 
     DrawerLayout drawerLayout;
-
-    // Firebase variables
-    private static  FirebaseAuth mAuth = FirebaseAuth.getInstance();
-
+    private FirebaseAuth mAuth;
 
 
     @Override
@@ -44,8 +46,7 @@ public class BetterWeatherMainActivity extends AppCompatActivity implements Navi
         container.addView(view);
         super.setContentView(drawerLayout);
 
-        // Set the firebase aut to get the current instance
-        mAuth = FirebaseAuth.getInstance();
+
 
 
         Toolbar toolbar = drawerLayout.findViewById(R.id.toolbar);
@@ -62,33 +63,29 @@ public class BetterWeatherMainActivity extends AppCompatActivity implements Navi
 
     }
 
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         drawerLayout.closeDrawer(GravityCompat.START);
-        switch (item.getItemId()) {
 
-            case R.id.nav_curr_weather:
-                startActivity(new Intent(this, MainUI.class));
-                overridePendingTransition(0,0);
-                break;
-            case R.id.nav_ten_day:
-                startActivity(new Intent(this, TenDayForecast.class));
-                overridePendingTransition(0,0);
-                break;
-            case R.id.nav_about:
-                startActivity(new Intent(this, AboutPage.class));
-                overridePendingTransition(0,0);
-                break;
-            case R.id.nav_sign_out:
-                mAuth.signOut();
-                startActivity(new Intent(this, BWALoginView.class));
-
-                break;
-            default:
-                break;
+        if(item.getItemId() == R.id.nav_curr_weather){
+            startActivity(new Intent(this, MainUI.class));
+            overridePendingTransition(0,0);
+        }
+        if(item.getItemId() == R.id.nav_ten_day) {
+            startActivity(new Intent(this, TenDayForecast.class));
+            overridePendingTransition(0,0);
+        }
+        if(item.getItemId() == R.id.nav_about) {
+            startActivity(new Intent(this, AboutPage.class));
+            overridePendingTransition(0,0);
+        }
+        if(item.getItemId() == R.id.nav_sign_out) {
+            mAuth.signOut();
+            startActivity(new Intent(this, BWALoginView.class));
         }
 
-        return false;
+       return false;
     }
 
     protected void allocateActivityTitle(String currentActivityTitle) {

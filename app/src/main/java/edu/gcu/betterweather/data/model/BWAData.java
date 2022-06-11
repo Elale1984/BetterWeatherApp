@@ -1,4 +1,4 @@
-package edu.gcu.betterweather;
+package edu.gcu.betterweather.data.model;
 
 import com.google.gson.annotations.SerializedName;
 

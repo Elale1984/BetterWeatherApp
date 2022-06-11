@@ -1,23 +1,18 @@
-package edu.gcu.betterweather;
+package edu.gcu.betterweather.ui;
 
-import static edu.gcu.betterweather.MainUI.humidityPercents;
-import static edu.gcu.betterweather.MainUI.location;
-import static edu.gcu.betterweather.MainUI.uvLevels;
-import static edu.gcu.betterweather.MainUI.windsSpeeds;
-import static edu.gcu.betterweather.MainUI.sunrises;
-import static edu.gcu.betterweather.MainUI.sunsets;
-
+import static edu.gcu.betterweather.ui.MainUI.humidityPercents;
+import static edu.gcu.betterweather.ui.MainUI.sunrises;
+import static edu.gcu.betterweather.ui.MainUI.sunsets;
+import static edu.gcu.betterweather.ui.MainUI.uvLevels;
+import static edu.gcu.betterweather.ui.MainUI.windsSpeeds;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
-
+import edu.gcu.betterweather.adapters.TenDayRecyclerViewAdapter;
 import edu.gcu.betterweather.databinding.ActivityTenDayForcastBinding;
-public class TenDayForecast extends BetterWeatherMainActivity implements TenDayRecyclerViewAdapter.OnWeatherClickListener{
+import edu.gcu.betterweather.nav.BetterWeatherMainActivity;
 
-    private static final String TAG = "TenDayForecast";
-
+public class TenDayForecast extends BetterWeatherMainActivity implements TenDayRecyclerViewAdapter.OnWeatherClickListener {
 
     private ActivityTenDayForcastBinding binding;
 
@@ -31,23 +26,20 @@ public class TenDayForecast extends BetterWeatherMainActivity implements TenDayR
         // This will set the title in the toolbar
         allocateActivityTitle("10 Day Forecast");
 
-        // display current weather
-        getForecast(location);
-
         buildRecyclerView();
-    }
-
-    private void getForecast(String location) {
     }
 
 
     private void buildRecyclerView() {
-        Log.d(TAG, "buildRecyclerView");
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this,
+                LinearLayoutManager.HORIZONTAL, false);
+
         binding.dayWeatherOne.rvTenDayWeather.setLayoutManager(layoutManager);
 
-        TenDayRecyclerViewAdapter adapter = new TenDayRecyclerViewAdapter(this, MainUI.dates, MainUI.highTemps, MainUI.lowTemps, humidityPercents, MainUI.windsSpeeds, MainUI.uvLevels, MainUI.sunrises, MainUI.sunsets, this);
+        TenDayRecyclerViewAdapter adapter = new TenDayRecyclerViewAdapter(
+                MainUI.dates, MainUI.highTemps, MainUI.lowTemps,
+                this);
         binding.dayWeatherOne.rvTenDayWeather.setAdapter(adapter);
     }
 

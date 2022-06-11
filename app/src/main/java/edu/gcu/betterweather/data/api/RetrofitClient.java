@@ -1,4 +1,4 @@
-package edu.gcu.betterweather;
+package edu.gcu.betterweather.data.api;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

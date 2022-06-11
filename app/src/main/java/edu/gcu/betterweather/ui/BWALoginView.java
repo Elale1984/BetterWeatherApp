@@ -1,4 +1,4 @@
-package edu.gcu.betterweather;
+package edu.gcu.betterweather.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Objects;
 
 import edu.gcu.betterweather.databinding.ActivityBwaloginViewBinding;
 
@@ -52,8 +54,8 @@ public class BWALoginView extends AppCompatActivity {
 
     public void ValidateDataAndLogIn(){
 
-        String userEmail = binding.etEmail.getText().toString();
-        String userPassword = binding.etPass.getText().toString();
+        String userEmail = Objects.requireNonNull(binding.etEmail.getText()).toString();
+        String userPassword = Objects.requireNonNull(binding.etPass.getText()).toString();
 
         //Error Handling for user miss entry of login credentials
         if (!Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()) {
@@ -64,24 +66,28 @@ public class BWALoginView extends AppCompatActivity {
             binding.etPass.setError("Password Field is empty");
         }
         else {
-            //checking our users inputs against firebase for correct login
-            mAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(this, task -> {
-                if (task.isSuccessful() ) {
-                    Toast.makeText(BWALoginView.this, "Log In Successful",
-                            Toast.LENGTH_SHORT).show();
-
-                    // Navigate to main UI
-                    Intent intent = new Intent(BWALoginView.this, MainUI.class);
-                    startActivity(intent);
-                }
-                else {
-                    // User login failed so error massage for incorrect credentials
-                    Toast.makeText(BWALoginView.this,
-                            "Log Failed. Check your email and password and try again. ",
-                            Toast.LENGTH_SHORT).show();
-                }
-            });
+            signInWithEmailAndPassword(userEmail, userPassword);
         }
+    }
+
+    private void signInWithEmailAndPassword(String userEmail, String userPassword) {
+        //checking our users inputs against firebase for correct login
+        mAuth.signInWithEmailAndPassword(userEmail, userPassword).addOnCompleteListener(this, task -> {
+            if (task.isSuccessful() ) {
+                Toast.makeText(BWALoginView.this, "Log In Successful",
+                        Toast.LENGTH_SHORT).show();
+
+                // Navigate to main UI
+                Intent intent = new Intent(BWALoginView.this, MainUI.class);
+                startActivity(intent);
+            }
+            else {
+                // User login failed so error massage for incorrect credentials
+                Toast.makeText(BWALoginView.this,
+                        "Log Failed. Check your email and password and try again. ",
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
