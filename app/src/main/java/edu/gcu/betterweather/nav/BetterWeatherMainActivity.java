@@ -46,7 +46,7 @@ public class BetterWeatherMainActivity extends AppCompatActivity implements Navi
         container.addView(view);
         super.setContentView(drawerLayout);
 
-
+        mAuth = FirebaseAuth.getInstance();
 
 
         Toolbar toolbar = drawerLayout.findViewById(R.id.toolbar);
