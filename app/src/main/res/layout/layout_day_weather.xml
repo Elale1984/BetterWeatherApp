@@ -12,7 +12,7 @@
         android:layout_margin="10dp"
         app:cardElevation="1dp"
         app:cardMaxElevation="2dp"
-        android:backgroundTint="@color/primaryColor">
+        android:backgroundTint="?attr/colorPrimaryVariant">
 
         <RelativeLayout
             android:layout_width="match_parent"
