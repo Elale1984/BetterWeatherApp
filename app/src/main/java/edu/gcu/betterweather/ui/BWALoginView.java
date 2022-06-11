@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.Objects;
+
 import edu.gcu.betterweather.databinding.ActivityBwaloginViewBinding;
 
 public class BWALoginView extends AppCompatActivity {
@@ -52,8 +54,8 @@ public class BWALoginView extends AppCompatActivity {
 
     public void ValidateDataAndLogIn(){
 
-        String userEmail = binding.etEmail.getText().toString();
-        String userPassword = binding.etPass.getText().toString();
+        String userEmail = Objects.requireNonNull(binding.etEmail.getText()).toString();
+        String userPassword = Objects.requireNonNull(binding.etPass.getText()).toString();
 
         //Error Handling for user miss entry of login credentials
         if (!Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()) {

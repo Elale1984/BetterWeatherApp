@@ -35,6 +35,11 @@ public class UserHelperClass {
         this.thirdCity = thirdCity;
     }
 
+    public UserHelperClass(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
     public UserHelperClass() {
     }
 

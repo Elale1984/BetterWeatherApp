@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,8 +29,6 @@ public class RegisterUser extends AppCompatActivity {
     // Firebase Authorization
     private FirebaseAuth mAuth;
 
-    // Firebase Realtime Database
-    private FirebaseDatabase root;
     private DatabaseReference mRef;
 
     // Firebase User ID
@@ -50,7 +49,8 @@ public class RegisterUser extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         // Init Firebase Realtime Database
-        root = FirebaseDatabase.getInstance();
+        // Firebase Realtime Database
+        FirebaseDatabase root = FirebaseDatabase.getInstance();
         mRef = root.getReference("users");
 
 
@@ -73,11 +73,11 @@ public class RegisterUser extends AppCompatActivity {
     }
 
     private void validateData() {
-        name = binding.etFName.getText().toString().trim();
-        email = binding.etEmail.getText().toString().trim();
-        password = binding.etMagicWord.getText().toString().trim();
-        city = binding.etCityZipCode.getText().toString().trim();
-        String re_password = binding.etRePass.getText().toString().trim();
+        name = Objects.requireNonNull(binding.etFName.getText()).toString().trim();
+        email = Objects.requireNonNull(binding.etEmail.getText()).toString().trim();
+        password = Objects.requireNonNull(binding.etMagicWord.getText()).toString().trim();
+        city = Objects.requireNonNull(binding.etCityZipCode.getText()).toString().trim();
+        String re_password = Objects.requireNonNull(binding.etRePass.getText()).toString().trim();
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             binding.etEmail.setError("Invalid Email Format");

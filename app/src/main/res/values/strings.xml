@@ -76,5 +76,13 @@
     <string name="second_city">Second City</string>
     <string name="current_cityd">Current City</string>
     <string name="third_city">Third City</string>
+    <string name="f_c">F/C</string>
+    <string name="version_1_0_0">Version 1.0.0</string>
+    <string name="_2022_2034_weather_app_inc">2022 - 2034 Weather App Inc.</string>
+    <string name="edward_lale">Edward Lale</string>
+    <string name="nathan_meyer">Nathan Meyer</string>
+    <string name="lindsay_blood">Lindsay Blood</string>
+    <string name="better_weather_app">Better Weather App</string>
+    <string name="better_weather_app_logo">Better Weather app logo</string>
 
 </resources>
