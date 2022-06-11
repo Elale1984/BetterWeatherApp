@@ -76,5 +76,29 @@
     <string name="second_city">Second City</string>
     <string name="current_cityd">Current City</string>
     <string name="third_city">Third City</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+    <string-array name="Duration">
+        <item> 5 Min</item>
+        <item> 10 Min</item>
+        <item> 30 Min</item>
+        <item> 60 Min</item>
+    </string-array>
+
 
 </resources>
