@@ -76,13 +76,38 @@
     <string name="second_city">Second City</string>
     <string name="current_cityd">Current City</string>
     <string name="third_city">Third City</string>
-    <string name="f_c">F/C</string>
-    <string name="version_1_0_0">Version 1.0.0</string>
-    <string name="_2022_2034_weather_app_inc">2022 - 2034 Weather App Inc.</string>
-    <string name="edward_lale">Edward Lale</string>
-    <string name="nathan_meyer">Nathan Meyer</string>
-    <string name="lindsay_blood">Lindsay Blood</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="better_weather_app_logo">Better Weather App Logo</string>
     <string name="better_weather_app">Better Weather App</string>
-    <string name="better_weather_app_logo">Better Weather app logo</string>
+    <string name="edward_lale">Edward Lale</string>
+    <string name="lindsay_blood">Lindsay Blood</string>
+    <string name="version_1_0_0">Version 1.0.0</string>
+    <string name="_2022_2034_better_weather_app_inc">2022-2034 Better Weather App inc</string>
+    <string name="nathan_meyer">Nathan Meyer</string>
+    <string name="f_c">F/C</string>
+    <string name="settings">Settings</string>
+
+    <string-array name="Duration">
+        <item> 5 Min</item>
+        <item> 10 Min</item>
+        <item> 30 Min</item>
+        <item> 60 Min</item>
+    </string-array>
+
 
 </resources>

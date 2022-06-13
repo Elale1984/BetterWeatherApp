@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.gcu.betterweather">
+    package="edu.gcu.betterweather" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".BetterWeatherApp"
         android:allowBackup="true"
         android:icon="@drawable/cloud_background"
         android:label="@string/app_name"
         android:roundIcon="@drawable/ic_launcher_foreground"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BetterWeather"
-        android:name=".BetterWeatherApp">
+        android:theme="@style/Theme.BetterWeather" >
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false" />
         <activity
             android:name=".ui.AboutPage"
+            android:exported="false" />
+        <activity
+            android:name=".ui.AppSettings"
             android:exported="false" />
         <activity
             android:name=".ui.TenDayForecast"
@@ -26,7 +32,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.BWALoginView"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
