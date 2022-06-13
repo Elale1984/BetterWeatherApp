@@ -7,13 +7,7 @@
         <entry key="..\:/GCU/2022/CST-326/workspace/BetterWeatherApp/BetterWeatherApp/app/src/main/res/layout/activity_bwalogin_view.xml" value="0.1" />
         <entry key="..\:/GCU/2022/CST-326/workspace/BetterWeatherApp/BetterWeatherApp/app/src/main/res/layout/activity_main.xml" value="0.1641337386018237" />
         <entry key="..\:/GCU/2022/CST-326/workspace/BetterWeatherApp/BetterWeatherApp/app/src/main/res/layout/ten_day_weather_layout.xml" value="0.1641337386018237" />
-        <entry key="..\:/GCU/2022/CST-326/workspace/BetterWeatherApp/app/src/main/res/layout/activity_about_page.xml" value="0.18802083333333333" />
-        <entry key="..\:/GCU/2022/CST-326/workspace/BetterWeatherApp/app/src/main/res/layout/activity_better_weather_main.xml" value="0.18802083333333333" />
-        <entry key="..\:/GCU/2022/CST-326/workspace/BetterWeatherApp/app/src/main/res/layout/activity_bwalogin_view.xml" value="0.18802083333333333" />
-        <entry key="..\:/GCU/2022/CST-326/workspace/BetterWeatherApp/app/src/main/res/layout/activity_main.xml" value="0.2846975088967972" />
-        <entry key="..\:/GCU/2022/CST-326/workspace/BetterWeatherApp/app/src/main/res/layout/activity_ten_day_forcast.xml" value="0.18802083333333333" />
-        <entry key="..\:/GCU/2022/CST-326/workspace/BetterWeatherApp/app/src/main/res/layout/change_location_dialog.xml" value="0.18802083333333333" />
-        <entry key="..\:/GCU/2022/CST-326/workspace/BetterWeatherApp/app/src/main/res/layout/layout_day_weather.xml" value="0.18802083333333333" />
+        <entry key="..\:/GCU/2022/CST-326/workspace/BetterWeatherApp/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/GCU/2022/CST-326/workspace/BetterWeatherApp/app/src/main/res/layout/ten_day_weather_layout.xml" value="0.36666666666666664" />
         <entry key="..\:/MyAndroid/BetterWeatherApp/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.1" />
         <entry key="..\:/MyAndroid/BetterWeatherApp/app/src/main/res/drawable/bg_window.xml" value="0.143" />
@@ -25,6 +19,7 @@
         <entry key="..\:/MyAndroid/BetterWeatherApp/app/src/main/res/layout/activity_bwalogin_view.xml" value="0.3649425287356322" />
         <entry key="..\:/MyAndroid/BetterWeatherApp/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/MyAndroid/BetterWeatherApp/app/src/main/res/layout/activity_register_user.xml" value="0.3625" />
+        <entry key="..\:/MyAndroid/BetterWeatherApp/app/src/main/res/layout/activity_settings.xml" value="0.18541666666666667" />
         <entry key="..\:/MyAndroid/BetterWeatherApp/app/src/main/res/layout/activity_ten_day_forcast.xml" value="0.1" />
         <entry key="..\:/MyAndroid/BetterWeatherApp/app/src/main/res/layout/activity_test.xml" value="0.3890577507598784" />
         <entry key="..\:/MyAndroid/BetterWeatherApp/app/src/main/res/layout/change_location_dialog.xml" value="0.2872340425531915" />
@@ -49,9 +44,6 @@
         <entry key="..\:/Users/edwar/AndroidStudioProjects/BetterWeatherApp/app/src/main/res/layout/day_card_weather_layout.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/edwar/AndroidStudioProjects/BetterWeatherApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.124" />
         <entry key="..\:/Users/edwar/AndroidStudioProjects/BetterWeatherApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.124" />
-        <entry key="..\:/Users/sande/StudioProjects/BetterWeatherApp/app/src/main/res/layout/activity_about_page.xml" value="0.12158054711246201" />
-        <entry key="..\:/Users/sande/StudioProjects/BetterWeatherApp/app/src/main/res/layout/activity_settings.xml" value="0.2" />
-        <entry key="..\:/Users/sande/StudioProjects/BetterWeatherApp/app/src/main/res/layout/settings_activity.xml" value="0.176" />
       </map>
     </option>
   </component>

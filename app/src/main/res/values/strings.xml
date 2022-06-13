@@ -92,6 +92,15 @@
     <string name="attachment_summary_on">Automatically download attachments for incoming emails
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
+    <string name="better_weather_app_logo">Better Weather App Logo</string>
+    <string name="better_weather_app">Better Weather App</string>
+    <string name="edward_lale">Edward Lale</string>
+    <string name="lindsay_blood">Lindsay Blood</string>
+    <string name="version_1_0_0">Version 1.0.0</string>
+    <string name="_2022_2034_better_weather_app_inc">2022-2034 Better Weather App inc</string>
+    <string name="nathan_meyer">Nathan Meyer</string>
+    <string name="f_c">F/C</string>
+    <string name="settings">Settings</string>
 
     <string-array name="Duration">
         <item> 5 Min</item>

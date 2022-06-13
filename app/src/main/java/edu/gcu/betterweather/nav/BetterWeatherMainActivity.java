@@ -25,7 +25,9 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Objects;
 
 import edu.gcu.betterweather.R;
+import edu.gcu.betterweather.SettingsActivity;
 import edu.gcu.betterweather.ui.AboutPage;
+import edu.gcu.betterweather.ui.AppSettings;
 import edu.gcu.betterweather.ui.BWALoginView;
 import edu.gcu.betterweather.ui.MainUI;
 import edu.gcu.betterweather.ui.TenDayForecast;
@@ -55,7 +57,7 @@ public class BetterWeatherMainActivity extends AppCompatActivity implements Navi
 
         NavigationView navigationView = drawerLayout.findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
+        navigationView.setItemIconTintList(null);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open, R.string.close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -83,6 +85,10 @@ public class BetterWeatherMainActivity extends AppCompatActivity implements Navi
         if(item.getItemId() == R.id.nav_sign_out) {
             mAuth.signOut();
             startActivity(new Intent(this, BWALoginView.class));
+        }
+        if(item.getItemId() == R.id.nav_settings) {
+
+            startActivity(new Intent(this, AppSettings.class));
         }
 
        return false;
